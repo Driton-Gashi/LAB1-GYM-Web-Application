@@ -164,12 +164,3 @@ foreign key (adress_id) references adress(adress_id),
 )
 
 
-
-
-
-
-
-
-
-
-
