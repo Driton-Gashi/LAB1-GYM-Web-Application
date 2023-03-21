@@ -7,5 +7,3 @@ const App = () => {
 };
 
 export default App;
-
-//dritoni o i dopt
