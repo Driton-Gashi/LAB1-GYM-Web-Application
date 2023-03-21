@@ -1,0 +1,24 @@
+footer {
+  padding: 0 2em;
+  display: flex;
+  border-top: 4px solid var(--blue);
+  background: var(--black);
+  color: #fff;
+}
+.footer-section {
+  padding: 2em 1em 0.5em 1em;
+  width: 25%;
+  list-style-type: none;
+}
+.footer-logo {
+  width: 100%;
+}
+.after-footer {
+  padding: 1em 0 0 0;
+  color: #fff;
+  text-align: center;
+  background-color: var(--black);
+}
+.footer-section h3 {
+  color: var(--dark-blue);
+}

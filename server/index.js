@@ -21,13 +21,14 @@ app.post("/todos", async (req, res) => {
   } catch (err) {
     console.log(err.message);
   }
+  const s = 10;
 });
 
 // get all todos
-app.get("/todos", async (req, res) => {
+app.get("/programs", async (req, res) => {
   try {
-    const allTodos = await pool.query("SELECT * from todo");
-    res.json(allTodos.rows);
+    const allPrograms = await pool.query("SELECT * from programs");
+    res.json(allPrograms.rows);
   } catch (error) {
     console.log(error.message);
   }

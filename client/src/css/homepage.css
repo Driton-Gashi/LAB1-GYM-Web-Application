@@ -1,0 +1,83 @@
+.mainBanner {
+  width: 100%;
+  height: 86vh;
+  position: relative;
+}
+.videoBg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(110%) brightness(50%);
+}
+.mainBanner__content {
+  position: absolute;
+  z-index: 2;
+  color: #fff;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.mainBanner__content h1 {
+  font-size: 4em;
+}
+.mainBanner__content p {
+  text-align: justify;
+  margin-bottom: 1.5em;
+}
+.mainBanner__content button {
+  font-size: 1.3em;
+  padding: 0.6em;
+  width: 250px;
+  background-color: transparent;
+  color: var(--blue);
+  outline: 0;
+  border: 0;
+  border-radius: 100px;
+  transition: 0.5s ease all;
+  cursor: pointer;
+  border: 2px solid var(--blue);
+}
+.mainBanner__content button:hover {
+  background-color: var(--blue);
+  color: var(--black);
+}
+.secondSection {
+  width: 100%;
+}
+.secondSection__title {
+  text-align: center;
+  margin: 1em 0;
+  font-weight: 500;
+  font-size: 3em;
+}
+.secondSection__cardWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding-bottom: 3em;
+}
+.secondSection__card {
+  width: 25vw;
+  height: 15vw;
+  background-color: var(--black) !important;
+  border-radius: 10px;
+  background-size: cover !important;
+  /* background-position: center !important; */
+  color: #fff;
+  position: relative;
+}
+.card__difficulty {
+  position: absolute;
+  top: 0.5em;
+  left: 0.5em;
+}
+.card__title {
+  position: absolute;
+  top: 50%;
+  left: 0.5em;
+  font-size: 1.2em;
+}
+.secondSection__card:not(:last-child) {
+  margin-right: 1em;
+}
