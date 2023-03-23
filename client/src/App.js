@@ -1,20 +1,31 @@
-import Header from "./components/Header";
-import HomepageFirstSection from "./components/HomepageFirstSection";
-import Footer from "./components/Footer";
-import HomepageSecondSection from "./components/HomepageSecondSection";
-import logo from "./img/logo.png";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+
+// pages
+// import MainBanner from "./components/MainBanner";
+// import Footer from "./components/Footer";
+// import CardWrapper from "./components/CardWrapper";
+import Home from "./pages/Home";
+import About from "./pages/About";
+
+// layouts
+import RootLayout from "./layouts/RootLayout";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      <Route index element={<Home />} />
+      <Route path="about" element={<About />} />
+    </Route>
+  )
+);
 
 const App = () => {
-  return (
-    <>
-      <Header logo={logo} />
-      <HomepageFirstSection />
-      <HomepageSecondSection />
-
-      {/* Footer Always in the bottom */}
-      <Footer />
-    </>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;

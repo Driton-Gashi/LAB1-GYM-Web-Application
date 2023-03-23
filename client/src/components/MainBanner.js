@@ -1,6 +1,6 @@
 import video from "../img/video.mp4";
 import "../css/homepage.css";
-const HomepageFirstSection = () => {
+const MainBanner = () => {
   return (
     <div className="mainBanner">
       <div className="mainBanner__content">
@@ -22,4 +22,4 @@ const HomepageFirstSection = () => {
   );
 };
 
-export default HomepageFirstSection;
+export default MainBanner;

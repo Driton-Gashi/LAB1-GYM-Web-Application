@@ -21,10 +21,9 @@ app.post("/todos", async (req, res) => {
   } catch (err) {
     console.log(err.message);
   }
-  const s = 10;
 });
 
-// get all todos
+// get all Videos
 app.get("/programs", async (req, res) => {
   try {
     const allPrograms = await pool.query("SELECT * from programs");

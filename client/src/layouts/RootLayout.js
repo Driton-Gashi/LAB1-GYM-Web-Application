@@ -1,5 +1,11 @@
+import { Outlet, NavLink } from "react-router-dom";
+// images
+import logo from "../img/logo.png";
+
+// css
 import "../css/header.css";
-const Header = ({ logo }) => {
+
+const RootLayout = () => {
   return (
     <>
       <div className="before-header"></div>
@@ -8,6 +14,9 @@ const Header = ({ logo }) => {
           <img src={logo} alt="" />
         </div>
         <ul className="menu">
+          <li>
+            <NavLink>Home</NavLink>
+          </li>
           <li>
             <a href="#">Home</a>
           </li>
@@ -26,4 +35,4 @@ const Header = ({ logo }) => {
   );
 };
 
-export default Header;
+export default RootLayout;

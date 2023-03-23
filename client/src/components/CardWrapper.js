@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Card from "./Card";
 import logo from "../img/logo.png";
 
-const HomepageSecondSection = () => {
+const CardWrapper = () => {
   const [programs, setPrograms] = useState([]);
 
   const getPrograms = async () => {
@@ -36,4 +36,4 @@ const HomepageSecondSection = () => {
   );
 };
 
-export default HomepageSecondSection;
+export default CardWrapper;
