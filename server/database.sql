@@ -13,7 +13,16 @@ create table shopping_cart(
 	u_id int,
 	foreign key (u_id) references users(user_id)
 );
-
+create table product_item(
+	item_id serial PRIMARY KEY,
+	cart_id int,
+	quantity_of_item int,
+	SKU int,
+	image varchar(255),
+	price decimal(8,2),
+	foreign key (cart_id) references shopping_cart(shopping_cart_id),
+	foreign key (item_id) references product_item(item_id)
+);
 create table shopping_cart_item(
 	shopping_cart_item_id serial PRIMARY KEY,
 	quantity int,
@@ -22,15 +31,9 @@ create table shopping_cart_item(
 	foreign key (cart_id) references shopping_cart(shopping_cart_id),
 	foreign key (item_id) references product_item(item_id)
 );
-
-
-
-create table users_adress(
-u_id int,
-a_id int,
-constraint ua_pk primary key (u_id,a_id),
-foreign key (u_id) references users(user_id),
-foreign key (a_id) references adress(adress_id)
+create table country(
+	country_id serial PRIMARY KEY,
+	name varchar(50)
 );
 
 create table adress(
@@ -46,20 +49,41 @@ country_id int,
 foreign key (country_id) references country(country_id)
 );
 
-create table country(
-	country_id serial PRIMARY KEY,
-	name varchar(50)
+create table users_adress(
+u_id int,
+a_id int,
+constraint ua_pk primary key (u_id,a_id),
+foreign key (u_id) references users(user_id),
+foreign key (a_id) references adress(adress_id)
+);
+create table shipping_method(
+shipping_method_id serial primary key,
+shipping_method varchar(50),
+shipping_price decimal(8,2)
 );
 
+create table payment_type(
+payment_type_id serial PRIMARY KEY,
+value varchar(50)
+);
 
-create table user_review(
-review_id serial primary key,
-rating_value int,
-comment varchar(255),
-u_id int,
-or_id int,
-foreign key (u_id) references users(user_id),
-foreign key (or_id) references orderr(order_id)
+create table order_status(
+status_id serial primary key,
+status varchar(100)
+);
+
+create table shopping_order(
+shopping_order_id serial primary key,
+shopping_date date,
+shopping_total decimal(8,2),
+type_id int,
+shipping_method_id int,
+status_id int,
+adress_id int,
+foreign key (shipping_method_id) references shipping_method(shipping_method_id),
+foreign key (type_id) references payment_type(payment_type_id),
+foreign key (status_id) references order_status(status_id),
+foreign key (adress_id) references adress(adress_id)
 );
 
 create table orderr(
@@ -72,16 +96,25 @@ foreign key (i_id) references product_item(item_id),
 foreign key (sor_id) references shopping_order(shopping_order_id)
 );
 
-create table product_item(
-	item_id serial PRIMARY KEY,
-	cart_id int,
-	quantity_of_item int,
-	SKU int,
-	image varchar(255),
-	price decimal(8,2),
-	foreign key (cart_id) references shopping_cart(shopping_cart_id),
-	foreign key (item_id) references product_item(item_id)
+create table user_review(
+review_id serial primary key,
+rating_value int,
+comment varchar(255),
+u_id int,
+or_id int,
+foreign key (u_id) references users(user_id),
+foreign key (or_id) references orderr(order_id)
 );
+
+
+create table product_category(
+	category_id serial PRIMARY KEY,
+	category_name varchar(50),
+	parent_category_id int,
+	foreign key (parent_category_id) references product_category(category_id)
+);
+
+
 create table product(
 	product_id serial PRIMARY KEY,
 	product_name varchar(50),
@@ -91,12 +124,6 @@ create table product(
 	foreign key (category_id) references product_category(category_id)
 );
 
-create table product_category(
-	category_id serial PRIMARY KEY,
-	category_name varchar(50),
-	parent_category_id int,
-	foreign key (parent_category_id) references product_category(category_id)
-);
 
 create table variation(
 	variation_id serial PRIMARY KEY,
@@ -120,10 +147,7 @@ foreign key (p_id) references product_item(item_id),
 foreign key (p_id) references variation_value(value_id)
 );
 
-create table payment_type(
-payment_type_id serial PRIMARY KEY,
-value varchar(50)
-);
+
 
 create table payment_method(
 	payment_method_id serial PRIMARY KEY,
@@ -136,30 +160,10 @@ create table payment_method(
 	foreign key (type_id) references payment_type(payment_type_id)
 );
 
-create table shipping_method(
-shipping_method_id serial primary key,
-shipping_method varchar(50),
-shipping_price decimal(8,2)
-);
 
-create table order_status(
-status_id serial primary key,
-status varchar(100)
-);
 
-create table shopping_order(
-shopping_order_id serial primary key,
-shopping_date date,
-shopping_total decimal(8,2),
-type_id int,
-shipping_method_id int,
-status_id int,
-adress_id int,
-foreign key (shipping_method_id) references shipping_method(shipping_method_id),
-foreign key (type_id) references payment_type(payment_type_id),
-foreign key (status_id) references order_status(status_id),
-foreign key (adress_id) references adress(adress_id)
-);
+
+
 
 
 

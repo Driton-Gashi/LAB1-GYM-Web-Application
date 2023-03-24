@@ -15,10 +15,10 @@ const RootLayout = () => {
         </div>
         <ul className="menu">
           <li>
-            <NavLink>Home</NavLink>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <a href="#">Home</a>
+            <NavLink to="about">About</NavLink>
           </li>
           <li>
             <a href="#">Training</a>
@@ -27,10 +27,13 @@ const RootLayout = () => {
             <a href="#">Shop</a>
           </li>
           <li>
-            <button className="signup-btn">Sign Up</button>
+            <NavLink to="/sign-up">Sign Up</NavLink>
           </li>
         </ul>
       </header>
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 };

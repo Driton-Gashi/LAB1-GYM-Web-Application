@@ -5,13 +5,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-// pages
-// import MainBanner from "./components/MainBanner";
-// import Footer from "./components/Footer";
-// import CardWrapper from "./components/CardWrapper";
+// Pages
 import Home from "./pages/Home";
 import About from "./pages/About";
-
+import PageNotFound from "./pages/PageNotFound";
+import SignUp from "./pages/SignUp";
 // layouts
 import RootLayout from "./layouts/RootLayout";
 
@@ -19,7 +17,9 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
-      <Route path="about" element={<About />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/sign-up" element={<SignUp />} />
+      <Route path="*" element={<PageNotFound />} />
     </Route>
   )
 );

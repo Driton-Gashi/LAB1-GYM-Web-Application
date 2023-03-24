@@ -15,8 +15,13 @@ header {
 .before-header {
   height: 13vh;
 }
+
+.logo {
+  display: flex;
+  align-items: center;
+}
 .logo img {
-  width: 150px;
+  height: 10vh;
 }
 .menu {
   display: flex;
@@ -26,12 +31,13 @@ header {
 .menu li a {
   text-decoration: none;
   color: #fff;
-  transition: 0.3s ease color;
+  transition: 0.3s ease all;
   display: inline-block;
   border-bottom: 2px solid transparent;
   padding: 0.3em 1em;
 }
-.signup-btn {
+.menu li:last-child a {
+  display: inline-block;
   margin-left: 1em;
   padding: 0.5em 1em;
   background-color: var(--dark-blue);
@@ -42,7 +48,12 @@ header {
   color: #fff;
   transition: 0.3s ease all;
 }
-.signup-btn:hover {
+
+.menu li:last-child a.active {
+  color: #fff;
+}
+
+.menu li:last-child a:hover {
   background-color: var(--black);
   color: var(--dark-blue);
 }

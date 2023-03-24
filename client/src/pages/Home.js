@@ -1,16 +1,11 @@
-import React from "react";
-
+import MainBanner from "../components/MainBanner";
+import CardWrapper from "../components/CardWrapper";
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit,
-        nihil quasi. Dignissimos sed officiis quos, nostrum et tempora odio?
-        Aperiam eaque est ut rerum recusandae nemo accusantium perspiciatis
-        dolor deserunt?
-      </p>
-    </div>
+    <>
+      <MainBanner />
+      <CardWrapper />
+    </>
   );
 };
 
