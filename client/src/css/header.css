@@ -5,7 +5,7 @@ header {
   background-color: var(--black);
   padding: 1em 2em;
   border-bottom: 3px solid var(--blue);
-  height: 13vh;
+  height: 8.3vh;
   position: fixed;
   top: 0;
   z-index: 999;
@@ -13,7 +13,7 @@ header {
   right: 0;
 }
 .before-header {
-  height: 13vh;
+  height: 8.3vh;
 }
 
 .logo {
@@ -21,7 +21,7 @@ header {
   align-items: center;
 }
 .logo img {
-  height: 10vh;
+  height: 8vh;
 }
 .menu {
   display: flex;
