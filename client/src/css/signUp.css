@@ -11,16 +11,16 @@
   height: 91.7vh;
 }
 
-.card-left{
+.card-mid{
   height: 91.7vh;
-  width: 50%;
+  width: 90%;
   background-color: var(--light-black);
   display:flex;
   justify-content: center;
   align-items: center;
 }
 
-.diamond{
+.diamondI{
   position: absolute;
   background-color: var(--blue);
   width: 3rem;
@@ -31,15 +31,15 @@
 
 .card-right{
   height: 91.7vh;
-  width:  50%;
+  width:5rem;
   background-color: var(--blue);
 }
 
-.card-main-left{
+.card-main-mid{
   display: flex;
   flex-direction: column;
   height: 50%;
-  width:  60%;
+  width:  50%;
   justify-content: center;
   align-items: center;
   gap:1.5rem;
@@ -52,6 +52,7 @@
   padding: 1rem;
   border: none;
 }
+
 #btn-id{
   background-color: var(--blue);
   border: none;
@@ -60,5 +61,16 @@
   font: inherit;
   cursor: pointer;
   border-radius: 5rem;
+}
+
+.card-left{
+  height: 91.7vh;
+  width: 5%;
+  background-color: var(--black);
+}
+.card-right{
+  height: 91.7vh;
+  width: 5%;
+  background-color: var(--black);
 }
 

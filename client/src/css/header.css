@@ -4,7 +4,7 @@ header {
   justify-content: space-between;
   background-color: var(--black);
   padding: 1em 2em;
-  border-bottom: 3px solid var(--blue);
+  border-bottom: 1px solid var(--blue);
   height: 8.3vh;
   position: fixed;
   top: 0;
