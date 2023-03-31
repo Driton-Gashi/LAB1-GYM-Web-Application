@@ -50,7 +50,7 @@ header {
 }
 
 .menu li:last-child a.active {
-  color: #fff;
+  border-bottom-color: var(--dark-blue);
 }
 
 .menu li:last-child a:hover {
@@ -61,6 +61,11 @@ header {
 .menu li a.active {
   color: var(--blue);
   border-bottom-color: var(--blue);
+  background-color: var(--black);
+}
+.menu li a.active:hover {
+  background-color: var(--dark-blue);
+  color: #fff;
 }
 .mainBanner {
   height: 87vh;

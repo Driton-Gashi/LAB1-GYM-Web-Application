@@ -4,6 +4,8 @@ footer {
   border-top: 4px solid var(--blue);
   background: var(--black);
   color: #fff;
+  position: relative;
+  z-index: 3;
 }
 .footer-section {
   padding: 2em 1em 0.5em 1em;
@@ -11,7 +13,7 @@ footer {
   list-style-type: none;
 }
 .footer-logo {
-  width: 100%;
+  width: 100px;
 }
 .after-footer {
   padding: 1em 0 0 0;
