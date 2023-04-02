@@ -9,8 +9,9 @@ import {
 import Home from "./pages/Home";
 import About from "./pages/About";
 import PageNotFound from "./pages/PageNotFound";
-import SignUp from "./pages/SignUp";
+import Register from "./pages/Register";
 import Footer from "./components/Footer";
+import Login from "./pages/Login";
 // layouts
 import RootLayout from "./layouts/RootLayout";
 
@@ -19,7 +20,9 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
       <Route path="/about" element={<About />} />
-      <Route path="/sign-up" element={<SignUp />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+
       <Route path="*" element={<PageNotFound />} />
     </Route>
   )

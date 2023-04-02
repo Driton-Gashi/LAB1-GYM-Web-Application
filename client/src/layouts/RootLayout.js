@@ -27,7 +27,7 @@ const RootLayout = () => {
             <a href="#">Shop</a>
           </li>
           <li>
-            <NavLink to="/sign-up">Sign Up</NavLink>
+            <NavLink to="/register">Sign Up</NavLink>
           </li>
         </ul>
       </header>
