@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 import "../css/login.css";
 
@@ -13,7 +14,7 @@ const Register = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch("http://localhost:5000/register", {
+    const response = await fetch("http://localhost:5000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,21 +32,9 @@ const Register = () => {
     <>
       <img className="clouds" src={background} />
       <div className="signup">
-        <h2>Sign Up</h2>
+        <h2>Login</h2>
         <h3>It's quick & simple</h3>
         <form className="form" onSubmit={handleSubmit}>
-          <div className="textbox">
-            <input
-              type="text"
-              required
-              value={name}
-              onChange={(e) => setname(e.target.value)}
-            />
-            <label>Name</label>
-            <span className="material-symbols-outlined">
-              <i className="fa-solid fa-user"></i>
-            </span>
-          </div>
           <div className="textbox">
             <input
               type="email"
@@ -71,14 +60,14 @@ const Register = () => {
             </span>
           </div>
           <p>
-            Signed up already?
-            <a href="#"> Login here</a>
+            Don't have an account?
+            <NavLink to="../register"> Register</NavLink>
           </p>
 
           <button type="submit">
-            Register
+            Login
             <span className="material-symbols-outlined">
-              <i className="fa-solid fa-arrow-right"></i>
+              <i className="fa-solid fa-arrow-right submitBtn-arrow"></i>
             </span>
           </button>
         </form>

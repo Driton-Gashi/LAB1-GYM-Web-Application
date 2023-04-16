@@ -5,7 +5,6 @@
 body {
   max-width: 100%;
   overflow-x: hidden;
-  background: #3284ce;
 }
 
 button,
@@ -41,7 +40,9 @@ input {
   padding: 4em;
   background: #111820;
 }
-
+.register-signup {
+  padding: 1em 4em;
+}
 .signup > h2 {
   font-size: 32px;
   font-weight: 600;
@@ -54,6 +55,9 @@ input {
   font-weight: 400;
   margin: 0 0 30px;
   color: rgb(255 255 255 / 40%);
+}
+.register > h3 {
+  margin-bottom: 0.7em;
 }
 
 .form {
@@ -81,7 +85,10 @@ input {
   padding: 0 24px 0 36px;
   border-bottom: 2px solid #2b3442;
   color: rgb(255 255 255 / 96%);
-  height: 72px;
+  height: 70px;
+}
+.register .textbox input {
+  height: 60px;
 }
 
 :is(input:focus, input:valid) ~ label {
@@ -122,11 +129,28 @@ input:focus {
   color: #f9f9f9;
   border: 0;
   font-weight: 600;
+  transition: 0.4 ease all;
+}
+
+.submitBtn-arrow {
+  position: relative;
+}
+.form button:hover .submitBtn-arrow {
+  animation: arrowAnimation 0.5s ease alternate infinite;
+}
+@keyframes arrowAnimation {
+  from {
+    right: 5px;
+  }
+  to {
+    right: -10px;
+  }
 }
 
 .signup p {
   margin: 0 0 22px;
   color: #778395;
+  display: flex;
 }
 
 .signup p > a {

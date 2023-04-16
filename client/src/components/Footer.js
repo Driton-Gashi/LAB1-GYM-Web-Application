@@ -37,8 +37,7 @@ const Footer = () => {
         </ul>
       </footer>
       <div className="after-footer">
-        <span className="color-blue">LMAO</span> copyright &copy all rights
-        reserved
+        <span className="color-blue">LMAO</span> copyright © all rights reserved
       </div>
     </>
   );
