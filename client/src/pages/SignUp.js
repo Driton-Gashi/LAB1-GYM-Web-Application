@@ -1,7 +1,11 @@
-import SignUpCard from "../components/signUpCard";
-
+import Login from "../components/Login";
+import Register from "../components/Register";
 const SignUp = () => {
-  return <SignUpCard />;
+  return (
+    <>
+      <Register />
+    </>
+  );
 };
 
 export default SignUp;

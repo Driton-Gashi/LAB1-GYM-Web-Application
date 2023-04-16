@@ -17,3 +17,6 @@
 .color-black {
   color: var(--black);
 }
+.hide {
+  display: none;
+}

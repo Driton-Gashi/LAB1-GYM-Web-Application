@@ -5,7 +5,8 @@ CREATE TABLE users(
     user_name VARCHAR(50) NOT NULL,
     pasword VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    role VARCHAR(6) NOT NULL 
+    role VARCHAR(6) NOT NULL,
+	created_at date default current_date
 ); 
 
 create table shopping_cart(
@@ -159,19 +160,4 @@ create table payment_method(
 	foreign key (user_id) references users(user_id),
 	foreign key (type_id) references payment_type(payment_type_id)
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
