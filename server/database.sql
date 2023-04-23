@@ -8,6 +8,23 @@ CREATE TABLE users(
     role VARCHAR(6) NOT NULL,
 	created_at date default current_date
 ); 
+create table items(
+	item_id serial PRIMARY KEY,
+	item_name VARCHAR(50) NOT NULL,
+	item_description VARCHAR(100) NOT NULL,
+	item_price int NOT NULL,
+	item_review int NOT NULL,
+	item_image VARCHAR(100) NOT NULL,
+	item_likes int
+);
+
+INSERT INTO items (item_name, item_description, item_price, item_review,item_image) VALUES ('Protein Yogurt', 'Best yogurt tested and approved by Trio', 1, 4,'./supplements/yogurt.png');
+create table programs(
+	programs_id serial PRIMARY KEY,
+	program_name VARCHAR[50] NOT NULL,
+	program_difficulty VARCHAR[50] NOT NULL,
+	program_image VARCHAR[100] NOT NULL
+);
 
 create table shopping_cart(
 	shopping_cart_id serial PRIMARY KEY,

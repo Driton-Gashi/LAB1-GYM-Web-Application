@@ -24,6 +24,36 @@ const Register = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (name.length < 2 || name.length > 16) {
+      if (name.length === 0) {
+        console.error("Name is blank");
+      }
+      if (name.length < 2) {
+        console.error("Name is to short");
+      }
+      if (name.length > 16) {
+        console.error("Name is to long");
+      }
+      return;
+    }
+
+    if (email.length < 16) {
+      console.error("Email is to short");
+      return;
+    } else if (email.includes(" ")) {
+      console.error("Email shouldn't contain white spaces!");
+      return;
+    }
+
+    if (password.length < 6) {
+      console.error("Password is to short");
+      return;
+    }
+    if (confirm_password !== password) {
+      console.error("Confirm Password is not the same as password!");
+      return;
+    }
+    loadingEffect();
     const response = await fetch("http://localhost:5000/register", {
       method: "POST",
       headers: {
@@ -35,7 +65,8 @@ const Register = () => {
     if (response.ok) {
       console.log("User registered successfully");
     } else {
-      console.error("Error registering user");
+      const error = await response.json();
+      console.error("Error registering user:", error.message);
     }
   };
   return (
@@ -99,7 +130,7 @@ const Register = () => {
             <NavLink to="/login"> Log In</NavLink>
           </p>
 
-          <button type="submit" onClick={loadingEffect}>
+          <button type="submit">
             Register
             <span className="material-symbols-outlined">
               <i className="fa-solid fa-arrow-right submitBtn-arrow"></i>

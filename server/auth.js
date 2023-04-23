@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("./models/user"); // assuming you have a User model
-
 // Create a JWT token
 function createToken(user) {
   return jwt.sign({ id: user.id }, "secret", { expiresIn: 86400 }); // expiresIn is in seconds

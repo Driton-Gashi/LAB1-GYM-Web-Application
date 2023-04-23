@@ -11,7 +11,7 @@ const MainBanner = () => {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
           sequi libero ipsam, est asperiores numquam laboriosam, id quia iusto
           fugiat laudantium tenetur ratione odio voluptas vitae consequatur
-          maxime soluta explicabo!
+          maxime soluta explicabo
         </p>
         <button>Shop Now</button>
       </div>

@@ -5,7 +5,7 @@ header {
   background-color: var(--black);
   padding: 1em 2em;
   border-bottom: 1px solid var(--blue);
-  height: 8.3vh;
+  height: 10vh;
   position: fixed;
   top: 0;
   z-index: 999;
@@ -13,7 +13,7 @@ header {
   right: 0;
 }
 .before-header {
-  height: 8.3vh;
+  height: 10vh;
 }
 
 .logo {
@@ -63,10 +63,7 @@ header {
   border-bottom-color: var(--blue);
   background-color: var(--black);
 }
-.menu li a.active:hover {
-  background-color: var(--dark-blue);
-  color: #fff;
-}
+
 .mainBanner {
   height: 87vh;
 }

@@ -7,8 +7,8 @@
 :root {
   --black: #10131e;
   --light-black: #1f2833;
-  --blue: #66fcf1;
-  --dark-blue: #45a29e;
+  --blue: rgb(102, 252, 242);
+  --dark-blue: rgb(69, 162, 158);
   --gray: #c5c6c7;
 }
 .color-blue {

@@ -20,10 +20,10 @@
   margin: 0;
   margin-top: 0.5em\;;
 }
-div {
+.errorPageWrapper div {
   transform-style: preserve-3d;
 }
-svg {
+.errorPageWrapper svg {
   width: clamp(300px, 70%, 600px);
   height: 500px;
 }
@@ -66,7 +66,7 @@ svg {
     opacity: 1;
   }
 }
-.text a {
+.errorPageWrapper .text a {
   color: #f66947;
   text-decoration: underline;
   cursor: pointer;

@@ -1,7 +1,7 @@
 footer {
   padding: 0 2em;
   display: flex;
-  border-top: 4px solid var(--blue);
+  border-top: 1px solid var(--blue);
   background: var(--black);
   color: #fff;
   position: relative;
@@ -22,5 +22,18 @@ footer {
   background-color: var(--black);
 }
 .footer-section h3 {
+  color: var(--dark-blue);
+  margin-bottom: 0.5em;
+}
+.footer-section li a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s ease color;
+  display: inline-block;
+}
+.footer-section li a.active {
+  color: var(--dark-blue);
+}
+.footer-section li a:hover {
   color: var(--dark-blue);
 }

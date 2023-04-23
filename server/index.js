@@ -4,6 +4,7 @@ const cors = require("cors");
 const pool = require("./db");
 const { createToken, authenticateUser, authMiddleware } = require("./auth");
 const User = require("./models/user");
+const authentication = require("./authorization");
 
 // middleware
 app.use(cors());
@@ -37,6 +38,38 @@ app.post("/login", async (req, res) => {
   }
 });
 
+// get all Videos
+app.get("/programs", async (req, res) => {
+  try {
+    const allPrograms = await pool.query("SELECT * from programs");
+    res.json(allPrograms.rows);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+// get all items
+app.get("/items", async (req, res) => {
+  try {
+    const allItems = await pool.query("SELECT * from items");
+    res.json(allItems.rows);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+// verify is json web token is not fake
+app.get("/verify", authentication, async (req, res) => {
+  try {
+    res.json(true);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+app.listen(5000, () => {
+  console.log("Server has started on port 5000");
+});
+
 //create a todo
 // app.post("/todos", async (req, res) => {
 //   try {
@@ -48,16 +81,6 @@ app.post("/login", async (req, res) => {
 //     res.json(newTodo.rows[0]);
 //   } catch (err) {
 //     console.log(err.message);
-//   }
-// });
-
-// // get all Videos
-// app.get("/programs", async (req, res) => {
-//   try {
-//     const allPrograms = await pool.query("SELECT * from programs");
-//     res.json(allPrograms.rows);
-//   } catch (error) {
-//     console.log(error.message);
 //   }
 // });
 
@@ -100,7 +123,3 @@ app.post("/login", async (req, res) => {
 //     console.log(error.message);
 //   }
 // });
-
-app.listen(5000, () => {
-  console.log("Server has started on port 5000");
-});
