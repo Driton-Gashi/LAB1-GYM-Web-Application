@@ -5,10 +5,8 @@ import "../css/login.css";
 
 import background from "../img/loginbg.svg";
 
-const Register = () => {
-  const [name, setname] = useState("");
+const Login = () => {
   const [password, setPassword] = useState("");
-  const [confirm_password, setconfirm_Password] = useState("");
   const [email, setEmail] = useState("");
 
   const handleSubmit = async (event) => {
@@ -19,9 +17,9 @@ const Register = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ email, password }),
     });
-
+    console.log(response.status);
     if (response.ok) {
       console.log("User registered successfully");
     } else {
@@ -76,4 +74,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

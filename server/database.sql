@@ -8,17 +8,18 @@ CREATE TABLE users(
     role VARCHAR(6) NOT NULL,
 	created_at date default current_date
 ); 
-create table items(
-	item_id serial PRIMARY KEY,
-	item_name VARCHAR(50) NOT NULL,
-	item_description VARCHAR(100) NOT NULL,
-	item_price int NOT NULL,
-	item_review int NOT NULL,
-	item_image VARCHAR(100) NOT NULL,
-	item_likes int
-);
+-- create table items(
+-- 	item_id serial PRIMARY KEY,
+-- 	item_name VARCHAR(50) NOT NULL,
+-- 	item_description VARCHAR(100) NOT NULL,
+-- 	item_price int NOT NULL,
+-- 	item_review int NOT NULL,
+-- 	item_image VARCHAR(100) NOT NULL,
+-- 	item_likes int
+-- );
 
-INSERT INTO items (item_name, item_description, item_price, item_review,item_image) VALUES ('Protein Yogurt', 'Best yogurt tested and approved by Trio', 1, 4,'./supplements/yogurt.png');
+-- INSERT INTO items (item_name, item_description, item_price, item_review,item_image) VALUES ('Protein Yogurt', 'Best yogurt tested and approved by Trio', 1, 4,'./supplements/yogurt.png');
+
 create table programs(
 	programs_id serial PRIMARY KEY,
 	program_name VARCHAR[50] NOT NULL,
@@ -142,7 +143,6 @@ create table product(
 	foreign key (category_id) references product_category(category_id)
 );
 
-
 create table variation(
 	variation_id serial PRIMARY KEY,
 	variation_name varchar(50),
@@ -164,8 +164,6 @@ constraint pv_pk primary key (p_id,v_id),
 foreign key (p_id) references product_item(item_id),
 foreign key (p_id) references variation_value(value_id)
 );
-
-
 
 create table payment_method(
 	payment_method_id serial PRIMARY KEY,

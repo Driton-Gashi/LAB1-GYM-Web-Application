@@ -1,10 +1,13 @@
 import { Outlet, NavLink } from "react-router-dom";
+import { useState } from "react";
+
 // images
-import logo from "../img/logo.png";
+import logo from "../img/logo_transparent2.png";
 
 // css
 import "../css/header.css";
 import "../css/footer.css";
+
 const Header = () => {
   return (
     <>
@@ -28,6 +31,9 @@ const Header = () => {
           </li>
           <li>
             <NavLink to="/register">Sign Up</NavLink>
+          </li>
+          <li className="cart">
+            <i className="fa-solid fa-bag-shopping"></i>
           </li>
         </ul>
       </header>

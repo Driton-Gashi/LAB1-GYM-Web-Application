@@ -1,6 +1,5 @@
-import React from "react";
-
 const Item = ({ name, description, price, review, image }) => {
+  // Review stars logic
   let reviewStars = [];
   for (let i = 0; i < review; i++) {
     reviewStars.push(<i key={i} className="fa-solid fa-star"></i>);
@@ -8,6 +7,8 @@ const Item = ({ name, description, price, review, image }) => {
   for (let i = reviewStars.length; i < 5; i++) {
     reviewStars.push(<i key={i} className="fa-regular fa-star"></i>);
   }
+
+  const addToCart = () => {};
 
   return (
     <div className="item">
@@ -29,7 +30,9 @@ const Item = ({ name, description, price, review, image }) => {
         </h1>
         <p>{description}</p>
         <div className="review">{reviewStars}</div>
-        <button className="item_button">Add to Cart</button>
+        <button onClick={addToCart} className="item_button">
+          Add to Cart
+        </button>
       </div>
     </div>
   );

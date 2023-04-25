@@ -17,7 +17,7 @@
   align-items: center;
 }
 .main_banner_shop_content {
-  padding-left: 5em;
+  padding-left: 3em;
   width: 50%;
 }
 .main_banner_shop_content h1 {
@@ -41,7 +41,7 @@
 }
 .filter_bar {
   display: flex;
-  padding: 1em 2em;
+  padding: 1em 3em;
   justify-content: space-between;
 }
 .filter_bar_left button {
@@ -70,7 +70,7 @@
   justify-content: center;
 }
 .shop_item_wrapper > h1 {
-  padding: 0 2em;
+  padding: 0 3em;
   font-size: 1em;
 }
 .item {

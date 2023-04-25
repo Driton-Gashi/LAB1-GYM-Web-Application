@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "../css/shop.css";
 import Item from "../components/Item";
 const Shop = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([]); // yogurt, protein
 
   const getItems = async () => {
     try {
@@ -15,21 +15,20 @@ const Shop = () => {
   };
   // below function still in progress
   const itemsSort = async (e) => {
-    if (e.target.value === "reviews") {
-      try {
-        const response = await fetch("http://localhost:5000/items");
-        const jsonData = await response.json();
-        setItems(jsonData);
-      } catch (err) {
-        console.error(err.message);
-      }
+    try {
+      const response = await fetch(
+        `http://localhost:5000/items?orderBy=${e.target.value}`
+      );
+      const jsonData = await response.json();
+      setItems(jsonData);
+    } catch (err) {
+      console.error(err.message);
     }
   };
 
   useEffect(() => {
     getItems();
   }, []);
-  console.log(items);
   return (
     <div className="shop">
       <div className="main_banner_shop">
@@ -49,9 +48,9 @@ const Shop = () => {
         <div className="filter_bar_right">
           <select onChange={itemsSort} id="filter">
             <option value="">Sort by</option>
-            <option value="">Price</option>
-            <option value="reviews">Reviews</option>
-            <option value="">Likes</option>
+            <option value="item_price">Price</option>
+            <option value="item_review">Reviews</option>
+            <option value="item_likes">Likes</option>
           </select>
         </div>
       </div>
@@ -61,12 +60,13 @@ const Shop = () => {
         </h1>
         <div className="shop_items">
           {items.map((element) => (
+            // %PUBLIC_URL% shortcut for public
             <Item
               key={element.item_id}
               name={element.item_name}
               description={element.item_description}
               price={element.item_price}
-              review={element.item_review}
+              review={element.item_review} //4
               image={element.item_image}
             />
           ))}

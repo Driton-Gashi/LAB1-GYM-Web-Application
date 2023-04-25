@@ -39,6 +39,8 @@ body {
   max-width: 460px;
   padding: 4em;
   background: #111820;
+  position: relative;
+  z-index: 3;
 }
 .register-signup {
   padding: 2em 4em;

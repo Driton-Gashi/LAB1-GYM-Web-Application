@@ -38,24 +38,32 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// get all Videos
-app.get("/programs", async (req, res) => {
-  try {
-    const allPrograms = await pool.query("SELECT * from programs");
-    res.json(allPrograms.rows);
-  } catch (error) {
-    console.log(error.message);
-  }
-});
+// // get all Videos
+// app.get("/programs", async (req, res) => {
+//   try {
+//     const allPrograms = await pool.query("SELECT * from programs");
+//     res.json(allPrograms.rows);
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// });
+
 // get all items
 app.get("/items", async (req, res) => {
   try {
-    const allItems = await pool.query("SELECT * from items");
+    const orderBy = req.query.orderBy;
+    let allItems = await pool.query("SELECT * from items");
+    if (orderBy !== null && orderBy != undefined) {
+      allItems = await pool.query(
+        `SELECT * from items order by ${orderBy} desc`
+      );
+    }
     res.json(allItems.rows);
   } catch (error) {
     console.log(error.message);
   }
 });
+
 // verify is json web token is not fake
 app.get("/verify", authentication, async (req, res) => {
   try {
