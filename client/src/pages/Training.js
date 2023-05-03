@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/training.css";
-import Item_training_wrapper from "../components/Item_training_wrapper";
+import ItemTrainingWrapper from "../components/ItemTrainingWrapper";
 
 const Training = () => {
   return (<>
@@ -11,7 +11,7 @@ const Training = () => {
       </div>
     </div>
     <section className="training_section">
-    <Item_training_wrapper/>
+    <ItemTrainingWrapper/>
     
     </section>
     
