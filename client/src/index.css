@@ -18,5 +18,5 @@
   color: var(--black);
 }
 .hide {
-  display: none;
+  display: none !important;
 }

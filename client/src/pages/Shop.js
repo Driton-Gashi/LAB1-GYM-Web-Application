@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "../css/shop.css";
 import Item from "../components/Item";
+import Slider from "../components/shop/sliderFilter";
 const Shop = () => {
   const [items, setItems] = useState([]); // yogurt, protein
 
@@ -37,7 +38,16 @@ const Shop = () => {
           <button>Buy Now</button>
         </div>
       </div>
-      <div className="filter_bar">
+      <Slider />
+      <div className="filter_bar_right">
+        <select onChange={itemsSort} id="filter">
+          <option value="">Sort by</option>
+          <option value="item_price">Price</option>
+          <option value="item_review">Reviews</option>
+          <option value="item_likes">Likes</option>
+        </select>
+      </div>
+      {/* <div className="filter_bar">
         <div className="filter_bar_left">
           <button className="filter_button">Accessories</button>
           <button className="filter_button">Pants</button>
@@ -45,15 +55,8 @@ const Shop = () => {
           <button className="filter_button">Supplements</button>
           <button className="filter_button">GYM tools</button>
         </div>
-        <div className="filter_bar_right">
-          <select onChange={itemsSort} id="filter">
-            <option value="">Sort by</option>
-            <option value="item_price">Price</option>
-            <option value="item_review">Reviews</option>
-            <option value="item_likes">Likes</option>
-          </select>
-        </div>
-      </div>
+        
+      </div> */}
       <div className="shop_item_wrapper">
         <h1>
           <span>GYM Accessories</span> for you!
