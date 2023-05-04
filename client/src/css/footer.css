@@ -20,6 +20,8 @@ footer {
   color: #fff;
   text-align: center;
   background-color: var(--black);
+  z-index: 3;
+  position: relative ;
 }
 .footer-section h3 {
   color: var(--dark-blue);

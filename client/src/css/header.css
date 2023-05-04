@@ -8,7 +8,7 @@ header {
   height: 10vh;
   position: fixed;
   top: 0;
-  z-index: 999;
+  z-index: 5;
   left: 0;
   right: 0;
 }
@@ -71,6 +71,14 @@ header {
   padding-left: 0.5em;
   font-size: 1.3em;
 }
+li.cart a {
+  padding: 0;
+  color: var(--dark-blue);
+  border-bottom: 0;
+}
+li.cart a:hover {
+  color: var(--blue);
+}
 .cart:after {
   content: " ? ";
   display: inline-block;
@@ -91,4 +99,35 @@ header {
 
 .mainBanner {
   height: 87vh;
+}
+
+@media (max-width: 767px) {
+  .menu {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: -100%;
+    bottom: 0;
+    background: #111;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.1s ease all;
+  }
+  .close {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+  }
+  .close i {
+    color: #fff;
+    font-size: 2em;
+  }
+  .menu.aktive {
+    left: 0;
+  }
+  .burger i {
+    color: #fff;
+    font-size: 1.5em;
+  }
 }

@@ -19,6 +19,7 @@
 .main_banner_shop_content {
   padding-left: 3em;
   width: 50%;
+  color: #fff;
 }
 .main_banner_shop_content h1 {
   line-height: 1.2;
@@ -27,7 +28,7 @@
 .main_banner_shop_content button {
   padding: 0.6em 2.5em;
   background-color: var(--black);
-  color: var(--blue);
+  color: #fff;
   border-radius: 100px;
   outline: 0;
   border: 0;
@@ -36,7 +37,7 @@
   font-size: 1em;
 }
 .main_banner_shop_content button:hover {
-  background-color: rgba(31, 40, 51, 0.7);
+  background-color: rgba(#111, #111, #111, 0.5) !important;
   color: #fff;
 }
 .filter_bar {
@@ -75,7 +76,7 @@
 }
 .item {
   margin: 1em;
-  width: calc(33% - 2em);
+  width: calc(25%);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 7px;
   transition: 0.3s ease all;
@@ -139,4 +140,75 @@
 }
 .review {
   margin-bottom: 0.3em;
+}
+.sliderWrapper {
+  position: relative;
+  background: #eaeded;
+  padding: 1.5em 5em;
+}
+.sliderWrapper .slider {
+  transition: 0.6s ease all;
+  position: relative;
+  display: flex;
+  left: 0%;
+  width: 200%;
+}
+.overflowSlider {
+  overflow: hidden;
+  height: 130px;
+}
+.sliderWrapper .slider.slide1 {
+  left: -100%;
+}
+.slider .sliderItem {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 0 1em;
+  position: relative;
+}
+.sliderItem h4 {
+  position: absolute;
+  bottom: -2rem;
+  font-weight: 400;
+}
+.sliderItem img {
+  width: 50px;
+}
+.leftArrow img,
+.rightArrow img {
+  width: 30px;
+  transition: 0.3s ease all;
+  position: relative;
+  bottom: -3px;
+}
+.leftArrow,
+.rightArrow {
+  position: absolute;
+  z-index: 3;
+  top: 53%;
+  transform: translate(0, -50%);
+  cursor: pointer;
+  transition: 0.3s ease all;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.leftArrow:active img,
+.rightArrow:active img {
+  width: 25px;
+}
+.rightArrow {
+  right: 1rem;
+}
+.leftArrow {
+  left: 1rem;
+}
+.filter_bar_right {
+  text-align: right;
+  padding: 1em;
 }

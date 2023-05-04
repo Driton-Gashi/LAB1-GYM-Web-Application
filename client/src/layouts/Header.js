@@ -9,6 +9,11 @@ import "../css/header.css";
 import "../css/footer.css";
 
 const Header = () => {
+  const showMenu = () => {
+    const menu = document.querySelector(".menu");
+    menu.classList.toggle("aktive");
+  };
+
   return (
     <>
       <div className="before-header"></div>
@@ -17,6 +22,9 @@ const Header = () => {
           <img src={logo} alt="" />
         </div>
         <ul className="menu">
+          <div onClick={showMenu} className="close">
+            <i className="fa-solid fa-xmark"></i>
+          </div>
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
@@ -33,9 +41,14 @@ const Header = () => {
             <NavLink to="/register">Sign Up</NavLink>
           </li>
           <li className="cart">
-            <i className="fa-solid fa-bag-shopping"></i>
+            <NavLink to="/cart">
+              <i className="fa-solid fa-bag-shopping"></i>
+            </NavLink>
           </li>
         </ul>
+        <div onClick={showMenu} className="burger">
+          <i className="fa-solid fa-bars"></i>
+        </div>
       </header>
       <main>
         <Outlet />

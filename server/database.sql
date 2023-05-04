@@ -15,7 +15,7 @@ CREATE TABLE users(
 -- 	item_price int NOT NULL,
 -- 	item_review int NOT NULL,
 -- 	item_image VARCHAR(100) NOT NULL,
--- 	item_likes int
+--  item_category VARCHAR(50) NOT NULL
 -- );
 
 -- INSERT INTO items (item_name, item_description, item_price, item_review,item_image) VALUES ('Protein Yogurt', 'Best yogurt tested and approved by Trio', 1, 4,'./supplements/yogurt.png');
