@@ -74,6 +74,17 @@ app.get("/verify", authentication, async (req, res) => {
   }
 });
 
+//test nga henori
+app.get("/video", async (req, res) => {
+  try {
+
+    const newDescription = await pool.query('select * from video')
+    res.json(newDescription)
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 app.listen(5000, () => {
   console.log("Server has started on port 5000");
 });

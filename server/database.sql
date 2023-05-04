@@ -162,7 +162,7 @@ p_id int,
 v_id int,
 constraint pv_pk primary key (p_id,v_id),
 foreign key (p_id) references product_item(item_id),
-foreign key (p_id) references variation_value(value_id)
+foreign key (v_id) references variation_value(value_id)
 );
 
 create table payment_method(
@@ -175,4 +175,23 @@ create table payment_method(
 	foreign key (user_id) references users(user_id),
 	foreign key (type_id) references payment_type(payment_type_id)
 );
+
+create table video(
+	video_id serial PRIMARY KEY,
+	video_name varchar(50),
+	video_difficulity varchar(50),
+	vide_description varchar(50),
+	vide_url varchar(50),
+	vide_image varchar(50)
+);
+
+create table video_user(
+u_id int,
+v_id int,
+constraint uv_pk primary key (u_id,v_id),
+foreign key (u_id) references user(user_id),
+foreign key (v_id) references video(video_id)
+);
+
+INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image) VALUES ('videoja1', 'Beginner', 'video for beginners', 4,'./supplements/yogurt.png');
 
