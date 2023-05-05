@@ -11,7 +11,17 @@ const Training = () => {
       </div>
     </div>
     <section className="training_section">
-    <ItemTrainingWrapper/>
+    
+    
+    <ItemTrainingWrapper
+    Title="Training Plans"/>
+    <ItemTrainingWrapper
+    Title="Teqnique Guides"/>
+    <div className="black-background">
+    <ItemTrainingWrapper
+    Title="Training Plans"/>
+
+    </div>
     
     </section>
     
