@@ -8,6 +8,7 @@ CREATE TABLE users(
     role VARCHAR(6) NOT NULL,
 	created_at date default current_date
 ); 
+-- Created by Dritoni
 -- create table items(
 -- 	item_id serial PRIMARY KEY,
 -- 	item_name VARCHAR(50) NOT NULL,
@@ -17,8 +18,35 @@ CREATE TABLE users(
 -- 	item_image VARCHAR(100) NOT NULL,
 --  item_category VARCHAR(50) NOT NULL
 -- );
-
 -- INSERT INTO items (item_name, item_description, item_price, item_review,item_image) VALUES ('Protein Yogurt', 'Best yogurt tested and approved by Trio', 1, 4,'./supplements/yogurt.png');
+
+-- Created by Dritoni
+-- create table cart(
+-- 	cart_id serial PRIMARY KEY,
+-- 	cart_description VARCHAR(100) NOT NULL,
+-- 	cart_price int NOT NULL,
+-- 	cart_review int NOT NULL,
+-- 	cart_image VARCHAR(100) NOT NULL,
+--  cart_category VARCHAR(50) NOT NULL
+-- );
+
+-- Created by Dritoni
+-- CREATE TABLE cart (
+--   id SERIAL PRIMARY KEY,
+--   created_at TIMESTAMP DEFAULT NOW(),
+--   updated_at TIMESTAMP DEFAULT NOW()
+-- );
+
+CREATE TABLE cartItem (
+  id SERIAL PRIMARY KEY,
+  cart_id INTEGER REFERENCES cart(id) ON DELETE CASCADE,
+  product_name VARCHAR(255) NOT NULL,
+  price DECIMAL(10, 2) NOT NULL,
+  quantity INTEGER NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
+
 
 create table programs(
 	programs_id serial PRIMARY KEY,

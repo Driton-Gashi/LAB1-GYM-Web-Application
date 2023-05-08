@@ -1,7 +1,7 @@
 const Item = ({ name, description, price, review, image }) => {
   // Review stars logic
   let reviewStars = [];
-  for (let i = 0; i < review; i++) {
+  for (let i = 0; i < review; i++) {//4
     reviewStars.push(<i key={i} className="fa-solid fa-star"></i>);
   }
   for (let i = reviewStars.length; i < 5; i++) {
