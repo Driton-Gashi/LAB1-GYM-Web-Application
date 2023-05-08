@@ -1,5 +1,5 @@
-import video from "../img/video.mp4";
-import "../css/homepage.css";
+import video from "../../img/video.mp4";
+import "../../css/homepage.css";
 const MainBanner = () => {
   return (
     <div className="mainBanner">

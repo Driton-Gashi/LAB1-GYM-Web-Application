@@ -7,7 +7,6 @@ import {
 
 // Pages
 import Home from "./pages/Home";
-import About from "./pages/About";
 import PageNotFound from "./pages/PageNotFound";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -21,7 +20,6 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Header />}>
       <Route index element={<Home />} />
-      <Route path="/about" element={<About />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/training" element={<Training />} />

@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import React from "react";
-import "../css/training.css";
+import "../../css/training.css";
 import ItemTraining from "./ItemTraining";
 
 export default function ItemTrainingWrapper({Title}){
@@ -10,8 +10,6 @@ export default function ItemTrainingWrapper({Title}){
     try {
       const response = await fetch("http://localhost:5000/video");
       const jsonData = await response.json();
-      console.log('----------------------------------------------------')
-      console.log(jsonData);
       setVideo(jsonData);
       
     } catch (err) {

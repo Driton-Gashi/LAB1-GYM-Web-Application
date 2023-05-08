@@ -1,5 +1,5 @@
-import MainBanner from "../components/MainBanner";
-import CardWrapper from "../components/CardWrapper";
+import MainBanner from "../components/Home/MainBanner";
+import CardWrapper from "../components/Home/CardWrapper";
 const Home = () => {
   return (
     <>

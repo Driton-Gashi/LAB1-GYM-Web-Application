@@ -36,7 +36,7 @@ header {
   border-bottom: 2px solid transparent;
   padding: 0.3em 1em;
 }
-.menu li:nth-child(6) a {
+.menu li:nth-child(5) a {
   display: inline-block;
   margin-left: 1em;
   padding: 0.5em 1em;
@@ -49,7 +49,7 @@ header {
   transition: 0.3s ease all;
 }
 
-.menu li:nth-child(6) a.active {
+.menu li:nth-child(5) a.active {
   border-bottom-color: var(--dark-blue);
 }
 

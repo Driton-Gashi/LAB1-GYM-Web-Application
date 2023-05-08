@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/training.css";
-import ItemTrainingWrapper from "../components/ItemTrainingWrapper";
+import ItemTrainingWrapper from "../components/training/ItemTrainingWrapper";
 
 const Training = () => {
   return (<>

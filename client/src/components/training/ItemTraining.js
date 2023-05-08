@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/training.css";
+import "../../css/training.css";
 
 export default function ItemTraining({video_name,vide_description,video_dificulity,vide_image}){
   return(

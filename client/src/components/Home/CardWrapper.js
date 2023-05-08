@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Card from "./Card";
-import logo from "../img/logo.png";
+import logo from "../../img/logo.png";
 
 const CardWrapper = () => {
   const [programs, setPrograms] = useState([]);
