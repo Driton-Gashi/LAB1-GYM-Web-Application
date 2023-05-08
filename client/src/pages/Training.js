@@ -21,6 +21,9 @@ const Training = () => {
     <ItemTrainingWrapper
     Title="Training Plans"/>
 
+<ItemTrainingWrapper
+    Title="Training Plans"/>
+
     </div>
     
     </section>
