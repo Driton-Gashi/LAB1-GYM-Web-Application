@@ -77,11 +77,53 @@ app.get("/verify", authentication, async (req, res) => {
 //test nga henori
 app.get("/video", async (req, res) => {
   try {
-
-    const newDescription = await pool.query('select * from video')
-    res.json(newDescription)
+    const newDescription = await pool.query("select * from video");
+    res.json(newDescription);
   } catch (error) {
     console.log(error.message);
+  }
+});
+
+// Adding product to database
+app.post("/cart/add", async (req, res) => {
+  const { productId, productName, price, quantity } = req.body;
+
+  try {
+    // Get the cart ID associated with the user's session
+    const {
+      rows: [cart],
+    } = await pool.query("SELECT id FROM cart WHERE session_id = $1", [
+      req.session.id,
+    ]);
+
+    // Check if the product is already in the cart
+    const {
+      rows: [existingItem],
+    } = await pool.query(
+      "SELECT * FROM cartItem WHERE cart_id = $1 AND product_name = $2",
+      [cart.id, productName]
+    );
+
+    if (existingItem) {
+      // If the product is already in the cart, increase the quantity
+      const newQuantity = existingItem.quantity + quantity;
+
+      await pool.query("UPDATE cartItem SET quantity = $1 WHERE id = $2", [
+        newQuantity,
+        existingItem.id,
+      ]);
+    } else {
+      // If the product is not in the cart, add it as a new row
+      await pool.query(
+        "INSERT INTO cartItem (cart_id, product_name, price, quantity) VALUES ($1, $2, $3, $4)",
+        [cart.id, productName, price, quantity]
+      );
+    }
+
+    res.status(200).send("Product added to cart successfully.");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error adding product to cart.");
   }
 });
 

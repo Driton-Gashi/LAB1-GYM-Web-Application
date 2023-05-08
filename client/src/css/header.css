@@ -36,7 +36,7 @@ header {
   border-bottom: 2px solid transparent;
   padding: 0.3em 1em;
 }
-.menu li:nth-child(5) a {
+.menu li:nth-child(6) a {
   display: inline-block;
   margin-left: 1em;
   padding: 0.5em 1em;
@@ -49,11 +49,11 @@ header {
   transition: 0.3s ease all;
 }
 
-.menu li:nth-child(5) a.active {
+.menu li:nth-child(6) a.active {
   border-bottom-color: var(--dark-blue);
 }
 
-.menu li:nth-child(5) a:hover {
+.menu li:nth-child(6) a:hover {
   background-color: var(--black);
   color: var(--dark-blue);
 }
@@ -100,7 +100,12 @@ li.cart a:hover {
 .mainBanner {
   height: 87vh;
 }
-
+.burger {
+  display: none;
+}
+.close {
+  display: none;
+}
 @media (max-width: 767px) {
   .menu {
     position: fixed;
@@ -115,9 +120,13 @@ li.cart a:hover {
     transition: 0.1s ease all;
   }
   .close {
+    display: block;
     position: absolute;
     top: 1em;
     right: 1em;
+  }
+  .burger {
+    display: block;
   }
   .close i {
     color: #fff;
