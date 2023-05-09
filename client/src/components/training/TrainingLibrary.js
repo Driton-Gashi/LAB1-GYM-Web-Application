@@ -1,9 +1,11 @@
-import { useState,useEffect } from "react";
 import React from "react";
+import { useState,useEffect } from "react";
 import "../../css/training.css";
 import ItemTraining from "./ItemTraining";
 
-export default function ItemTrainingWrapper({Title}){
+
+export default function TrainingLibrary({Title}){
+
   const [video, setVideo] = useState([]); 
 
   const getVideo = async () => {
@@ -17,24 +19,15 @@ export default function ItemTrainingWrapper({Title}){
     }
   }
 
- 
 
-  
+return(
+<>
 
-  useEffect(() => {
-    getVideo();
-  }, []);
+<h1>
+  TITLE
+</h1>
 
-
-console.log(video);
-  return(
-    <>
-    <h1>{Title}</h1>
-    
-
-    <div className="video_card">
-
-   {video.slice(0, 3).map(e=>(
+{video.map(e=>(
      <ItemTraining
      key={e.video_id}
      video_name={e.video_name}
@@ -44,8 +37,12 @@ console.log(video);
      />
 
    ))}
-    </div>
-    <button>View All</button>
-    </>
-  )
+
+
+
+
+</>
+
+
+)
 }

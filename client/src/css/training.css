@@ -20,7 +20,6 @@
   align-items: flex-end;
   height: 20vh;
   width: 100%;
-  background-image: url(../../public/main_banner.jpeg);
   background-position: right;
   border-radius: 0.6rem;
   box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
@@ -36,6 +35,9 @@
   margin-top: 0;
   margin-bottom: auto;
   align-self: flex-start;
+  border: 1px solid black;
+  padding: 3px 2px 2px 3px ;
+  background-color: black;
 }
 
 .item_card_training h3,
@@ -46,15 +48,16 @@
 }
 
 .training_section button {
-  padding: 0.6rem 2.5rem;
+  padding: 0.8rem 3rem;
   background-color: var(--black);
   color: white;
-  border-radius: 100px;
+  border-radius: 0.3rem;
   outline: 0;
   border: 0;
   cursor: pointer;
   transition: 0.3s ease all;
   font-size: 1rem;
+  margin:3rem;
 }
 
 .training_section h1 {
@@ -69,6 +72,34 @@
   width: 100%;
   flex-direction: column;
   padding-bottom: 1rem;
+}
+
+.training_section_black {
+  display: flex;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+  flex-direction: column;
+  padding-bottom: 1rem;
+  background-color: var(--black);
+}
+
+.training_section_black h1 {
+  font-size: 2.5rem;
+  padding: 4rem;
+  color:white;
+}
+.training_section_black button {
+  padding: 0.8rem 3rem;
+  background-color: var(--dark_blue);
+  color: white;
+  border-radius: 0.3rem;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  transition: 0.3s ease all;
+  font-size: 1rem;
+  margin:3rem;
 }
 
 .video_card {
