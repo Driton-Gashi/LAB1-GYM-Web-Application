@@ -91,7 +91,7 @@
 }
 .training_section_black button {
   padding: 0.8rem 3rem;
-  background-color: var(--dark_blue);
+  background-color: var(--dark-blue);
   color: white;
   border-radius: 0.3rem;
   outline: 0;
