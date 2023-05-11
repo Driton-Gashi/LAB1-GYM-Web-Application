@@ -1,7 +1,7 @@
 import React from "react";
 import { useState,useEffect } from "react";
 import "../../css/training.css";
-import ItemTraining from "./ItemTraining";
+import ItemTrainingLibrary from "./ItemTrainingLibrary";
 
 
 export default function TrainingLibrary({Title}){
@@ -19,27 +19,32 @@ export default function TrainingLibrary({Title}){
     }
   }
 
+  useEffect(()=>{
+    getVideo();
+  },[])
 
 return(
 <>
 
-<h1>
-  TITLE
-</h1>
+<h6>
+  Title
+</h6>
 
-{video.map(e=>(
-     <ItemTraining
+<p> 
+  Library to find different excercersises
+</p>
+
+<div className="video_card-training-library">
+{video.slice(0, 5).map(e=>(
+     <ItemTrainingLibrary
      key={e.video_id}
-     video_name={e.video_name}
-     video_dificulity={e.video_dificulity}
      vide_image={e.vide_image}
      vide_description={e.vide_description}
      />
 
    ))}
 
-
-
+</div>
 
 </>
 

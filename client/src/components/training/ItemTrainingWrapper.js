@@ -38,7 +38,7 @@ console.log(video);
      <ItemTraining
      key={e.video_id}
      video_name={e.video_name}
-     video_dificulity={e.video_dificulity}
+     video_difficulity={e.video_difficulity}
      vide_image={e.vide_image}
      vide_description={e.vide_description}
      />
