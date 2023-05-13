@@ -1,21 +1,11 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import swal from "sweetalert";
 
 import "../css/login.css";
-import loadingGif from "../img/loading.gif";
 import background from "../img/loginbg.svg";
 
 const Register = () => {
-  const loadingEffect = () => {
-    const messageElement = document.querySelector(".signup-message");
-    const username = document.querySelector(".name").value;
-    messageElement.innerHTML = `<img src="${loadingGif}"  width="30px"/> Trying to Register!`;
-
-    setTimeout(() => {
-      messageElement.innerHTML = `User was registered succesfuly!`;
-    }, 1000);
-  };
-
   const [name, setname] = useState("");
   const [password, setPassword] = useState("");
   const [confirm_password, setconfirm_Password] = useState("");
@@ -24,36 +14,119 @@ const Register = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (name.length < 2 || name.length > 16) {
+    if (name.length < 3 || name.length > 16) {
       if (name.length === 0) {
-        console.error("Name is blank");
+        swal({
+          title: "Oops, Something went wrong",
+          text: "Name is empty!",
+          icon: "error",
+          timer: 3000,
+          button: false,
+        });
+        return false;
       }
-      if (name.length < 2) {
-        console.error("Name is to short");
+      if (name.length < 3) {
+        swal({
+          title: "Oops, Something went wrong",
+          text: "Name is to short, should be at least 3 characters!",
+          icon: "error",
+          timer: 3000,
+          button: false,
+        });
+        return false;
       }
-      if (name.length > 16) {
-        console.error("Name is to long");
-      }
-      return;
+    }
+    if (name.length > 16) {
+      swal({
+        title: "Oops, Something went wrong",
+        text: "Name is to Long, should  be less than 16 characters!",
+        icon: "error",
+        timer: 3000,
+        button: false,
+      });
+      return false;
     }
 
-    if (email.length < 16) {
-      console.error("Email is to short");
-      return;
-    } else if (email.includes(" ")) {
-      console.error("Email shouldn't contain white spaces!");
-      return;
+    if (email.includes(" ")) {
+      swal({
+        title: "Oops, Something went wrong",
+        text: 'Email shouldn\'t contain s spaces " "',
+        icon: "error",
+        timer: 3000,
+        button: false,
+      });
+      return false;
     }
 
+    if (!email.includes("@")) {
+      swal({
+        title: "Oops, Something went wrong",
+        text: '"@" is missing at Email!',
+        icon: "error",
+        timer: 3000,
+        button: false,
+      });
+      return false;
+    }
+    if (
+      !(
+        email.endsWith(".com") || // false
+        email.endsWith(".net") || // true
+        email.endsWith(".de") ||
+        email.endsWith(".org") ||
+        email.endsWith(".al")
+      )
+    ) {
+      swal({
+        title: "Oops, Something went wrong",
+        text: "Email should end with Ex.: .com, .net ...",
+        icon: "error",
+        timer: 3000,
+        button: false,
+      });
+      return false;
+    }
+    if (email.includes("ubt-uni.net")) {
+      swal({
+        title: "Nah bro!",
+        text: "Get out of here!",
+        icon: "error",
+        timer: 3000,
+        button: false,
+      });
+      return false;
+    }
+    if (password.length == "") {
+      swal({
+        title: "Oops, Something went wrong",
+        text: "Password is Empty",
+        icon: "error",
+        timer: 3000,
+        button: false,
+      });
+      return false;
+    }
     if (password.length < 6) {
-      console.error("Password is to short");
-      return;
+      swal({
+        title: "Oops, Something went wrong",
+        text: "Password is to short, should be at least 6 characters!",
+        icon: "error",
+        timer: 3000,
+        button: false,
+      });
+      return false;
     }
     if (confirm_password !== password) {
-      console.error("Confirm Password is not the same as password!");
-      return;
+      swal({
+        title: "Oops, Something went wrong",
+        text: 'Password should be same as "Confirm Password"!',
+        icon: "error",
+        timer: 3000,
+        button: false,
+      });
+      return false;
     }
-    loadingEffect();
+
     const response = await fetch("http://localhost:5000/register", {
       method: "POST",
       headers: {
@@ -63,12 +136,31 @@ const Register = () => {
     });
 
     if (response.ok) {
-      console.log("User registered successfully");
-    } else {
-      const error = await response.json();
-      console.error("Error registering user:", error.message);
+      swal({
+        title: "Congrats",
+        text: "User was registered successfuly!",
+        icon: "success",
+        timer: 3000,
+        button: false,
+      });
+    } else if (response.status === 400) {
+      const { message } = await response.json();
+      swal({
+        title: "Oops something went wrong!",
+        text: message,
+        icon: "error",
+      });
     }
   };
+
+  // swal("Here's the title!", "...and here's the text!"); title and text
+  // swal({
+  //   title: "Congrats!",
+  //   text: "You registered successfuly",
+  //   icon: "success",
+  // timer: 2000
+  // });
+
   return (
     <>
       <img className="clouds" src={background} />
@@ -80,7 +172,6 @@ const Register = () => {
             <input
               className="name"
               type="text"
-              required
               value={name}
               onChange={(e) => setname(e.target.value)}
             />
@@ -91,8 +182,7 @@ const Register = () => {
           </div>
           <div className="textbox">
             <input
-              type="email"
-              required
+              type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -104,7 +194,6 @@ const Register = () => {
           <div className="textbox">
             <input
               type="password"
-              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -116,7 +205,6 @@ const Register = () => {
           <div className="textbox">
             <input
               type="password"
-              required
               value={confirm_password}
               onChange={(e) => setconfirm_Password(e.target.value)}
             />
@@ -126,8 +214,7 @@ const Register = () => {
             </span>
           </div>
           <p className="signup-message">
-            Signed up already?
-            <NavLink to="/login"> Log In</NavLink>
+            Signed up already? <NavLink to="/login">Log In</NavLink>
           </p>
 
           <button type="submit">
@@ -141,5 +228,4 @@ const Register = () => {
     </>
   );
 };
-
 export default Register;

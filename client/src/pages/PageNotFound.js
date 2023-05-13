@@ -315,7 +315,7 @@ const PageNotFound = () => {
           </defs>
         </svg>
       </div>
-      <div class="text">
+      <div className="text">
         <h1>404 Error</h1>
         <h2>Couldn't launch :(</h2>
         <h3>

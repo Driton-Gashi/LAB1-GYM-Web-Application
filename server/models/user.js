@@ -52,6 +52,8 @@ class User {
     if (rows.length > 0) {
       throw new Error("a User already exists with this email!");
     }
+    const message = "a User already exists with this email!";
+    res.send({ message });
   }
   async save() {
     const saltRounds = 10;

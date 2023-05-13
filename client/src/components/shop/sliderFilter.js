@@ -22,18 +22,41 @@ const sliderFilter = () => {
         .closest(".sliderWrapper")
         .querySelector(".slider")
         .classList.remove("slide1");
-    } else {
+    } else if (
+      left
+        .closest(".sliderWrapper")
+        .parentNode.querySelector(".slider")
+        .classList.contains("slide2")
+    ) {
       left
         .closest(".sliderWrapper")
         .querySelector(".slider")
         .classList.add("slide1");
+      left
+        .closest(".sliderWrapper")
+        .querySelector(".slider")
+        .classList.remove("slide2");
+    } else if (
+      left
+        .closest(".sliderWrapper")
+        .parentNode.querySelector(".slider")
+        .classList.contains("slide3")
+    ) {
+      left
+        .closest(".sliderWrapper")
+        .querySelector(".slider")
+        .classList.add("slide2");
+      left
+        .closest(".sliderWrapper")
+        .querySelector(".slider")
+        .classList.remove("slide3");
     }
   };
   const scrollRight = (e) => {
     const right = e.target;
 
     if (
-      !right
+      right
         .closest(".sliderWrapper")
         .parentNode.querySelector(".slider")
         .classList.contains("slide1")
@@ -41,12 +64,34 @@ const sliderFilter = () => {
       right
         .closest(".sliderWrapper")
         .querySelector(".slider")
-        .classList.add("slide1");
-    } else {
+        .classList.add("slide2");
       right
         .closest(".sliderWrapper")
         .querySelector(".slider")
         .classList.remove("slide1");
+    } else if (
+      right
+        .closest(".sliderWrapper")
+        .parentNode.querySelector(".slider")
+        .classList.contains("slide2")
+    ) {
+      right
+        .closest(".sliderWrapper")
+        .querySelector(".slider")
+        .classList.remove("slide2");
+      right
+        .closest(".sliderWrapper")
+        .querySelector(".slider")
+        .classList.add("slide3");
+    } else {
+      right
+        .closest(".sliderWrapper")
+        .querySelector(".slider")
+        .classList.remove("slide3");
+      right
+        .closest(".sliderWrapper")
+        .querySelector(".slider")
+        .classList.add("slide1");
     }
   };
   return (

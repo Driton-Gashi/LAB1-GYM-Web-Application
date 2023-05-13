@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "sass": "^1.62.1"
+    "sass": "^1.62.1",
+    "sweetalert": "^2.1.2"
   }
 }
