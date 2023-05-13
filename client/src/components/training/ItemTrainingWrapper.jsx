@@ -31,17 +31,19 @@ console.log(video);
     <>
     <h1>{Title}</h1>
     
-    
+
     <div className="video_card">
-   
-    <ItemTraining/>
 
+   {video.slice(0, 3).map(e=>(
+     <ItemTraining
+     key={e.video_id}
+     video_name={e.video_name}
+     video_difficulity={e.video_difficulity}
+     vide_image={e.vide_image}
+     vide_description={e.vide_description}
+     />
 
-    <ItemTraining
-    />
-    <ItemTraining
-    />
-  
+   ))}
     </div>
     <button>View All</button>
     </>

@@ -1,4 +1,4 @@
-const cartItem = ({ image, name, price }) => {
+const CartItem = ({ image, name, price }) => {
   return (
     <div className="item">
       <div className="img-col">
@@ -12,4 +12,4 @@ const cartItem = ({ image, name, price }) => {
   );
 };
 
-export default cartItem;
+export default CartItem;

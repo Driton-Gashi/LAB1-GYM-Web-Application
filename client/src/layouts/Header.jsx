@@ -9,10 +9,12 @@ import "../css/header.css";
 import "../css/footer.css";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const showMenu = () => {
-    const menu = document.querySelector(".menu");
-    menu.classList.toggle("aktive");
+  setIsOpen(!isOpen)
   };
+
 
   return (
     <>
@@ -21,7 +23,7 @@ const Header = () => {
         <div className="logo">
           <img src={logo} alt="" />
         </div>
-        <ul className="menu">
+        <ul className={`menu ${isOpen?'aktive':''}`}>
           <div onClick={showMenu} className="close">
             <i className="fa-solid fa-xmark"></i>
           </div>
