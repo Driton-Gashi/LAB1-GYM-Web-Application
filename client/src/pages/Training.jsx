@@ -1,5 +1,4 @@
 import React from "react";
-import { useState,useEffect } from "react";
 import "../css/training.css";
 import ItemTrainingWrapper from "../components/training/ItemTrainingWrapper";
 import TrainingLibrary from "../components/training/TrainingLibrary";

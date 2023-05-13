@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../css/shop.css";
 import Item from "../components/shop/Item";
-import Slider from "../components/shop/sliderFilter";
+import Slider from "../components/shop/SliderFilter";
 const Shop = () => {
   const [items, setItems] = useState([]); // yogurt, protein
 
