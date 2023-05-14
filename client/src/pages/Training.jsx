@@ -1,13 +1,16 @@
 import React from "react";
+// import { useState,useEffect } from "react";
 import "../css/training.css";
 import ItemTrainingWrapper from "../components/training/ItemTrainingWrapper";
 import TrainingLibrary from "../components/training/TrainingLibrary";
+import MembershipCard from "../components/training/MembershipCard";
 
 const Training = () => {
 
   
 
-  return (<>
+  return (
+  <>
     <div className="main_banner_training">
         <div className="main_banner_training_content">
          <h1>Lorem ipsum dolor sit amet, consectetur adipisicing.</h1>
@@ -35,6 +38,22 @@ const Training = () => {
 
     </section>
 
+    <div className="container">
+
+      <h1>TITLE</h1>
+      
+    <p>Get unlimited access to our massive calisthenics workout library
+      , proven technique guides, and training programs built
+       specifically to get the help you reach your fitness goals.</p>
+    
+    <section className="membreship_container">
+
+    <MembershipCard/>
+    <MembershipCard/>
+
+    </section>
+
+    </div>
 
     
 
