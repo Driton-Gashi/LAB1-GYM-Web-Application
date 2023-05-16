@@ -14,6 +14,8 @@ const ShopItem = ({ title, image, category }) => {
       console.error(err.message);
     }
   };
+  console.log(items);
+
   return (
     <div onClick={getItems} className="sliderItem">
       <img src={image} alt="" />

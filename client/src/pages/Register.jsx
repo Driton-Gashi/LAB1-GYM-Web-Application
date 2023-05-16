@@ -143,6 +143,9 @@ const Register = () => {
         timer: 3000,
         button: false,
       });
+      setTimeout(() => {
+        window.location = "http://localhost:3000/dashboard";
+      }, 2000);
     } else if (response.status === 400) {
       const { message } = await response.json();
       swal({
@@ -166,7 +169,7 @@ const Register = () => {
       <img className="clouds" src={background} />
       <div className="signup register-signup register">
         <h2>Register</h2>
-        <h3>It's quick & simple</h3>
+        <h3>It&apos;s quick & simple</h3>
         <form className="form" onSubmit={handleSubmit}>
           <div className="textbox">
             <input
