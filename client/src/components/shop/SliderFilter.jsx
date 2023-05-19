@@ -1,14 +1,14 @@
 import React from "react";
-import left from "../../img/left-arrow.png";
-import right from "../../img/right-arrow.png";
+import left from "../../img/shop/left-arrow.png";
+import right from "../../img/shop/right-arrow.png";
 import ShopItem from "./ShopItem";
-import shirt from "../../img/t-shirt.png";
-import weight from "../../img/weight.png";
-import protein from "../../img/proteins.png";
-import sneaker from "../../img/sneakers.png";
-import pants from "../../img/jogger-pants.png";
-import gloves from "../../img/gloves.png";
-import bra from "../../img/sport-bra.png";
+import shirt from "../../img/shop/t-shirt.png";
+import weight from "../../img/shop/weight.png";
+import protein from "../../img/shop/proteins.png";
+import sneaker from "../../img/shop/sneakers.png";
+import pants from "../../img/shop/jogger-pants.png";
+import gloves from "../../img/shop/gloves.png";
+import bra from "../../img/shop/sport-bra.png";
 const sliderFilter = () => {
   const scrollLeft = (e) => {
     const left = e.target;
