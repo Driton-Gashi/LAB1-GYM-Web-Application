@@ -83,3 +83,62 @@
 .secondSection__card:not(:last-child) {
   margin-right: 1em;
 }
+
+/* calesthenics card */
+
+.calisthenics-card{
+  display: flex;
+  background-image:linear-gradient(180deg, #000 17%, transparent 78%),  url("https://assets.website-files.com/5e66b0b874e5ba0190038715/5f7fc66f420a84177d8a6626_BTF%20Background.png");
+  color:white;
+  width:100%;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: purple;
+}
+
+.calisthenics-card h1{
+  color:white;
+  font-size: 3rem;
+}
+
+.calisthenics-card img{
+  width: 50%;
+}
+
+.calisthenics-content{
+  display: flex;
+  flex-direction: row-reverse;
+  width:80%;
+  gap:2rem;
+  margin:2rem
+}
+
+.calisthenics-text{
+  display: flex;
+  flex-direction:column;
+  padding: 1rem;
+  gap:2rem;
+  width: 70%;
+  letter-spacing: 1px;
+}
+
+.calisthenics-text button{
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  width: 30%;
+  background-color: transparent;
+  color: var(--blue);
+  outline: 0;
+  border: 0;
+  border-radius: 100px;
+  transition: 0.5s ease all;
+  cursor: pointer;
+  border: 2px solid var(--blue);
+}
+
+.calisthenics-text button:hover {
+  background-color: var(--blue);
+  color: var(--black);
+}

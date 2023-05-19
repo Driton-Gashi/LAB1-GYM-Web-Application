@@ -27,6 +27,12 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   color: white;
   padding: 1rem;
+  
+}
+
+.black{
+  background-color: rgba(50, 50, 93, 0.3);
+  border-radius: 0.6rem;
 }
 
 .item_card_training p {
@@ -213,17 +219,16 @@
   top: -14px;
   align-self: center;
   justify-self: center;
- 
   background-color: #0C57FB;
   color: #fff;
   letter-spacing: 0.03rem;
-  z-index: 99999999999999999;
+  
   
 }
 
 .yearly{
-  border:2px 0C57FBblue solid;
-  z-index: 999999;
+  border:2px #0c57fb solid;
+  
 }
 
 
@@ -254,13 +259,13 @@
   justify-content: space-around;
   align-items: center;
   width: 50vh;
-  border:1px rgb(186, 186, 186) solid;
   height: 35vh;
-  border-radius: 2px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
   background-color: white;
   position: relative;
-  border:2px #0C57FB solid;
+  padding: 1rem;
+  
 }
 
 .membership_card h4{
@@ -299,5 +304,10 @@ font-size: 2rem;
   border: 1px solid var(--dark-blue);
   color:var(--dark-blue);
   font-size: 1rem;
+}
+
+.blue_button button{
+background-color: #0C57FB;
+color:white
 }
 

@@ -1,10 +1,11 @@
 import MainBanner from "../components/Home/MainBanner";
-import CardWrapper from "../components/Home/CardWrapper";
+import Crossfit from "../components/Home/Crossfit";
+
 const Home = () => {
   return (
     <>
       <MainBanner />
-      <CardWrapper />
+      <Crossfit/>
     </>
   );
 };

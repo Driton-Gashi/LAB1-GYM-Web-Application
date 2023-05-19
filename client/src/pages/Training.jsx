@@ -40,7 +40,7 @@ const Training = () => {
 
     <div className="container">
 
-      <h1>TITLE</h1>
+      <h1>Programs</h1>
       
     <p>Get unlimited access to our massive calisthenics workout library
       , proven technique guides, and training programs built

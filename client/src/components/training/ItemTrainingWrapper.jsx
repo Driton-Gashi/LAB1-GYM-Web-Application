@@ -32,7 +32,7 @@ console.log(video);
 
     <div className="video_card">
 
-   {videoArray.map(e=>(
+   {videoArray.slice(0,3).map(e=>(
      <ItemTraining
      key={e.video_id}
      video_name={e.video_name}
