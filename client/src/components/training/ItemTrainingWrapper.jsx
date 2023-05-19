@@ -17,9 +17,7 @@ export default function ItemTrainingWrapper({Title}){
     }
   }
 
- 
-
-  
+  const videoArray = Object.values(video); 
 
   useEffect(() => {
     getVideo();
@@ -34,7 +32,7 @@ console.log(video);
 
     <div className="video_card">
 
-   {video.slice(0, 3).map(e=>(
+   {videoArray.map(e=>(
      <ItemTraining
      key={e.video_id}
      video_name={e.video_name}
