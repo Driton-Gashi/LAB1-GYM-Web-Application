@@ -48,7 +48,7 @@ app.post("/login", async (req, res) => {
       "SELECT * FROM users WHERE email = $1",
       [email]
     );
-      
+
     const user = await authenticateUser(email, password);
     const token = createToken(user);
     res.json({ token });
@@ -83,6 +83,20 @@ app.get("/items", async (req, res) => {
   }
 });
 
+app.get("/users", async (req, res) => {
+  try {
+    const orderBy = req.query.orderBy;
+    let allUsers = await pool.query("SELECT * from users");
+    if (orderBy !== null && orderBy != undefined) {
+      allUsers = await pool.query(
+        `SELECT * from users order by ${orderBy} desc`
+      );
+    }
+    res.json(allUsers.rows);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 // verify is json web token is not fake
 app.get("/verify", authentication, async (req, res) => {
   try {
