@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function MembershipCard({time,price,desc}) {
+export default function MembershipCard({time,price,desc,disc}) {
   return (
     <div className='membership_card yearly'>
-      <div className='savebadge'>Save 25%</div>
+      <div className='savebadge'>{disc}</div>
       <div className='purchase_text'>
       <h4>{time}</h4>
       <p>Get started today</p>

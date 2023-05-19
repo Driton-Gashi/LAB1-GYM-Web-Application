@@ -58,6 +58,7 @@ const Training = () => {
     time="Yearly"
     price="100"
     desc="year"
+    disc="Save 25%"
 />
 
     </section>
