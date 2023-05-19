@@ -1,16 +1,20 @@
 import React from 'react'
 
-export default function MembershipCard() {
+export default function MembershipCard({time,price,desc}) {
   return (
-    <div className='membership_card'>
+    <div className='membership_card yearly'>
+      <div className='savebadge'>Save 25%</div>
       <div className='purchase_text'>
-      <h4>Monthly</h4>
+      <h4>{time}</h4>
       <p>Get started today</p>
       </div>
-      <h5>69.69$</h5>
+      <div className="price-container">
+      <h6>$</h6>
+      <h5>{price}</h5>
+      </div>
       <div className='purchase_text'>
       <button>Purchase</button>
-      <p>purchase description</p>
+      <p>Billed every {desc}. Cancle anytime.</p>
       </div>
     </div>
   )

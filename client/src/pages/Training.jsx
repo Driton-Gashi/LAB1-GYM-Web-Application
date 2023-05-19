@@ -48,8 +48,17 @@ const Training = () => {
     
     <section className="membreship_container">
 
-    <MembershipCard/>
-    <MembershipCard/>
+    <MembershipCard
+    time="Monthly"
+    price="20"
+    desc="month"
+
+    />
+    <MembershipCard
+    time="Yearly"
+    price="100"
+    desc="year"
+/>
 
     </section>
 

@@ -80,6 +80,7 @@
   width: 100%;
   flex-direction: column;
   padding-bottom: 1rem;
+  background-color: white;
 }
 
 .training_section_black {
@@ -201,6 +202,32 @@
 
 /* MembershipCard.jsx */
 
+.savebadge{
+  position: absolute;
+  font-weight: bold;
+  text-align: center;
+  width: 130px;
+  height: 28px;
+  line-height: 28px;
+  border-radius: 4px;
+  top: -14px;
+  align-self: center;
+  justify-self: center;
+ 
+  background-color: #0C57FB;
+  color: #fff;
+  letter-spacing: 0.03rem;
+  z-index: 99999999999999999;
+  
+}
+
+.yearly{
+  border:2px 0C57FBblue solid;
+  z-index: 999999;
+}
+
+
+
 .container{
   display: flex;
   flex-direction: column;
@@ -218,6 +245,7 @@
   justify-content: center;
   padding-top:3rem;
   
+  
 }
 
 .membership_card{
@@ -227,10 +255,12 @@
   align-items: center;
   width: 50vh;
   border:1px rgb(186, 186, 186) solid;
-  height: 30vh;
-border-radius: 2px;
-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  
+  height: 35vh;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  background-color: white;
+  position: relative;
+  border:2px #0C57FB solid;
 }
 
 .membership_card h4{
@@ -240,10 +270,17 @@ box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .membership_card h5{
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
+.price-container{
+  display: flex;
+  flex-direction: row;
+}
 
+.price-container h6{
+font-size: 2rem;
+}
 
 .purchase_text{
   display: flex;
@@ -256,9 +293,11 @@ box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .purchase_text button{
-  padding: 0.5rem 43% 0.5rem 43%;
-  border-radius: 0.5rem;
-  background-color: var(--blue);
-  border: 3px solid var(--dark-blue)
+  padding: 0.8rem 40% 0.8rem 40%;
+  border-radius: 5rem;
+  background-color: white;
+  border: 1px solid var(--dark-blue);
+  color:var(--dark-blue);
+  font-size: 1rem;
 }
 
