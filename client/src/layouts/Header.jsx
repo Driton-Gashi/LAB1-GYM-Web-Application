@@ -10,17 +10,13 @@ import "../css/footer.css";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDashboard, setIsDashboard] = useState(
-    window.location.href.includes("dashboard")
-  );
   const showMenu = () => {
     setIsOpen(!isOpen);
   };
-  console.log(setIsDashboard);
   return (
     <>
-      <div className={`before-header ${isDashboard ? "hide" : ""}`}></div>
-      <header className={` ${isDashboard ? "hide" : ""}`}>
+      <div className={`before-header`}></div>
+      <header>
         <div className="logo">
           <img src={logo} alt="" />
         </div>

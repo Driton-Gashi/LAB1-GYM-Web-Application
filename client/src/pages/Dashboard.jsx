@@ -1,20 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "../css/dashboard.css";
 
-import Header from "../components/dashboard/header";
+import userIcon from "../img/dashboard/user.png";
+import maleIcon from "../img/dashboard/male.png";
+import femaleIcon from "../img/dashboard/woman.png";
+import subscription from "../img/dashboard/subscription.png";
 
 import dashboardIcon from "../img/dashboard-icon.png";
+import TableItem from "../components/dashboard/TableItem";
+
 const Dashboard = () => {
-  const [navClass, setNavClass] = useState("");
-  const toggleMenu = () => {
-    navClass == "navclose" ? setNavClass("") : setNavClass("navclose");
+  const [users, setUsers] = useState([]); // yogurt, protein
+
+  const getUsers = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/users");
+      const jsonData = await response.json();
+      setUsers(jsonData);
+    } catch (err) {
+      console.error(err.message);
+    }
   };
+  useEffect(() => {
+    getUsers();
+  }, []);
   return (
     <>
-      <Header toggleMenu={toggleMenu} />
       <div className="main-container">
-        <div className={"navcontainer " + navClass}>
+        <div className="navcontainer">
           <nav className="nav">
             <div className="nav-upper-options">
               <div className="nav-option option1">
@@ -22,20 +36,12 @@ const Dashboard = () => {
                 <h3> Dashboard</h3>
               </div>
               <div className="nav-option option1">
-                <img
-                  src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183323/10.png"
-                  className="nav-img"
-                  alt=""
-                />
-                <h3> Profile</h3>
+                <img src={userIcon} className="nav-img" alt="" />
+                <h3>Users</h3>
               </div>
               <div className="nav-option option2">
-                <img
-                  src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183323/10.png"
-                  className="nav-img"
-                  alt=""
-                />
-                <h3>Users</h3>
+                <img src={userIcon} className="nav-img" alt="" />
+                <h3> Profile</h3>
               </div>
 
               <div className="nav-option option3">
@@ -74,126 +80,63 @@ const Dashboard = () => {
           <div className="box-container">
             <div className="box box1">
               <div className="text">
-                <h2 className="topic-heading">60.5k</h2>
-                <h2 className="topic">Article Views</h2>
+                <h2 className="topic-heading">{users.length}</h2>
+                <h2 className="topic">Users</h2>
               </div>
-              <img
-                src="https://media.geeksforgeeks.org/wp-content/uploads/20221210184645/Untitled-design-(31).png"
-                alt=""
-              />
+              <img src={userIcon} alt="" />
             </div>
 
             <div className="box box2">
               <div className="text">
-                <h2 className="topic-heading">150</h2>
-                <h2 className="topic">Likes</h2>
+                <h2 className="topic-heading">10</h2>
+                <h2 className="topic">Males</h2>
               </div>
-              <img
-                src="https://media.geeksforgeeks.org/wp-content/uploads/20221210185030/14.png"
-                alt=""
-              />
+              <img src={maleIcon} alt="" />
             </div>
 
             <div className="box box3">
               <div className="text">
-                <h2 className="topic-heading">320</h2>
-                <h2 className="topic">Comments</h2>
+                <h2 className="topic-heading">5</h2>
+                <h2 className="topic">Females</h2>
               </div>
-              <img
-                src="https://media.geeksforgeeks.org/wp-content/uploads/20221210184645/Untitled-design-(32).png"
-                alt=""
-              />
+              <img src={femaleIcon} alt="" />
             </div>
 
             <div className="box box4">
               <div className="text">
-                <h2 className="topic-heading">70</h2>
-                <h2 className="topic">Published</h2>
+                <h2 className="topic-heading">7</h2>
+                <h2 className="topic">Subscription</h2>
               </div>
-              <img
-                src="https://media.geeksforgeeks.org/wp-content/uploads/20221210185029/13.png"
-                alt=""
-              />
+              <img src={subscription} alt="" />
             </div>
           </div>
 
           <div className="report-container">
             <div className="report-header">
-              <h1 className="recent-Articles">Recent Articles</h1>
+              <h1 className="recent-Articles">All Users</h1>
               <button className="view">View All</button>
             </div>
 
             <div className="report-body">
               <div className="report-topic-heading">
-                <h3 className="t-op">Article</h3>
-                <h3 className="t-op">Views</h3>
-                <h3 className="t-op">Comments</h3>
-                <h3 className="t-op">Status</h3>
+                <h3 className="t-op">Username</h3>
+                <h3 className="t-op">Email</h3>
+                <h3 className="t-op">Role</h3>
+                <h3 className="t-op">Register Date</h3>
+                <h3 className="t-op">Manage</h3>
               </div>
 
               <div className="items">
-                <div className="item1">
-                  <h3 className="t-op-nextlvl">Article 73</h3>
-                  <h3 className="t-op-nextlvl">2.9k</h3>
-                  <h3 className="t-op-nextlvl">210</h3>
-                  <h3 className="t-op-nextlvl label-tag">Published</h3>
-                </div>
-
-                <div className="item1">
-                  <h3 className="t-op-nextlvl">Article 72</h3>
-                  <h3 className="t-op-nextlvl">1.5k</h3>
-                  <h3 className="t-op-nextlvl">360</h3>
-                  <h3 className="t-op-nextlvl label-tag">Published</h3>
-                </div>
-
-                <div className="item1">
-                  <h3 className="t-op-nextlvl">Article 71</h3>
-                  <h3 className="t-op-nextlvl">1.1k</h3>
-                  <h3 className="t-op-nextlvl">150</h3>
-                  <h3 className="t-op-nextlvl label-tag">Published</h3>
-                </div>
-
-                <div className="item1">
-                  <h3 className="t-op-nextlvl">Article 70</h3>
-                  <h3 className="t-op-nextlvl">1.2k</h3>
-                  <h3 className="t-op-nextlvl">420</h3>
-                  <h3 className="t-op-nextlvl label-tag">Published</h3>
-                </div>
-
-                <div className="item1">
-                  <h3 className="t-op-nextlvl">Article 69</h3>
-                  <h3 className="t-op-nextlvl">2.6k</h3>
-                  <h3 className="t-op-nextlvl">190</h3>
-                  <h3 className="t-op-nextlvl label-tag">Published</h3>
-                </div>
-
-                <div className="item1">
-                  <h3 className="t-op-nextlvl">Article 68</h3>
-                  <h3 className="t-op-nextlvl">1.9k</h3>
-                  <h3 className="t-op-nextlvl">390</h3>
-                  <h3 className="t-op-nextlvl label-tag">Published</h3>
-                </div>
-
-                <div className="item1">
-                  <h3 className="t-op-nextlvl">Article 67</h3>
-                  <h3 className="t-op-nextlvl">1.2k</h3>
-                  <h3 className="t-op-nextlvl">580</h3>
-                  <h3 className="t-op-nextlvl label-tag">Published</h3>
-                </div>
-
-                <div className="item1">
-                  <h3 className="t-op-nextlvl">Article 66</h3>
-                  <h3 className="t-op-nextlvl">3.6k</h3>
-                  <h3 className="t-op-nextlvl">160</h3>
-                  <h3 className="t-op-nextlvl label-tag">Published</h3>
-                </div>
-
-                <div className="item1">
-                  <h3 className="t-op-nextlvl">Article 65</h3>
-                  <h3 className="t-op-nextlvl">1.3k</h3>
-                  <h3 className="t-op-nextlvl">220</h3>
-                  <h3 className="t-op-nextlvl label-tag">Published</h3>
-                </div>
+                {users.map((element) => (
+                  // %PUBLIC_URL% shortcut for public
+                  <TableItem
+                    key={element.user_id}
+                    username={element.user_name}
+                    email={element.email}
+                    role={element.role}
+                    date={element.created_date}
+                  />
+                ))}
               </div>
             </div>
           </div>
