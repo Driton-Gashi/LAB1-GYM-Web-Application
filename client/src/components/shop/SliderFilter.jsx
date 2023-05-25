@@ -1,127 +1,84 @@
-import React from "react";
-import left from "../../img/shop/left-arrow.png";
-import right from "../../img/shop/right-arrow.png";
 import ShopItem from "./ShopItem";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
 import shirt from "../../img/shop/t-shirt.png";
 import weight from "../../img/shop/weight.png";
+import pants from "../../img/shop/jogger-pants.png";
+// import left from "../../img/shop/left-arrow.png";
+// import right from "../../img/shop/right-arrow.png";
 import protein from "../../img/shop/proteins.png";
 import sneaker from "../../img/shop/sneakers.png";
-import pants from "../../img/shop/jogger-pants.png";
 import gloves from "../../img/shop/gloves.png";
 import bra from "../../img/shop/sport-bra.png";
-const sliderFilter = () => {
-  const scrollLeft = (e) => {
-    const left = e.target;
-    if (
-      left
-        .closest(".sliderWrapper")
-        .parentNode.querySelector(".slider")
-        .classList.contains("slide1")
-    ) {
-      left
-        .closest(".sliderWrapper")
-        .querySelector(".slider")
-        .classList.remove("slide1");
-    } else if (
-      left
-        .closest(".sliderWrapper")
-        .parentNode.querySelector(".slider")
-        .classList.contains("slide2")
-    ) {
-      left
-        .closest(".sliderWrapper")
-        .querySelector(".slider")
-        .classList.add("slide1");
-      left
-        .closest(".sliderWrapper")
-        .querySelector(".slider")
-        .classList.remove("slide2");
-    } else if (
-      left
-        .closest(".sliderWrapper")
-        .parentNode.querySelector(".slider")
-        .classList.contains("slide3")
-    ) {
-      left
-        .closest(".sliderWrapper")
-        .querySelector(".slider")
-        .classList.add("slide2");
-      left
-        .closest(".sliderWrapper")
-        .querySelector(".slider")
-        .classList.remove("slide3");
-    }
-  };
-  const scrollRight = (e) => {
-    const right = e.target;
 
-    if (
-      right
-        .closest(".sliderWrapper")
-        .parentNode.querySelector(".slider")
-        .classList.contains("slide1")
-    ) {
-      right
-        .closest(".sliderWrapper")
-        .querySelector(".slider")
-        .classList.add("slide2");
-      right
-        .closest(".sliderWrapper")
-        .querySelector(".slider")
-        .classList.remove("slide1");
-    } else if (
-      right
-        .closest(".sliderWrapper")
-        .parentNode.querySelector(".slider")
-        .classList.contains("slide2")
-    ) {
-      right
-        .closest(".sliderWrapper")
-        .querySelector(".slider")
-        .classList.remove("slide2");
-      right
-        .closest(".sliderWrapper")
-        .querySelector(".slider")
-        .classList.add("slide3");
-    } else {
-      right
-        .closest(".sliderWrapper")
-        .querySelector(".slider")
-        .classList.remove("slide3");
-      right
-        .closest(".sliderWrapper")
-        .querySelector(".slider")
-        .classList.add("slide1");
-    }
+const list = [
+  {
+    id: 1,
+    title: "Shirt",
+    image: shirt,
+  },
+  {
+    id: 2,
+    title: "weight",
+    image: weight,
+  },
+  {
+    id: 3,
+    title: "pants",
+    image: pants,
+  },
+  {
+    id: 4,
+    title: "protein",
+    image: protein,
+  },
+  {
+    id: 5,
+    title: "sneaker",
+    image: sneaker,
+  },
+  {
+    id: 5,
+    title: "gloves",
+    image: gloves,
+  },
+  {
+    id: 6,
+    title: "bra",
+    image: bra,
+  },
+];
+
+const SliderFilter = () => {
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 5,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
   };
+
   return (
-    <div className="sliderWrapper">
-      <div onClick={scrollLeft} className="leftArrow">
-        <img src={left} alt="" />
-      </div>
-      <div onClick={scrollRight} className="rightArrow">
-        <img src={right} alt="" />
-      </div>
-      <div className="overflowSlider">
-        <div className="slider">
-          <ShopItem title="T-Shirt" image={shirt} />
-          <ShopItem title="Weight" image={weight} />
-          <ShopItem title="Sneaker" image={sneaker} />
-          <ShopItem title="Protein" image={protein} />
-          <ShopItem title="Pants" image={pants} />
-          <ShopItem title="Gloves" image={gloves} />
-          <ShopItem title="Sport Bra" image={bra} />
-          <ShopItem title="T-Shirt" image={shirt} />
-          <ShopItem title="Weight" image={weight} />
-          <ShopItem title="Protein" image={protein} />
-          <ShopItem title="Sneaker" image={sneaker} />
-          <ShopItem title="Pants" image={pants} />
-          <ShopItem title="Gloves" image={gloves} />
-          <ShopItem title="Sport Bra" image={bra} />
-        </div>
-      </div>
-    </div>
+    <Carousel responsive={responsive} autoPlay={true} infinite={true}>
+      {list.map((item) => (
+        // %PUBLIC_URL% shortcut for public
+        <ShopItem key={item.id} title={item.title} image={item.image} />
+      ))}
+    </Carousel>
   );
 };
 
-export default sliderFilter;
+export default SliderFilter;
