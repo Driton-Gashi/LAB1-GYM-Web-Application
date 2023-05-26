@@ -131,11 +131,12 @@
 
 
 .video_card {
-  display: flex;
+  display: grid;
   justify-content: space-around;
   gap: 1.5rem;
   width: 62%;
   padding: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
   
 }
 
