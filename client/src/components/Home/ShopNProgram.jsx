@@ -1,41 +1,56 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 export default function ShopNProgram() {
   const contentRef = useRef(null);
   const contentRef2= useRef(null);
+  const contentRef3= useRef(null);
 
-  const[element,setElement] = useState(false)
+ 
   
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
-
-      const entry = entries[0];
-      setElement(entry.isIntersecting);
-      console.log(entry.isVisible)
-    },
-    {
-      threshold:0.99,
-    }
-    );
-    observer.observe(contentRef.current);
-  
-    const programObserver = new IntersectionObserver(() => {
-      
-      setElement(!element);
+      entries.forEach(entry => {
+        if (entry.target === contentRef.current) {
+          if (entry.isIntersecting) {
+            contentRef.current.classList.add('stick');
+            contentRef.current.classList.remove('is-bottom');
+          } else {
+            contentRef.current.classList.remove('stick');
+          }
+        } else if (entry.target === contentRef2.current) {
+          if (entry.isIntersecting) {
+            contentRef.current.classList.remove('stick');
+            contentRef.current.classList.add('is-bottom');
+          } else {
+            contentRef.current.classList.remove('is-bottom');
+          }
+        }else if(entry.target === contentRef3.current){
+          contentRef.current.classList.remove('stick');
+        }
+      });
     }, {
-      threshold: 0.99,
+      threshold: 0.99
     });
-    programObserver.observe(contentRef2.current);
+    
+    observer.observe(contentRef.current);
+    observer.observe(contentRef2.current);
+    observer.observe(contentRef3.current)
+    
+  
+  
 
   }, []);
-  console.log("element", element)
+ 
   return (
+    <>
+    <div ref={contentRef3} className="test"></div>
     <section  className='SNP-container'>
-      <div ref={contentRef} className={`split-content ${element ? 'stick' : ''}`}>lmao</div>
+      <div ref={contentRef} className={'split-content'}>lmao</div>
       <span  className='shopping-content'></span>
       <span  className='program-content'>
         <div ref={contentRef2} className='end-stick'></div>
       </span>
     </section>
+    </>
   );
 }
