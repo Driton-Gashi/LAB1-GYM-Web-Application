@@ -10,6 +10,17 @@ const authentication = require("./authorization");
 app.use(cors());
 app.use(express.json());
 
+const checkAdminRole = (req, res, next) => {
+  // Assuming you have the user's role stored in the req.user.role
+  if (req.user.role === "admin") {
+    // User is an admin, allow access to the route
+    next();
+  } else {
+    // User is not an admin, return an error response
+    res.status(401).json({ message: "Access denied. Only admins allowed." });
+  }
+};
+
 // ROUTES
 
 // Register a user
@@ -116,50 +127,19 @@ app.get("/video", async (req, res) => {
     console.log(error.message);
   }
 });
-
-// Adding product to database
-app.post("/cart/add", async (req, res) => {
-  const { productId, productName, price, quantity } = req.body;
-
+//delete a user at Dashboard
+app.delete("/user/:id", async (req, res) => {
   try {
-    // Get the cart ID associated with the user's session
-    const {
-      rows: [cart],
-    } = await pool.query("SELECT id FROM cart WHERE session_id = $1", [
-      req.session.id,
-    ]);
-
-    // Check if the product is already in the cart
-    const {
-      rows: [existingItem],
-    } = await pool.query(
-      "SELECT * FROM cartItem WHERE cart_id = $1 AND product_name = $2",
-      [cart.id, productName]
+    const { id } = req.params;
+    const deleteUser = await pool.query(
+      "DELETE from users WHERE user_id = $1",
+      [id]
     );
-
-    if (existingItem) {
-      // If the product is already in the cart, increase the quantity
-      const newQuantity = existingItem.quantity + quantity;
-
-      await pool.query("UPDATE cartItem SET quantity = $1 WHERE id = $2", [
-        newQuantity,
-        existingItem.id,
-      ]);
-    } else {
-      // If the product is not in the cart, add it as a new row
-      await pool.query(
-        "INSERT INTO cartItem (cart_id, product_name, price, quantity) VALUES ($1, $2, $3, $4)",
-        [cart.id, productName, price, quantity]
-      );
-    }
-
-    res.status(200).send("Product added to cart successfully.");
+    res.json("User was deleted");
   } catch (error) {
-    console.error(error);
-    res.status(500).send("Error adding product to cart.");
+    console.log(error.message);
   }
 });
-
 app.listen(5000, () => {
   console.log("Server has started on port 5000");
 });
@@ -201,18 +181,6 @@ app.listen(5000, () => {
 //       [description, id]
 //     );
 //     res.json("Todo was updated");
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// });
-// //delete a todo
-// app.delete("/todos/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const deleteTodo = await pool.query("DELETE from todo WHERE todo_id = $1", [
-//       id,
-//     ]);
-//     res.json("Todo was Deleted");
 //   } catch (error) {
 //     console.log(error.message);
 //   }

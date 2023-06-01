@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import "../css/cart.css";
 import CartItem from "../components/cart/CartItem";
 const Cart = () => {
-  const [items, setItems] = useState([]);
+  // const [items, setItems] = useState([]);
   const [number1, setNumber1] = useState("");
   const [number2, setNumber2] = useState("");
   const [number3, setNumber3] = useState("");
@@ -77,6 +77,7 @@ const Cart = () => {
                     ) {
                       setNumber1(e.target.value);
                       if (e.nativeEvent.inputType == "deleteContentBackward") {
+                        return;
                       } else {
                         if (number1.length == 3) {
                           input2.current.focus();
@@ -99,6 +100,7 @@ const Cart = () => {
                     ) {
                       setNumber2(e.target.value);
                       if (e.nativeEvent.inputType == "deleteContentBackward") {
+                        return;
                       } else {
                         if (number2.length == 3) {
                           input3.current.focus();
@@ -121,6 +123,7 @@ const Cart = () => {
                     ) {
                       setNumber3(e.target.value);
                       if (e.nativeEvent.inputType == "deleteContentBackward") {
+                        return;
                       } else {
                         if (number3.length == 3) {
                           input4.current.focus();
@@ -143,6 +146,7 @@ const Cart = () => {
                     ) {
                       setNumber4(e.target.value);
                       if (e.nativeEvent.inputType == "deleteContentBackward") {
+                        return;
                       } else {
                         if (number4.length == 3) {
                           cardHolder.current.focus();
@@ -162,6 +166,7 @@ const Cart = () => {
                 placeholder="John Doe"
                 onChange={(e) => {
                   if (isNumber(e.nativeEvent.data)) {
+                    return;
                   }
                 }}
               />

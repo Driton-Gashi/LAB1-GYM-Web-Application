@@ -10,6 +10,19 @@
   --two-use-color: #5500cb;
 }
 
+.disapear {
+  animation: disapear 0.4s ease alternate forwards;
+}
+@keyframes disapear {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
+
 .logo {
   width: 100px;
   height: 50px;

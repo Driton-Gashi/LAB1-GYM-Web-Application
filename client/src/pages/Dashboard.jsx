@@ -25,6 +25,7 @@ const Dashboard = () => {
   useEffect(() => {
     getUsers();
   }, []);
+
   return (
     <>
       <div className="main-container">
@@ -131,6 +132,7 @@ const Dashboard = () => {
                   // %PUBLIC_URL% shortcut for public
                   <TableItem
                     key={element.user_id}
+                    id={element.user_id}
                     username={element.user_name}
                     email={element.email}
                     role={element.role}
