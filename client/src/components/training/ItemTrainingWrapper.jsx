@@ -5,6 +5,11 @@ import ItemTraining from "./ItemTraining";
 
 export default function ItemTrainingWrapper({Title}){
   const [video, setVideo] = useState([]); 
+  const [videoSize,setVideoSize] = useState(3);
+
+  function IncreaseVideo(){
+    setVideoSize(videoSize+3)
+  }
 
   const getVideo = async () => {
     try {
@@ -32,7 +37,7 @@ console.log(video);
 
     <div className="video_card">
 
-   {videoArray.slice(0,3).map(e=>(
+   {videoArray.slice(0,videoSize).map(e=>(
      <ItemTraining
      key={e.video_id}
      video_name={e.video_name}
@@ -43,7 +48,7 @@ console.log(video);
 
    ))}
     </div>
-    <button>View All</button>
+    <button onClick={IncreaseVideo}>View All</button>
     </>
   )
 }
