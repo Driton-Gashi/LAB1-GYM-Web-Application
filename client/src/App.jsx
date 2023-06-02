@@ -18,39 +18,69 @@ import Cart from "./pages/Cart";
 import Dashboard from "./pages/Dashboard";
 // layouts
 import Header from "./layouts/Header";
-const getUserRoleFromJWT = () => {
+const getUser = () => {
   const token = localStorage.getItem("token");
 
   try {
     // Decode the JWT token
     const decodedToken = jwtDecode(token);
-    console.log(decodedToken.user.role);
     // Extract the role from the decoded token
-    const role = decodedToken.user.role;
+    const user = decodedToken.user;
 
     // Return the role
-    return role;
+    return user;
   } catch (error) {
-    console.error("Error decoding JWT token:", error);
+    console.error("I can't get the Token because it doesn't exist");
     return null; // Return null or handle the error as per your requirement
   }
 };
+function isLoggedIn() {
+  const token = localStorage.getItem("token");
 
+  if (token) {
+    try {
+      const decodedToken = jwtDecode(token);
+
+      if (decodedToken.user) {
+        return true;
+      }
+    } catch (error) {
+      console.error("Invalid token:", error);
+    }
+  }
+
+  return false;
+}
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Header />}>
-      <Route index element={<Home />} />
+    <Route
+      path="/"
+      element={<Header getUser={getUser} isLoggedIn={isLoggedIn} />}
+    >
+      <Route
+        index
+        element={<Home getUser={getUser} isLoggedIn={isLoggedIn} />}
+      />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/training" element={<Training />} />
-      <Route path="/shop" element={<Shop />} />
-      <Route path="/cart" element={<Cart />} />
+      <Route
+        path="/training"
+        element={<Training getUser={getUser} isLoggedIn={isLoggedIn} />}
+      />
+      <Route
+        path="/shop"
+        element={<Shop getUser={getUser} isLoggedIn={isLoggedIn} />}
+      />
+      <Route
+        path="/cart"
+        element={<Cart getUser={getUser} isLoggedIn={isLoggedIn} />}
+      />
       <Route
         path="/dashboard"
         element={
           // Authorization check for Dashboard route
-          getUserRoleFromJWT() === "admin" ? (
-            <Dashboard />
+          getUser() === "admin" ? (
+            <Dashboard getUser={getUser} isLoggedIn={isLoggedIn} />
           ) : (
             <Navigate to="/" replace />
           )

@@ -113,6 +113,14 @@ const Login = () => {
         if (data.token) {
           const token = data.token;
           localStorage.setItem("token", token);
+
+          swal({
+            title: "Welcome back",
+            text: "You are now logged In",
+            icon: "success",
+            timer: 3000,
+            button: false,
+          });
           // Redirect to the dashboard or perform any other action
           navigate("/dashboard");
         } else {
@@ -128,7 +136,7 @@ const Login = () => {
       } else {
         swal({
           title: "Oops, Something went wrong",
-          text: "Error logging",
+          text: "You Email or Password is wrong",
           icon: "error",
           timer: 3000,
           button: false,

@@ -3,9 +3,9 @@ CREATE DATABASE lmao_database;
 CREATE TABLE users(
     user_id serial PRIMARY KEY,
     user_name VARCHAR(50) NOT NULL,
-    pasword VARCHAR(50) NOT NULL,
+    password VARCHAR(250) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    role VARCHAR(6) NOT NULL,
+    role VARCHAR(6) DEFAULT 'user',
 	created_at date default current_date
 ); 
 -- Created by Dritoni

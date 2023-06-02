@@ -1,7 +1,7 @@
 import { Outlet, NavLink } from "react-router-dom";
 import { useState } from "react";
-import jwtDecode from "jwt-decode";
-import { useNavigate } from "react-router";
+import swal from "sweetalert";
+// import { useNavigate } from "react-router";
 
 // images
 import logo from "../img/logo_transparent2.png";
@@ -10,31 +10,27 @@ import logo from "../img/logo_transparent2.png";
 import "../css/header.css";
 import "../css/footer.css";
 
-const Header = () => {
-  const navigate = useNavigate();
-  const getUserRoleFromJWT = () => {
-    const token = localStorage.getItem("token");
-
-    try {
-      // Decode the JWT token
-      const decodedToken = jwtDecode(token);
-      console.log(decodedToken.user.role);
-      // Extract the role from the decoded token
-      const role = decodedToken.user.role;
-
-      // Return the role
-      return role;
-    } catch (error) {
-      console.error("Error decoding JWT token:", error);
-      return null; // Return null or handle the error as per your requirement
-    }
-  };
+const Header = ({ getRole, isLoggedIn }) => {
+  const role = getRole;
+  const isLogged = isLoggedIn();
+  console.log(role, isLogged);
   const logout = () => {
     // Clear user-related data
-    localStorage.removeItem("token");
-
-    // Navigate to the login page
-    navigate("/login");
+    swal({
+      title: "Are you sure?",
+      text: "You are about to Log out!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        swal("You Logged out successfuly!", {
+          icon: "success",
+        });
+        localStorage.removeItem("token");
+        // Navigate to the login page
+      }
+    });
   };
 
   const [isOpen, setIsOpen] = useState(false);
@@ -63,7 +59,7 @@ const Header = () => {
             <NavLink to="/shop">Shop</NavLink>
           </li>
           <li>
-            {getUserRoleFromJWT() !== "admin" ? (
+            {!isLogged ? (
               <NavLink to="/register">Sign Up</NavLink>
             ) : (
               <a onClick={logout}>Log out</a>

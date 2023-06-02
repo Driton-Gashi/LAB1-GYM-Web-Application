@@ -2,13 +2,13 @@ import MainBanner from "../components/Home/MainBanner";
 import Crossfit from "../components/Home/Crossfit";
 import ShopNProgram from "../components/Home/ShopNProgram";
 
-const Home = () => {
+const Home = ({ getUser }) => {
   return (
     <>
-      <MainBanner />
-      
-      <ShopNProgram/>
-      <Crossfit/>
+      <MainBanner getUser={getUser} />
+
+      <ShopNProgram />
+      <Crossfit />
     </>
   );
 };

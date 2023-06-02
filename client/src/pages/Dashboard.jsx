@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import jwtDecode from "jwt-decode";
 // import { useNavigate } from "react-router";
 import "../css/dashboard.css";
 
@@ -10,36 +9,14 @@ import subscription from "../img/dashboard/subscription.png";
 
 import dashboardIcon from "../img/dashboard-icon.png";
 import TableItem from "../components/dashboard/TableItem";
+import { useNavigate } from "react-router-dom";
 
-const getTokenFromLocalStorage = () => {
-  // Retrieve the token from local storage
-  const token = localStorage.getItem("token");
-  return token;
-};
-
-const getRoleFromJWT = () => {
-  try {
-    const token = localStorage.getItem("token");
-    // Decode the JWT token
-    const decodedToken = jwtDecode(token);
-
-    // Extract the role from the decoded token
-    const role = decodedToken.role;
-
-    // Return the role
-    return role;
-  } catch (error) {
-    console.error("Error decoding JWT token:", error);
-    return null; // Return null or handle the error as per your requirement
-  }
-};
-const Dashboard = () => {
-  // const navigate = useNavigate();
-
-  console.log(getTokenFromLocalStorage());
-  console.log(getRoleFromJWT(getTokenFromLocalStorage()));
+const Dashboard = ({ getRole }) => {
+  const role = getRole;
   const [users, setUsers] = useState([]);
-
+  if (role !== "admin") {
+    useNavigate("/");
+  }
   const getUsers = async () => {
     try {
       const response = await fetch("http://localhost:5000/users");

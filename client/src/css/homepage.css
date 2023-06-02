@@ -1,4 +1,6 @@
-*, :after, :before {
+*,
+:after,
+:before {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -25,7 +27,7 @@
   text-align: center;
 }
 .mainBanner__content h1 {
-  font-size: 4em;
+  font-size: 3em;
 }
 .mainBanner__content p {
   text-align: justify;
@@ -90,15 +92,16 @@
 
 /* calesthenics card */
 
-.calisthenics-card{
+.calisthenics-card {
   display: flex;
-  background-image:linear-gradient(180deg, #000 17%, transparent 78%),  url("https://assets.website-files.com/5e66b0b874e5ba0190038715/5f7fc66f420a84177d8a6626_BTF%20Background.png");
-  color:white;
+  background-image: linear-gradient(180deg, #000 17%, transparent 78%),
+    url("https://assets.website-files.com/5e66b0b874e5ba0190038715/5f7fc66f420a84177d8a6626_BTF%20Background.png");
+  color: white;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  width:100%;
+  width: 100%;
   height: 80vh;
   justify-content: center;
   align-items: center;
@@ -106,33 +109,33 @@
   background-color: purple;
 }
 
-.calisthenics-card h1{
-  color:white;
+.calisthenics-card h1 {
+  color: white;
   font-size: 3rem;
 }
 
-.calisthenics-card img{
+.calisthenics-card img {
   width: 50%;
 }
 
-.calisthenics-content{
+.calisthenics-content {
   display: flex;
   flex-direction: row-reverse;
-  width:80%;
-  gap:2rem;
-  margin:2rem
+  width: 80%;
+  gap: 2rem;
+  margin: 2rem;
 }
 
-.calisthenics-text{
+.calisthenics-text {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   padding: 1rem;
-  gap:2rem;
+  gap: 2rem;
   width: 70%;
   letter-spacing: 1px;
 }
 
-.calisthenics-text button{
+.calisthenics-text button {
   font-size: 0.9rem;
   padding: 0.5rem;
   width: 30%;
@@ -151,62 +154,58 @@
   color: var(--black);
 }
 
-
-
 /* shopNprogram.jsx */
 
-.SNP-container{
+.SNP-container {
   display: grid;
   position: relative;
   width: 100%;
   height: auto;
 }
 
-.split-content{
+.split-content {
   position: absolute;
   background-color: green;
-  top:0;
-  left:0;
-  width:40vw;
- 
+  top: 0;
+  left: 0;
+  width: 40vw;
+
   height: 100vh;
   background-image: url(https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RW10idH?ver=489b);
 }
 
-.shopping-content{
+.shopping-content {
   background-color: red;
   height: 100vh;
 }
-.program-content{
+.program-content {
   display: flex;
   align-items: flex-end;
   background-color: purple;
   height: 100vh;
-
 }
 
-.stick{
+.stick {
   position: fixed;
   background-color: blue;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
 }
 
-.test{
+.test {
   width: 100%;
   height: 10vh;
   background-color: yellow;
 }
 
-.end-stick{
+.end-stick {
   z-index: 100;
   background-color: transparent;
   width: 100%;
   height: 10%;
-  
 }
 
-.is-bottom{
+.is-bottom {
   position: absolute;
   top: auto;
   bottom: 0;
