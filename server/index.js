@@ -2,26 +2,14 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const pool = require("./db");
-const { createToken, authenticateUser, authMiddleware } = require("./auth");
+const { createToken } = require("./auth");
 const User = require("./models/user");
 const authentication = require("./authorization");
-
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 // middleware
 app.use(cors());
 app.use(express.json());
-
-const checkAdminRole = (req, res, next) => {
-  // Assuming you have the user's role stored in the req.user.role
-  if (req.user.role === "admin") {
-    // User is an admin, allow access to the route
-    next();
-  } else {
-    // User is not an admin, return an error response
-    res.status(401).json({ message: "Access denied. Only admins allowed." });
-  }
-};
-
-// ROUTES
 
 // Register a user
 app.post("/register", async (req, res) => {
@@ -55,18 +43,68 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    const userExists = await pool.query(
-      "SELECT * FROM users WHERE email = $1",
-      [email]
-    );
+    const lowerCaseEmail = email.toLowerCase();
 
-    const user = await authenticateUser(email, password);
-    const token = createToken(user);
+    // Find the user by email in the database
+    const user = await User.findOne({ email: lowerCaseEmail });
+
+    if (!user) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    // Check if the provided password matches the user's password
+    const isPasswordValid = await user.checkPassword(password);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    // Create and sign the JWT token
+    const token = jwt.sign({ user }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    // Return the token to the client
     res.json({ token });
   } catch (err) {
     console.log(err.message);
+    res.status(500).json({ message: "Server Error" });
   }
 });
+
+// app.post("/login", async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
+
+//     const userExists = await pool.query(
+//       "SELECT * FROM users WHERE email = $1",
+//       [email]
+//     );
+//     if (userExists.rows.length > 0) {
+//       const user = userExists.rows[0];
+//       const isPasswordValid = await authenticateUser(password, user.password);
+
+//       if (isPasswordValid) {
+//         const token = jwt.sign(
+//           { user: { id: user.id } },
+//           process.env.JWT_SECRET,
+//           {
+//             expiresIn: "1h",
+//           }
+//         );
+
+//         res.json({ token });
+//       } else {
+//         res.status(401).json({ message: "Invalid email or password" });
+//       }
+//     } else {
+//       res.status(404).json({ message: "User doesn't exist" });
+//     }
+//   } catch (err) {
+//     console.log(err.message);
+//     res.status(500).json({ message: "Server Error" });
+//   }
+// });
 
 // // get all Videos
 // app.get("/programs", async (req, res) => {
@@ -108,6 +146,7 @@ app.get("/users", async (req, res) => {
     console.log(error.message);
   }
 });
+
 // verify is json web token is not fake
 app.get("/verify", authentication, async (req, res) => {
   try {

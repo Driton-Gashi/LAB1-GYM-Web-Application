@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
+import jwtDecode from "jwt-decode";
+// import { useNavigate } from "react-router";
 import "../css/dashboard.css";
 
 import userIcon from "../img/dashboard/user.png";
@@ -10,8 +11,34 @@ import subscription from "../img/dashboard/subscription.png";
 import dashboardIcon from "../img/dashboard-icon.png";
 import TableItem from "../components/dashboard/TableItem";
 
+const getTokenFromLocalStorage = () => {
+  // Retrieve the token from local storage
+  const token = localStorage.getItem("token");
+  return token;
+};
+
+const getRoleFromJWT = () => {
+  try {
+    const token = localStorage.getItem("token");
+    // Decode the JWT token
+    const decodedToken = jwtDecode(token);
+
+    // Extract the role from the decoded token
+    const role = decodedToken.role;
+
+    // Return the role
+    return role;
+  } catch (error) {
+    console.error("Error decoding JWT token:", error);
+    return null; // Return null or handle the error as per your requirement
+  }
+};
 const Dashboard = () => {
-  const [users, setUsers] = useState([]); // yogurt, protein
+  // const navigate = useNavigate();
+
+  console.log(getTokenFromLocalStorage());
+  console.log(getRoleFromJWT(getTokenFromLocalStorage()));
+  const [users, setUsers] = useState([]);
 
   const getUsers = async () => {
     try {
@@ -22,6 +49,7 @@ const Dashboard = () => {
       console.error(err.message);
     }
   };
+
   useEffect(() => {
     getUsers();
   }, []);

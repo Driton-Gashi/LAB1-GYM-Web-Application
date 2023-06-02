@@ -5,11 +5,15 @@ const pool = new Pool({
 });
 
 class User {
-  constructor(user_name, password, email) {
+  constructor(user_name, password, email, role) {
     this.user_name = user_name;
     this.password = password;
     this.email = email;
-    this.role = "User";
+    if (role !== null || role !== undefined) {
+      this.role = role;
+    } else {
+      this.role = "user";
+    }
   }
 
   static async findByUserName(user_name) {
@@ -41,8 +45,14 @@ class User {
       return null;
     }
     const userRow = rows[0];
-    return new User(userRow.user_name, userRow.password, userRow.email);
+    return new User(
+      userRow.user_name,
+      userRow.password,
+      userRow.email,
+      userRow.role
+    );
   }
+
   async emailExists({ email }) {
     const query = {
       text: "SELECT * FROM users WHERE email = $1",
@@ -50,11 +60,12 @@ class User {
     };
     const { rows } = await pool.query(query);
     if (rows.length > 0) {
-      throw new Error("a User already exists with this email!");
+      throw new Error("A user already exists with this email!");
     }
-    const message = "a User already exists with this email!";
+    const message = "A user already exists with this email!";
     res.send({ message });
   }
+
   async save() {
     const saltRounds = 10;
     if (!this.password) {

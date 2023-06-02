@@ -1,5 +1,7 @@
 import { Outlet, NavLink } from "react-router-dom";
 import { useState } from "react";
+import jwtDecode from "jwt-decode";
+import { useNavigate } from "react-router";
 
 // images
 import logo from "../img/logo_transparent2.png";
@@ -9,6 +11,32 @@ import "../css/header.css";
 import "../css/footer.css";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const getUserRoleFromJWT = () => {
+    const token = localStorage.getItem("token");
+
+    try {
+      // Decode the JWT token
+      const decodedToken = jwtDecode(token);
+      console.log(decodedToken.user.role);
+      // Extract the role from the decoded token
+      const role = decodedToken.user.role;
+
+      // Return the role
+      return role;
+    } catch (error) {
+      console.error("Error decoding JWT token:", error);
+      return null; // Return null or handle the error as per your requirement
+    }
+  };
+  const logout = () => {
+    // Clear user-related data
+    localStorage.removeItem("token");
+
+    // Navigate to the login page
+    navigate("/login");
+  };
+
   const [isOpen, setIsOpen] = useState(false);
   const showMenu = () => {
     setIsOpen(!isOpen);
@@ -35,7 +63,11 @@ const Header = () => {
             <NavLink to="/shop">Shop</NavLink>
           </li>
           <li>
-            <NavLink to="/register">Sign Up</NavLink>
+            {getUserRoleFromJWT() !== "admin" ? (
+              <NavLink to="/register">Sign Up</NavLink>
+            ) : (
+              <a onClick={logout}>Log out</a>
+            )}
           </li>
           <li className="cart">
             <NavLink to="/cart">
