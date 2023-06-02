@@ -10,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -122,7 +123,7 @@ const Login = () => {
             button: false,
           });
           // Redirect to the dashboard or perform any other action
-          navigate("/dashboard");
+          setTimeout(() => navigate("/dashboard"), 2000);
         } else {
           console.error("Token not found in response data");
           swal({

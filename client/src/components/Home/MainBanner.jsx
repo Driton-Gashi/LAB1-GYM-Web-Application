@@ -2,7 +2,7 @@ import video from "../../img/video.mp4";
 import "../../css/homepage.css";
 const MainBanner = ({ getUser }) => {
   const user = getUser();
-  console.log(user);
+
   return (
     <div className="mainBanner">
       <div className="mainBanner__content">

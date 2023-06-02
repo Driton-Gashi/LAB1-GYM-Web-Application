@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { useNavigate } from "react-router";
 import "../css/dashboard.css";
 
 import userIcon from "../img/dashboard/user.png";
@@ -9,14 +8,11 @@ import subscription from "../img/dashboard/subscription.png";
 
 import dashboardIcon from "../img/dashboard-icon.png";
 import TableItem from "../components/dashboard/TableItem";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
-const Dashboard = ({ getRole }) => {
-  const role = getRole;
+const Dashboard = () => {
   const [users, setUsers] = useState([]);
-  if (role !== "admin") {
-    useNavigate("/");
-  }
+
   const getUsers = async () => {
     try {
       const response = await fetch("http://localhost:5000/users");

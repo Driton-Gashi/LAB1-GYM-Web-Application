@@ -18,9 +18,9 @@ import Cart from "./pages/Cart";
 import Dashboard from "./pages/Dashboard";
 // layouts
 import Header from "./layouts/Header";
+
 const getUser = () => {
   const token = localStorage.getItem("token");
-
   try {
     // Decode the JWT token
     const decodedToken = jwtDecode(token);
@@ -34,7 +34,7 @@ const getUser = () => {
     return null; // Return null or handle the error as per your requirement
   }
 };
-function isLoggedIn() {
+const isLoggedIn = () => {
   const token = localStorage.getItem("token");
 
   if (token) {
@@ -50,7 +50,7 @@ function isLoggedIn() {
   }
 
   return false;
-}
+};
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
@@ -61,8 +61,17 @@ const router = createBrowserRouter(
         index
         element={<Home getUser={getUser} isLoggedIn={isLoggedIn} />}
       />
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register isLoggedIn={isLoggedIn} />} />
+      <Route
+        path="/login"
+        element={
+          isLoggedIn() ? (
+            <Navigate to="/" replace />
+          ) : (
+            <Login getUser={getUser} isLoggedIn={isLoggedIn} />
+          )
+        }
+      />
       <Route
         path="/training"
         element={<Training getUser={getUser} isLoggedIn={isLoggedIn} />}
@@ -78,7 +87,6 @@ const router = createBrowserRouter(
       <Route
         path="/dashboard"
         element={
-          // Authorization check for Dashboard route
           getUser() === "admin" ? (
             <Dashboard getUser={getUser} isLoggedIn={isLoggedIn} />
           ) : (
