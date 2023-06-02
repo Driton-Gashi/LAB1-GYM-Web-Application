@@ -1,7 +1,6 @@
 import { Outlet, NavLink } from "react-router-dom";
 import { useState } from "react";
 import swal from "sweetalert";
-// import { useNavigate } from "react-router";
 
 // images
 import logo from "../img/logo_transparent2.png";
@@ -10,10 +9,9 @@ import logo from "../img/logo_transparent2.png";
 import "../css/header.css";
 import "../css/footer.css";
 
-const Header = ({ getRole, isLoggedIn }) => {
-  const role = getRole;
-  const isLogged = isLoggedIn();
-  console.log(role, isLogged);
+const Header = ({ getUser, isLoggedIn }) => {
+  const user = getUser();
+  console.log(user);
   const logout = () => {
     // Clear user-related data
     swal({
@@ -29,6 +27,7 @@ const Header = ({ getRole, isLoggedIn }) => {
         });
         localStorage.removeItem("token");
         // Navigate to the login page
+        window.location.reload();
       }
     });
   };
@@ -59,7 +58,7 @@ const Header = ({ getRole, isLoggedIn }) => {
             <NavLink to="/shop">Shop</NavLink>
           </li>
           <li>
-            {!isLogged ? (
+            {!isLoggedIn() ? (
               <NavLink to="/register">Sign Up</NavLink>
             ) : (
               <a onClick={logout}>Log out</a>
@@ -69,6 +68,11 @@ const Header = ({ getRole, isLoggedIn }) => {
             <NavLink to="/cart">
               <i className="fa-solid fa-bag-shopping"></i>
             </NavLink>
+            {/* {user !== "admin" ? (
+              
+            ) : (
+              <NavLink to="/dashboard">dashboard</NavLink>
+            )} */}
           </li>
         </ul>
         <div onClick={showMenu} className="burger">
