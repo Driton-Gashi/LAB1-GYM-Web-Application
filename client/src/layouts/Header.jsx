@@ -27,7 +27,7 @@ const Header = ({ getUser, isLoggedIn }) => {
         });
         localStorage.removeItem("token");
         // Navigate to the login page
-        window.location.reload();
+        window.location.reload(true);
       }
     });
   };
@@ -65,14 +65,21 @@ const Header = ({ getUser, isLoggedIn }) => {
             )}
           </li>
           <li className="cart">
-            <NavLink to="/cart">
-              <i className="fa-solid fa-bag-shopping"></i>
-            </NavLink>
-            {/* {user !== "admin" ? (
-              
+            {user !== null ? (
+              user.role == "admin" ? (
+                <NavLink to="/Dashboard">
+                  <i className="fas fa-chart-line"></i>
+                </NavLink>
+              ) : (
+                <NavLink to="/cart">
+                  <i className="fa-solid fa-bag-shopping"></i>
+                </NavLink>
+              )
             ) : (
-              <NavLink to="/dashboard">dashboard</NavLink>
-            )} */}
+              <NavLink to="/cart">
+                <i className="fa-solid fa-bag-shopping"></i>
+              </NavLink>
+            )}
           </li>
         </ul>
         <div onClick={showMenu} className="burger">

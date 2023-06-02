@@ -87,7 +87,9 @@ const router = createBrowserRouter(
       <Route
         path="/dashboard"
         element={
-          getUser() === "admin" ? (
+          getUser() == null ? (
+            <Navigate to="/" replace />
+          ) : getUser().role === "admin" ? (
             <Dashboard getUser={getUser} isLoggedIn={isLoggedIn} />
           ) : (
             <Navigate to="/" replace />

@@ -80,7 +80,7 @@ li.cart a {
 li.cart a:hover {
   color: var(--blue);
 }
-.cart:after {
+/* .cart:after {
   content: " ? ";
   display: inline-block;
   border-radius: 50%;
@@ -96,7 +96,7 @@ li.cart a:hover {
   position: relative;
   top: -7px;
   left: -5px;
-}
+} */
 
 .mainBanner {
   height: 87vh;

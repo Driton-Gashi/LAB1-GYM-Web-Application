@@ -161,7 +161,7 @@ app.get("/verify", authentication, async (req, res) => {
 app.get("/video", async (req, res) => {
   try {
     const newDescription = await pool.query("select * from video");
-    res.json(newDescription);
+    res.json(newDescription.rows);
   } catch (error) {
     console.log(error.message);
   }

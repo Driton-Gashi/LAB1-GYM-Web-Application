@@ -123,7 +123,10 @@ const Login = () => {
             button: false,
           });
           // Redirect to the dashboard or perform any other action
-          setTimeout(() => navigate("/dashboard"), 2000);
+          setTimeout(() => {
+            window.location.reload(true);
+            navigate("/dashboard");
+          }, 2000);
         } else {
           console.error("Token not found in response data");
           swal({
