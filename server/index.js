@@ -72,40 +72,6 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// app.post("/login", async (req, res) => {
-//   try {
-//     const { email, password } = req.body;
-
-//     const userExists = await pool.query(
-//       "SELECT * FROM users WHERE email = $1",
-//       [email]
-//     );
-//     if (userExists.rows.length > 0) {
-//       const user = userExists.rows[0];
-//       const isPasswordValid = await authenticateUser(password, user.password);
-
-//       if (isPasswordValid) {
-//         const token = jwt.sign(
-//           { user: { id: user.id } },
-//           process.env.JWT_SECRET,
-//           {
-//             expiresIn: "1h",
-//           }
-//         );
-
-//         res.json({ token });
-//       } else {
-//         res.status(401).json({ message: "Invalid email or password" });
-//       }
-//     } else {
-//       res.status(404).json({ message: "User doesn't exist" });
-//     }
-//   } catch (err) {
-//     console.log(err.message);
-//     res.status(500).json({ message: "Server Error" });
-//   }
-// });
-
 // // get all Videos
 // app.get("/programs", async (req, res) => {
 //   try {
@@ -183,6 +149,20 @@ app.listen(5000, () => {
   console.log("Server has started on port 5000");
 });
 
+//update a User
+app.put("/users/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { description } = req.body;
+    const update = await pool.query(
+      "UPDATE todo SET description = $1 where todo_id = $2",
+      [description, id]
+    );
+    res.json("Todo was updated");
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 //create a todo
 // app.post("/todos", async (req, res) => {
 //   try {

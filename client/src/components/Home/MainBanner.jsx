@@ -1,8 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import video from "../../img/video.mp4";
 import "../../css/homepage.css";
 const MainBanner = ({ getUser }) => {
   const user = getUser();
-
+  const navigate = useNavigate();
   return (
     <div className="mainBanner">
       <div className="mainBanner__content">
@@ -22,7 +23,13 @@ const MainBanner = ({ getUser }) => {
           fugiat laudantium tenetur ratione odio voluptas vitae consequatur
           maxime soluta explicabo
         </p>
-        <button>Shop Now</button>
+        <button
+          onClick={() => {
+            navigate("/shop");
+          }}
+        >
+          Shop Now
+        </button>
       </div>
       <video className="videoBg" autoPlay loop muted>
         <source src={video} type="video/mp4" />

@@ -2,7 +2,21 @@ import { useState } from "react";
 import swal from "sweetalert";
 const TableItem = ({ username, email, role, date, id }) => {
   const newDate = new Date(date);
+  const [usernameInput, setUsernameInput] = useState(username);
+  const [emailInput, setEmailInput] = useState(email);
+  const [roleInput, setRoleInput] = useState(role);
   const [disapear, setDisapear] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    
+  };
+
+  const editMode = () => {
+    setDisabled(!disabled);
+  };
+
   const deleteUser = async (userId) => {
     try {
       const response = await fetch(`http://localhost:5000/user/${userId}`, {
@@ -28,42 +42,78 @@ const TableItem = ({ username, email, role, date, id }) => {
     }
   };
   return (
-    <div className={`item1 ${disapear ? "disapear hide" : ""}`}>
-      <h3 className="t-op-nextlvl">{username}</h3>
-      <h3 className="t-op-nextlvl">{email}</h3>
-      <h3 className="t-op-nextlvl">{role}</h3>
-      <h3 className="t-op-nextlvl label-tag">{`${newDate.getDay()}-${newDate.getMonth()}-${newDate.getFullYear()}`}</h3>
+    <form
+      onSubmit={submitHandler}
+      className={`item1 ${disapear ? "disapear hide" : ""}`}
+    >
+      <input
+        className={`t-op-nextlvl ${disabled ? "" : "border-on"}`}
+        value={usernameInput}
+        onChange={(e) => setUsernameInput(e.target.value)}
+        disabled={disabled}
+      />
+      <input
+        className={`t-op-nextlvl ${disabled ? "" : "border-on"}`}
+        value={emailInput}
+        onChange={(e) => setEmailInput(e.target.value)}
+        disabled={disabled}
+      />
+      <input
+        className={`t-op-nextlvl ${disabled ? "" : "border-on"}`}
+        value={roleInput}
+        onChange={(e) => setRoleInput(e.target.value)}
+        disabled={disabled}
+      />
+      <h3 className="t-op-nextlvl label-tag">{`${newDate.getDate()}-${
+        newDate.getMonth() + 1
+      }-${newDate.getFullYear()}`}</h3>
+
       <h3 className="t-op-nextlvl">
-        <button className="editBtn">Edit</button>
+        <span
+          onClick={editMode}
+          className={`editBtn ${disabled ? "" : "hide"}`}
+        >
+          Edit
+        </span>
+        <span
+          className={`cancelBtn ${disabled ? "hide" : ""}`}
+          onClick={editMode}
+        >
+          Cancel
+        </span>
         <button
-          className="deleteBtn"
+          type="submit"
+          className={`confirmBtn ${disabled ? "hide" : ""}`}
           onClick={() => {
-            swal(
-              {
-                title: "Are you sure?",
-                text: "This user will be deleted!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
-                closeOnConfirm: false,
-              },
-              function () {
-                swal(
-                  "Deleted!",
-                  "This user was deleted successfuly.",
-                  "success"
-                );
+            console.log("confirmed!");
+          }}
+        >
+          Confirm
+        </button>
+        <span
+          className={`deleteBtn ${disabled ? "" : "hide"}`}
+          onClick={() => {
+            swal({
+              title: "Are you sure?",
+              text: "You are about to delete this user: " + username,
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            }).then((willDelete) => {
+              if (willDelete) {
+                swal(username + " was deleted succesfully", {
+                  icon: "success",
+                });
                 deleteUser(id);
                 setDisapear(true);
               }
-            );
+            });
           }}
         >
           Delete
-        </button>
+        </span>
       </h3>
-    </div>
+    </form>
   );
 };
 

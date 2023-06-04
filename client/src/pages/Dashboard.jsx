@@ -137,7 +137,7 @@ const Dashboard = () => {
                     username={element.user_name}
                     email={element.email}
                     role={element.role}
-                    date={element.created_date}
+                    date={element.created_at}
                   />
                 ))}
               </div>
