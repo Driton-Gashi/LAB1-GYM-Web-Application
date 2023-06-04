@@ -319,6 +319,7 @@
 .item1:nth-child(odd) {
   background-color: lightgray;
 }
+.t-op-nextlvl span,
 .t-op-nextlvl button {
   padding: 0.2rem 1rem;
   outline: 0;
@@ -329,10 +330,13 @@
   color: #fff;
   transition: 0.3s ease all;
 }
-.editBtn {
+.editBtn,
+.confirmBtn {
   background: var(--dark-blue);
 }
-.deleteBtn {
+
+.deleteBtn,
+.cancelBtn {
   background-color: rgb(180, 0, 0);
 }
 .t-op-nextlvl button:hover {
@@ -343,8 +347,16 @@
   letter-spacing: 0px;
   font-weight: 600;
   width: 100%;
+  background-color: transparent;
+  border: 0;
+  color: #000;
 }
-
+.border-on {
+  border-bottom: 1px solid gray;
+  border-left: 1px solid gray;
+  margin-right: 5px;
+  padding-left: 5px;
+}
 .label-tag {
   border-radius: 4px;
 }

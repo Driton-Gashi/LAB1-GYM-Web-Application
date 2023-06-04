@@ -11,7 +11,6 @@ import "../css/footer.css";
 
 const Header = ({ getUser, isLoggedIn }) => {
   const user = getUser();
-  console.log(user);
   const logout = () => {
     // Clear user-related data
     swal({
