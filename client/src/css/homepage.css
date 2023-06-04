@@ -175,13 +175,13 @@
 }
 
 .shopping-content {
-  background-color: red;
+  background-color: var(--black);
   height: 100vh;
 }
 .program-content {
   display: flex;
   align-items: flex-end;
-  background-color: purple;
+  background-color: white;
   height: 100vh;
 }
 
@@ -194,8 +194,8 @@
 
 .test {
   width: 100%;
-  height: 10vh;
-  background-color: yellow;
+  height: 1px;
+  background-color: white;
 }
 
 .end-stick {
@@ -211,3 +211,226 @@
   bottom: 0;
   background-color: white;
 }
+
+
+
+/* tour.jxs */
+
+.tour-card{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 120vh;
+  background-color: var(--black);
+  justify-content: center;
+  align-items: center;
+  padding: 10rem;
+  color: white;
+}
+
+.tour-main{
+  display: flex;
+  flex-direction: row;
+  width:80%;
+  transform: translateY(10vh);
+}
+
+.tour-card-card{
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: -10vh;
+  height: 40VH;
+  width: 69%;
+  
+  padding: 1rem;
+  gap:1rem;
+}
+
+.tour-card-body{
+  display: flex;
+  flex-direction: column;
+  background-color: var(--black);
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3rem 0;
+  gap:1rem;
+  text-align: center;
+  border: 1px solid var(--blue);
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 20px 25px -5px, rgba(255, 255, 255, 0.04) 0px 10px 10px -5px;
+}
+
+.tour-card-body img{
+  filter:hue-rotate(250deg) brightness(4);
+}
+
+.tour-img{
+  position: relative;
+}
+
+.img-b5{
+  position: absolute;
+  top:5%;
+  z-index: 1000;
+  left: 10%;
+  z-index: 2;
+}
+
+.img-b2{
+  position: relative;
+  z-index: 3;
+  
+}
+
+.img-b3 {
+  position: absolute;
+  top:10%;
+  right:15%;
+  width: 25rem;
+  height: 25rem;
+  background-color: var(--blue);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.tour-content{
+  display: flex;
+  flex-direction: column;
+  width: 35vw;
+}
+
+.tour-content h5{
+font-size: 1.2rem;
+}
+
+.tour-content h3{
+  font-size: 2.2rem;
+}
+
+.tour-content p{
+
+}
+
+.tour-content button{
+  font-size: 1.3em;
+  padding: 0.6em;
+  width: 250px;
+  background-color: transparent;
+  color: var(--blue);
+  outline: 0;
+  border: 0;
+  border-radius: 100px;
+  transition: 0.5s ease all;
+  cursor: pointer;
+  border: 2px solid var(--blue);
+  align-self: center;
+}
+
+.tour-directions{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  align-self: center;
+
+}
+
+.tour-directions img{
+  width: 75px;
+  height: 75px;
+  filter:hue-rotate(250deg) brightness(4);
+  
+}
+
+.tour-directions h1{
+  font-size: 1rem;
+  padding: 0 0.8rem;
+}
+
+.tour-direction1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:1rem;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.tour-direction2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:1rem;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.tour-direction3{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:1rem;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+/* BMI.JSX */
+
+.bmi{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 40vh;
+  background: linear-gradient(270.2deg, var(--blue) -15.9%, rgb(35, 9, 31) 76.7%);
+  position: relative;
+  color:white
+}
+
+.bmi-card{
+  display: flex;
+  flex-direction: column;
+  gap:0.6rem;
+  transform: translateX(-15vw);
+  
+}
+
+.bmi button {
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  width: 20%;
+  background-color: var(--black);
+  color: white;
+  outline: 0;
+  border: 0;
+  border-radius: 100px;
+  transition: 0.5s ease all;
+  cursor: pointer;
+  border: 2px solid var(--black);
+}
+.bmi-form{
+  display: flex;
+  gap:1rem;
+}
+
+.bmi-from input{
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  width: 30%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.inputF{
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 1rem;
+}
+
