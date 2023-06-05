@@ -29,10 +29,11 @@
   object-fit: scale-down;
 }
 .box img,
-.nav-option:nth-child(2) img {
+.option1:not(:first-child) img {
   -webkit-filter: invert(100%); /* Safari/Chrome */
   filter: invert(100%);
 }
+
 .icn {
   height: 30px;
 }

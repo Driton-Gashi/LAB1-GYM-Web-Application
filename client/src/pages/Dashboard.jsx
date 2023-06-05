@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from "react";
 import "../css/dashboard.css";
-
+import { useState, useEffect } from "react";
+import swal from "sweetalert";
 import userIcon from "../img/dashboard/user.png";
-import maleIcon from "../img/dashboard/male.png";
-import femaleIcon from "../img/dashboard/woman.png";
-import subscription from "../img/dashboard/subscription.png";
 
 import dashboardIcon from "../img/dashboard-icon.png";
-import TableItem from "../components/dashboard/TableItem";
-// import { useNavigate } from "react-router-dom";
 
+import Table from "../components/dashboard/Table";
+import Profile from "../components/dashboard/Profile";
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
-
+  const [dashboardPage, setDashboardPage] = useState("users");
   const getUsers = async () => {
     try {
       const response = await fetch("http://localhost:5000/users");
@@ -27,6 +24,25 @@ const Dashboard = () => {
     getUsers();
   }, []);
 
+  const logout = () => {
+    // Clear user-related data
+    swal({
+      title: "Are you sure?",
+      text: "You are about to Log out!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        swal("You Logged out successfuly!", {
+          icon: "success",
+        });
+        localStorage.removeItem("token");
+        // Navigate to the login page
+        window.location.reload(true);
+      }
+    });
+  };
   return (
     <>
       <div className="main-container">
@@ -37,11 +53,25 @@ const Dashboard = () => {
                 <img src={dashboardIcon} className="nav-img" alt="" />
                 <h3> Dashboard</h3>
               </div>
-              <div className="nav-option option1">
+              <div
+                onClick={() => {
+                  setDashboardPage("users");
+                }}
+                className={`nav-option ${
+                  dashboardPage == "users" ? "option1" : ""
+                }`}
+              >
                 <img src={userIcon} className="nav-img" alt="" />
                 <h3>Users</h3>
               </div>
-              <div className="nav-option option2">
+              <div
+                onClick={() => {
+                  setDashboardPage("profile");
+                }}
+                className={`nav-option ${
+                  dashboardPage == "profile" ? "option1" : ""
+                }`}
+              >
                 <img src={userIcon} className="nav-img" alt="" />
                 <h3> Profile</h3>
               </div>
@@ -55,7 +85,7 @@ const Dashboard = () => {
                 <h3> Settings</h3>
               </div>
 
-              <div className="nav-option logout">
+              <div onClick={logout} className="nav-option logout">
                 <img
                   src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183321/7.png"
                   className="nav-img"
@@ -79,70 +109,13 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="box-container">
-            <div className="box box1">
-              <div className="text">
-                <h2 className="topic-heading">{users.length}</h2>
-                <h2 className="topic">Users</h2>
-              </div>
-              <img src={userIcon} alt="" />
-            </div>
-
-            <div className="box box2">
-              <div className="text">
-                <h2 className="topic-heading">10</h2>
-                <h2 className="topic">Males</h2>
-              </div>
-              <img src={maleIcon} alt="" />
-            </div>
-
-            <div className="box box3">
-              <div className="text">
-                <h2 className="topic-heading">5</h2>
-                <h2 className="topic">Females</h2>
-              </div>
-              <img src={femaleIcon} alt="" />
-            </div>
-
-            <div className="box box4">
-              <div className="text">
-                <h2 className="topic-heading">7</h2>
-                <h2 className="topic">Subscription</h2>
-              </div>
-              <img src={subscription} alt="" />
-            </div>
-          </div>
-
-          <div className="report-container">
-            <div className="report-header">
-              <h1 className="recent-Articles">All Users</h1>
-              <button className="view">View All</button>
-            </div>
-
-            <div className="report-body">
-              <div className="report-topic-heading">
-                <h3 className="t-op">Username</h3>
-                <h3 className="t-op">Email</h3>
-                <h3 className="t-op">Role</h3>
-                <h3 className="t-op">Register Date</h3>
-                <h3 className="t-op">Manage</h3>
-              </div>
-
-              <div className="items">
-                {users.map((element) => (
-                  // %PUBLIC_URL% shortcut for public
-                  <TableItem
-                    key={element.user_id}
-                    id={element.user_id}
-                    username={element.user_name}
-                    email={element.email}
-                    role={element.role}
-                    date={element.created_at}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
+          {dashboardPage == "users" ? (
+            <Table users={users} />
+          ) : dashboardPage == "profile" ? (
+            <Profile />
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </>

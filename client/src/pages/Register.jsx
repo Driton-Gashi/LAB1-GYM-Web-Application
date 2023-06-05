@@ -176,7 +176,7 @@ const Register = () => {
               className="name"
               type="text"
               value={name}
-              onChange={(e) => setname(e.target.value)}
+              onChange={(e) => setname(e.target.value.toLowerCase())}
             />
             <label>Name</label>
             <span className="material-symbols-outlined">
@@ -187,7 +187,7 @@ const Register = () => {
             <input
               type="text"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value.toLowerCase())}
             />
             <label>Email</label>
             <span className="material-symbols-outlined">

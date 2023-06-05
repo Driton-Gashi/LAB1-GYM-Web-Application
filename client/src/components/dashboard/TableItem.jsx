@@ -1,5 +1,6 @@
 import { useState } from "react";
 import swal from "sweetalert";
+
 const TableItem = ({ username, email, role, date, id }) => {
   const newDate = new Date(date);
   const [usernameInput, setUsernameInput] = useState(username);
@@ -8,9 +9,114 @@ const TableItem = ({ username, email, role, date, id }) => {
   const [disapear, setDisapear] = useState(false);
   const [disabled, setDisabled] = useState(true);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    
+    if (emailInput == email && usernameInput == username && roleInput == role) {
+      setDisabled(true);
+      return;
+    }
+    if (email == emailInput) {
+      // userswithoutemail
+      try {
+        const response = await fetch(
+          `http://localhost:5000/userswithoutemail/${id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              username: usernameInput,
+              role: roleInput,
+            }),
+          }
+        );
+
+        if (response.ok) {
+          swal({
+            title: "Success",
+            text: "User was updated successfully",
+            icon: "success",
+            timer: 3000,
+            button: false,
+          });
+          setDisabled(true);
+        } else if (response.status === 400) {
+          const { message } = await response.json();
+          swal({
+            title: "Oops something went wrong!",
+            text: message,
+            icon: "error",
+          });
+        } else {
+          swal({
+            title: "Error",
+            text: "Failed to update user",
+            icon: "error",
+            timer: 3000,
+            button: false,
+          });
+        }
+      } catch (error) {
+        swal({
+          title: "Error",
+          text: "An error occurred while updating the user",
+          icon: "error",
+          timer: 3000,
+          button: false,
+        });
+        console.log(error);
+      }
+    } else {
+      try {
+        const response = await fetch(`http://localhost:5000/users/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: usernameInput,
+            email: emailInput,
+            role: roleInput,
+          }),
+        });
+
+        if (response.ok) {
+          swal({
+            title: "Success",
+            text: "User was updated successfully",
+            icon: "success",
+            timer: 3000,
+            button: false,
+          });
+          setDisabled(true);
+        } else if (response.status === 400) {
+          const { message } = await response.json();
+          swal({
+            title: "Oops something went wrong!",
+            text: message,
+            icon: "error",
+          });
+        } else {
+          swal({
+            title: "Error",
+            text: "Failed to update user",
+            icon: "error",
+            timer: 3000,
+            button: false,
+          });
+        }
+      } catch (error) {
+        swal({
+          title: "Error",
+          text: "An error occurred while updating the user",
+          icon: "error",
+          timer: 3000,
+          button: false,
+        });
+        console.log(error);
+      }
+    }
   };
 
   const editMode = () => {
@@ -19,28 +125,40 @@ const TableItem = ({ username, email, role, date, id }) => {
 
   const deleteUser = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:5000/user/${userId}`, {
+      const response = await fetch(`http://localhost:5000/users/${userId}`, {
         method: "DELETE",
       });
 
       if (response.ok) {
-        // Perform any additional actions or UI updates as needed
-        console.log("success");
+        swal({
+          title: "Success",
+          text: "User was deleted successfully",
+          icon: "success",
+          timer: 3000,
+          button: false,
+        });
+        setDisapear(true);
       } else {
-        // Handle the error and display an error message to the user
-        console.log("error");
+        swal({
+          title: "Error",
+          text: "Failed to delete user",
+          icon: "error",
+          timer: 3000,
+          button: false,
+        });
       }
     } catch (error) {
       swal({
         title: "Error",
-        text: error,
+        text: "An error occurred while deleting the user",
         icon: "error",
         timer: 3000,
         button: false,
       });
-      // Handle any network errors or other exceptions
+      console.log(error);
     }
   };
+
   return (
     <form
       onSubmit={submitHandler}
@@ -49,19 +167,19 @@ const TableItem = ({ username, email, role, date, id }) => {
       <input
         className={`t-op-nextlvl ${disabled ? "" : "border-on"}`}
         value={usernameInput}
-        onChange={(e) => setUsernameInput(e.target.value)}
+        onChange={(e) => setUsernameInput(e.target.value.toLowerCase())}
         disabled={disabled}
       />
       <input
         className={`t-op-nextlvl ${disabled ? "" : "border-on"}`}
         value={emailInput}
-        onChange={(e) => setEmailInput(e.target.value)}
+        onChange={(e) => setEmailInput(e.target.value.toLowerCase())}
         disabled={disabled}
       />
       <input
         className={`t-op-nextlvl ${disabled ? "" : "border-on"}`}
         value={roleInput}
-        onChange={(e) => setRoleInput(e.target.value)}
+        onChange={(e) => setRoleInput(e.target.value.toLowerCase())}
         disabled={disabled}
       />
       <h3 className="t-op-nextlvl label-tag">{`${newDate.getDate()}-${
@@ -84,9 +202,6 @@ const TableItem = ({ username, email, role, date, id }) => {
         <button
           type="submit"
           className={`confirmBtn ${disabled ? "hide" : ""}`}
-          onClick={() => {
-            console.log("confirmed!");
-          }}
         >
           Confirm
         </button>
@@ -101,11 +216,7 @@ const TableItem = ({ username, email, role, date, id }) => {
               dangerMode: true,
             }).then((willDelete) => {
               if (willDelete) {
-                swal(username + " was deleted succesfully", {
-                  icon: "success",
-                });
                 deleteUser(id);
-                setDisapear(true);
               }
             });
           }}

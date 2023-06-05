@@ -149,20 +149,57 @@ app.listen(5000, () => {
   console.log("Server has started on port 5000");
 });
 
-//update a User
+//update a User if you are editing his Username, Email and role
 app.put("/users/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const { description } = req.body;
-    const update = await pool.query(
-      "UPDATE todo SET description = $1 where todo_id = $2",
-      [description, id]
+    const { username, email, role } = req.body;
+
+    const emailExist = await pool.query(
+      "SELECT * FROM users WHERE email = $1",
+      [email]
     );
-    res.json("Todo was updated");
+    if (emailExist.rows.length > 0) {
+      // Return an error response if the user already exists
+      response = res.status(400).json({
+        message: "User with this email already exists, try another email!",
+      });
+    } else {
+      const update = await pool.query(
+        "UPDATE users SET user_name = $1, email = $2, role = $3 WHERE user_id = $4",
+        [username, email, role, id]
+      );
+      response = res.json({ message: "User was updated" });
+    }
+    return response;
   } catch (error) {
     console.log(error.message);
+    // res.status(500).json("An error occurred while updating the user");
   }
 });
+
+app.put("/userswithoutemail/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { username, role } = req.body;
+
+    const update = await pool.query(
+      "UPDATE users SET user_name = $1, role = $2 WHERE user_id = $3",
+      [username, role, id]
+    );
+    response = res.json({ message: "User was updated" });
+
+    return response;
+  } catch (error) {
+    console.log(error.message);
+    response = res.status(400).json({
+      message: "An error ocurred while updating the user",
+    });
+
+    // res.status(500).json("An error occurred while updating the user");
+  }
+});
+
 //create a todo
 // app.post("/todos", async (req, res) => {
 //   try {
