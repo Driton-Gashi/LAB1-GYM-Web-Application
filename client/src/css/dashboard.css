@@ -1,13 +1,67 @@
-:root {
-  --background-color1: #fafaff;
-  --background-color2: #ffffff;
-  --background-color3: #ededed;
-  --background-color4: white;
-  --primary-color: #4b49ac;
-  --secondary-color: #0c007d;
-  --Border-color: #3f0097;
-  --one-use-color: #3f0097;
-  --two-use-color: #5500cb;
+/* profile style */
+.profile {
+  padding: 0 2rem;
+}
+.profile_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.profile_header img {
+  width: 70px;
+}
+.form_row {
+  margin-bottom: 1rem;
+}
+.form_row input,
+.form_row select {
+  width: 100%;
+  padding: 0.5rem;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid var(--black);
+}
+.form_row input:focus {
+  border: 2px solid var(--dark-blue);
+}
+.profile_footer {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-top: 0.5rem;
+}
+.profile_footer .cancel,
+.profile_footer button {
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  outline: none;
+  border: 2px solid var(--dark-blue);
+
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease all;
+}
+.cancel {
+  margin-right: 1rem;
+  color: var(--black);
+}
+.cancel:hover {
+  background-color: var(--dark-blue);
+  color: #fff;
+}
+.profile_footer button {
+  background-color: var(--dark-blue);
+  color: #fff;
+}
+.profile_footer button:hover {
+  background-color: transparent;
+  color: var(--black);
+}
+.form_row h2 {
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 .disapear {
@@ -55,27 +109,6 @@
 
 .logosec {
   gap: 60px;
-}
-
-.searchbar input {
-  width: 250px;
-  height: 42px;
-  border-radius: 50px 0 0 50px;
-  background-color: var(--background-color3);
-  padding: 0 20px;
-  font-size: 15px;
-  outline: none;
-  border: none;
-}
-.searchbtn {
-  width: 50px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0px 50px 50px 0px;
-  background-color: var(--secondary-color);
-  cursor: pointer;
 }
 
 .message {
@@ -139,7 +172,6 @@
 .nav {
   min-height: 91vh;
   width: 250px;
-  background-color: var(--background-color2);
   position: absolute;
   top: 0px;
   left: 00;
@@ -197,13 +229,13 @@
 
 .option1 {
   border-left: 5px solid #010058af;
-  background-color: var(--Border-color);
+  background-color: var(--black);
   color: white;
   cursor: pointer;
 }
 .option1:hover {
   border-left: 5px solid #010058af;
-  background-color: var(--Border-color);
+  background-color: var(--dark-blue);
 }
 .box {
   height: 130px;
@@ -222,19 +254,19 @@
 }
 
 .box:nth-child(1) {
-  background-color: var(--one-use-color);
+  background-color: var(--dark-blue);
 }
 
 .box:nth-child(2) {
-  background-color: var(--two-use-color);
+  background-color: var(--dark-blue);
 }
 
 .box:nth-child(3) {
-  background-color: var(--one-use-color);
+  background-color: var(--dark-blue);
 }
 
 .box:nth-child(4) {
-  background-color: var(--two-use-color);
+  background-color: var(--dark-blue);
 }
 
 .box img {
@@ -270,20 +302,20 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px 20px 10px 20px;
-  border-bottom: 2px solid rgba(0, 20, 151, 0.59);
+  border-bottom: 2px solid var(--dark-blue);
 }
 
 .recent-Articles {
   font-size: 30px;
   font-weight: 600;
-  color: #5500cb;
+  color: var(--dark-blue);
 }
 
 .view {
   height: 35px;
   width: 90px;
   border-radius: 8px;
-  background-color: #5500cb;
+  background-color: var(--dark-blue);
   color: white;
   font-size: 15px;
   border: none;
@@ -414,21 +446,6 @@
   }
   .main {
     padding: 40px 30px 30px 30px;
-  }
-  .searchbar2 {
-    width: 100%;
-    display: flex;
-    margin: 0 0 40px 0;
-    justify-content: center;
-  }
-  .searchbar2 input {
-    width: 250px;
-    height: 42px;
-    border-radius: 50px 0 0 50px;
-    background-color: var(--background-color3);
-    padding: 0 20px;
-    font-size: 15px;
-    border: 2px solid var(--secondary-color);
   }
 }
 

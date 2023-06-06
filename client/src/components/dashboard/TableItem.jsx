@@ -8,6 +8,7 @@ const TableItem = ({ username, email, role, date, id }) => {
   const [roleInput, setRoleInput] = useState(role);
   const [disapear, setDisapear] = useState(false);
   const [disabled, setDisabled] = useState(true);
+  const roleList = ["user", "admin", "trainer", "publisher"];
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -119,8 +120,13 @@ const TableItem = ({ username, email, role, date, id }) => {
     }
   };
 
-  const editMode = () => {
+  const editMode = (e) => {
     setDisabled(!disabled);
+    if (e.target.textContent == "Cancel") {
+      setUsernameInput(username);
+      setEmailInput(email);
+      setRoleInput(role);
+    }
   };
 
   const deleteUser = async (userId) => {
@@ -176,12 +182,24 @@ const TableItem = ({ username, email, role, date, id }) => {
         onChange={(e) => setEmailInput(e.target.value.toLowerCase())}
         disabled={disabled}
       />
-      <input
+      {/* <input
         className={`t-op-nextlvl ${disabled ? "" : "border-on"}`}
         value={roleInput}
         onChange={(e) => setRoleInput(e.target.value.toLowerCase())}
         disabled={disabled}
-      />
+      /> */}
+      <select
+        className={`t-op-nextlvl ${disabled ? "" : "border-on"}`}
+        value={roleInput}
+        onChange={(e) => setRoleInput(e.target.value.toLowerCase())}
+        disabled={disabled}
+      >
+        {roleList.map((option, index) => (
+          <option key={index} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
       <h3 className="t-op-nextlvl label-tag">{`${newDate.getDate()}-${
         newDate.getMonth() + 1
       }-${newDate.getFullYear()}`}</h3>
