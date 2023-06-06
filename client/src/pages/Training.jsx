@@ -3,13 +3,26 @@ import "../css/training.css";
 import ItemTrainingWrapper from "../components/training/ItemTrainingWrapper";
 import TrainingLibrary from "../components/training/TrainingLibrary";
 import MembershipCard from "../components/training/MembershipCard";
+import { useState } from "react";
 
 const Training = () => {
   
+  const [show,setShow] = useState()
+  const [videos,setVideos]= useState("")
+  
+  function showVideo(){
+      setShow(!show)
+  }
   
 
   return (
+
   <>
+    {
+   show && (<div className="video-player" onClick={showVideo}>
+     <video src={videos} autoPlay controls></video>
+  </div>)
+    }
     <div className="main_banner_training">
         <div className="main_banner_training_content">
          <h1>Lorem ipsum dolor sit amet, consectetur adipisicing.</h1>
@@ -19,21 +32,39 @@ const Training = () => {
     
     <section className="training_section">
     <ItemTrainingWrapper
-    Title="Training Plans"/>
+    Title="Training Plans"
+    showVideo={showVideo}
+    setVideos={setVideos}
+    />
     <ItemTrainingWrapper
-    Title="Training Plans"/>
+    Title="Tutorials"
+    showVideo={showVideo}
+    setVideos={setVideos}
+    />
+    
+    
     </section>
 
     
     <section className="training_section_black">
     <ItemTrainingWrapper
-    Title="Training Plans"/>
+    Title="Training Plans"
+    showVideo={showVideo}
+    setVideos={setVideos}
+    />
+    
 
     <ItemTrainingWrapper
-    Title="Training Plans"/>
+    Title="Training Plans"
+    showVideo={showVideo}
+    setVideos={setVideos}
+    />
 
     <TrainingLibrary
-    Title="Training Library"/>
+    Title="Training Library"
+    showVideo={showVideo}
+    setVideos={setVideos}
+    />
 
     </section>
 
@@ -63,6 +94,7 @@ const Training = () => {
     </section>
 
     </div>
+
 
     
 

@@ -3,12 +3,19 @@ import React from "react";
 import "../../css/training.css";
 import ItemTraining from "./ItemTraining";
 
-export default function ItemTrainingWrapper({ Title }) {
+export default function ItemTrainingWrapper({ Title , showVideo,setVideos}) {
   const [video, setVideo] = useState([]);
   const [videoSize, setVideoSize] = useState(3);
 
   function IncreaseVideo() {
-    setVideoSize(videoSize + 3);
+      if(videoSize === 6){
+        setVideoSize(3)
+      }else{
+
+        setVideoSize(6);
+      }
+    
+    
   }
 
   const getVideo = async () => {
@@ -39,6 +46,9 @@ export default function ItemTrainingWrapper({ Title }) {
             video_difficulity={e.video_difficulity}
             vide_image={e.vide_image}
             vide_description={e.vide_description}
+            vide_url={e.vide_url}
+            showVideo={showVideo}
+            setVideos={setVideos}
           />
         ))}
       </div>
