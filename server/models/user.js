@@ -49,7 +49,9 @@ class User {
       userRow.user_name,
       userRow.password,
       userRow.email,
-      userRow.role
+      userRow.role,
+      userRow.has_subscription,
+      userRow.image
     );
   }
 
