@@ -7,7 +7,7 @@ import dashboardIcon from "../img/dashboard-icon.png";
 
 import Table from "../components/dashboard/Table";
 import Profile from "../components/dashboard/Profile";
-const Dashboard = () => {
+const Dashboard = ({ getUser }) => {
   const [users, setUsers] = useState([]);
   const [dashboardPage, setDashboardPage] = useState("users");
   const getUsers = async () => {
@@ -112,7 +112,7 @@ const Dashboard = () => {
           {dashboardPage == "users" ? (
             <Table users={users} />
           ) : dashboardPage == "profile" ? (
-            <Profile />
+            <Profile getUser={getUser} />
           ) : (
             ""
           )}

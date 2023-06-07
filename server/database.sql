@@ -6,7 +6,7 @@ CREATE TABLE users(
     password VARCHAR(250) NOT NULL,
     email VARCHAR(100) NOT NULL,
     role VARCHAR(6) DEFAULT 'user',
-	created_at date default current_date
+	created_at date default current_date,
 ); 
 -- Created by Dritoni
 -- create table items(

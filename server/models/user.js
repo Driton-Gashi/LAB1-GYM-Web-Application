@@ -5,7 +5,18 @@ const pool = new Pool({
 });
 
 class User {
-  constructor(user_name, password, email, role) {
+  constructor(
+    user_id,
+    user_name,
+    password,
+    email,
+    role,
+    has_subscription,
+    image,
+    address,
+    tel
+  ) {
+    this.user_id = user_id;
     this.user_name = user_name;
     this.password = password;
     this.email = email;
@@ -14,6 +25,10 @@ class User {
     } else {
       this.role = "user";
     }
+    this.has_subscription = has_subscription;
+    this.image = image;
+    this.address = address;
+    this.tel = tel;
   }
 
   static async findByUserName(user_name) {
@@ -46,10 +61,15 @@ class User {
     }
     const userRow = rows[0];
     return new User(
+      userRow.user_id,
       userRow.user_name,
       userRow.password,
       userRow.email,
-      userRow.role
+      userRow.role,
+      userRow.has_subscription,
+      userRow.image,
+      userRow.address,
+      userRow.tel_number
     );
   }
 
