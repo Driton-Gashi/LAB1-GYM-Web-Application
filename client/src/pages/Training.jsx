@@ -33,11 +33,14 @@ const Training = () => {
     <section className="training_section">
     <ItemTrainingWrapper
     Title="Training Plans"
+    category="Tutorial"
     showVideo={showVideo}
     setVideos={setVideos}
     />
+
     <ItemTrainingWrapper
-    Title="Tutorials"
+    Title="Tutorial"
+    category="Tutorial"
     showVideo={showVideo}
     setVideos={setVideos}
     />
@@ -48,7 +51,8 @@ const Training = () => {
     
     <section className="training_section_black">
     <ItemTrainingWrapper
-    Title="Training Plans"
+    Title="Youtube videos"
+    category="Youtube"
     showVideo={showVideo}
     setVideos={setVideos}
     />
@@ -56,12 +60,14 @@ const Training = () => {
 
     <ItemTrainingWrapper
     Title="Training Plans"
+    category="Tutorial"
     showVideo={showVideo}
     setVideos={setVideos}
     />
 
     <TrainingLibrary
     Title="Training Library"
+    category="Tutorial"
     showVideo={showVideo}
     setVideos={setVideos}
     />

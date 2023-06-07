@@ -130,11 +130,14 @@
 .calisthenics-text {
   display: flex;
   flex-direction: column;
-
   padding: 1rem;
   gap: 2rem;
   width: 50%;
   letter-spacing: 1px;
+}
+
+.calisthenics-content h2{
+  font-size: 2rem;
 }
 
 .calisthenics-text button {
@@ -185,7 +188,7 @@
   height:70px;
   width: 70px;
   border-radius: 50%;
-  background-color: var(--blue);
+  background-color: var(--dark-blue);
   transition:400ms ease;
 }
 
@@ -346,7 +349,8 @@ font-size: 1.2rem;
 }
 
 .tour-content p{
-
+  padding: 1rem;
+  font-size: 1.2rem;
 }
 
 .tour-content button{

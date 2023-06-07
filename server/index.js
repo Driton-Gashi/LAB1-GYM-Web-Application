@@ -123,7 +123,6 @@ app.get("/verify", authentication, async (req, res) => {
   }
 });
 
-//test nga henori
 app.get("/video", async (req, res) => {
   try {
     const newDescription = await pool.query("select * from video");
