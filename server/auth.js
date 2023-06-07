@@ -4,7 +4,6 @@ const User = require("./models/user"); // assuming you have a User model
 
 // Create a JWT token
 function createToken(user) {
-  console.log(user);
   return jwt.sign({ user }, process.env.JWT_SECRET, {
     expiresIn: 86400,
   });
