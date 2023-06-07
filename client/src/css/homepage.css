@@ -130,9 +130,10 @@
 .calisthenics-text {
   display: flex;
   flex-direction: column;
+
   padding: 1rem;
   gap: 2rem;
-  width: 70%;
+  width: 50%;
   letter-spacing: 1px;
 }
 
@@ -156,27 +157,37 @@
 }
 
 .planers-card{
-  display: flex;
-  flex-direction: row;
-  height: 10vh;
-  width:100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap:1rem
+
 }
 
 .planer{
   display:flex;
   flex-direction: row;
-  gap:1rem
+  gap:1rem;
+  flex-basis: 50%;  
+  box-sizing: border-box; 
+  align-items: center;
 }
 
 .planers-card img{
-  height: 60px;
-  width: 60px;
+  height:70px;
+  width: 70px;
   border-radius: 50%;
   background-color: var(--black);
-  padding: 8px;
+  padding: 10px;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, .5));
 }
 
+.planers-card img:hover{
+  height:70px;
+  width: 70px;
+  border-radius: 50%;
+  background-color: var(--blue);
+  transition:400ms ease;
+}
 
 
 /* shopNprogram.jsx */

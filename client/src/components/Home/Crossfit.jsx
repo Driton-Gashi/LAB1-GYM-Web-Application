@@ -8,9 +8,10 @@ export default function Crossfit(){
       <div className='calisthenics-content'>
         <div className='calisthenics-text'>
       <h2>We Can Give A Shape Of Your Body Here!</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius ipsum eligend
-        i quae molestias maxime harum, a cum hic tempore magnam labore voluptatibus f
-        ugit, totam ab quod, beatae inventore tempora sint.</p>
+      <p>At LMAO, we are dedicated to helping you achieve the 
+        body of your dreams. Our expert trainers and
+         nutritionists will work with you to create a personalized fitness and 
+         nutrition plan that helps you reach your specific goals.</p>
 
       <div className='planers-card'>
        <div className='planer'>
