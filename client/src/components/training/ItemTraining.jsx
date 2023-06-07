@@ -1,7 +1,7 @@
 import React from "react";
 import "../../css/training.css";
 
-export default function ItemTraining({video_name,vide_description,video_difficulity,vide_image,vide_url,showVideo,setVideos}){
+export default function ItemTraining({video_name,vide_description,video_difficulity,vide_image,vide_url,video_category,showVideo,setVideos}){
 
 
   const backgroundImageUrl = vide_image
@@ -11,6 +11,7 @@ export default function ItemTraining({video_name,vide_description,video_difficul
       backgroundPosition: 'center',
     };
 
+    console.log(video_category);
     setVideos(vide_url)
 
   return(
