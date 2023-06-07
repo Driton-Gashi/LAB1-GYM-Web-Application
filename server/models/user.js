@@ -14,7 +14,8 @@ class User {
     has_subscription,
     image,
     address,
-    tel
+    tel,
+    city
   ) {
     this.user_id = user_id;
     this.user_name = user_name;
@@ -29,6 +30,7 @@ class User {
     this.image = image;
     this.address = address;
     this.tel = tel;
+    this.city = city;
   }
 
   static async findByUserName(user_name) {
@@ -69,7 +71,8 @@ class User {
       userRow.has_subscription,
       userRow.image,
       userRow.address,
-      userRow.tel_number
+      userRow.tel_number,
+      userRow.city
     );
   }
 

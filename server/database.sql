@@ -6,8 +6,11 @@ CREATE TABLE users(
     password VARCHAR(250) NOT NULL,
     email VARCHAR(100) NOT NULL,
     role VARCHAR(6) DEFAULT 'user',
-	created_at date default current_date,
-); 
+    created_at date DEFAULT current_date,
+    address VARCHAR(250),
+    tel_number VARCHAR(20),
+    city VARCHAR(100)
+);
 -- Created by Dritoni
 -- create table items(
 -- 	item_id serial PRIMARY KEY,

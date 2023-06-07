@@ -145,9 +145,6 @@ app.delete("/user/:id", async (req, res) => {
     console.log(error.message);
   }
 });
-app.listen(5000, () => {
-  console.log("Server has started on port 5000");
-});
 
 //update a User if you are editing his Username, Email and role
 app.put("/users/:id", async (req, res) => {
@@ -200,6 +197,60 @@ app.put("/userswithoutemail/:id", async (req, res) => {
   }
 });
 
+//update a user at profile
+app.put("/userProfile/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { username, email, address, tel, city } = req.body;
+    const emailExist = await pool.query(
+      "SELECT * FROM users WHERE email = $1",
+      [email]
+    );
+
+    let response;
+
+    if (emailExist.rows.length > 0) {
+      // Return an error response if the user already exists
+      response = res.status(400).json({
+        message: "User with this email already exists, try another email!",
+      });
+    } else {
+      const update = await pool.query(
+        "UPDATE users SET user_name = $1, email = $2, address = $3, tel_number = $4, city = $5 WHERE user_id = $6",
+        [username, email, address, tel, city, id]
+      );
+      response = res.json({ message: "User was updated" });
+    }
+    return response;
+  } catch (error) {
+    console.log(error.message);
+    // res.status(500).json("An error occurred while updating the user");
+  }
+});
+// Update user profile without email
+app.put("/userProfileEmail/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { username, address, tel, city } = req.body;
+
+    let response;
+
+    const update = await pool.query(
+      "UPDATE users SET user_name = $1, address = $2, tel_number = $3, city = $4 WHERE user_id = $5",
+      [username, address, tel, city, id]
+    );
+    response = res.json({ message: "User was updated" });
+
+    return response;
+  } catch (error) {
+    console.log(error.message);
+    // res.status(500).json("An error occurred while updating the user");
+  }
+});
+
+app.listen(5000, () => {
+  console.log("Server has started on port 5000");
+});
 //create a todo
 // app.post("/todos", async (req, res) => {
 //   try {
