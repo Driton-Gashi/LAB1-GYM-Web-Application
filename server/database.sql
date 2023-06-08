@@ -224,12 +224,12 @@ foreign key (u_id) references user(user_id),
 foreign key (v_id) references video(video_id)
 );
 
-INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image) VALUES ('INTRODUCTION', 'Beginner', 'Introduction To Calisthenics Program', 4,'./video_thumbnail/V1.jpg');
-INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image) VALUES ('CALISTHENICS', 'Beginner', 'Beginner Calisthenics Program', 4,'./video_thumbnail/V2.jpg');
-INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image) VALUES ('CALISTHENICS', 'Intermediate', 'Intermediate Program', 4,'./video_thumbnail/V3.jpg');
-INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image) VALUES ('TECHNIQUE GUIDE', 'Beginner', 'Handstand Technique Guide', 4,'./video_thumbnail/V4.jpg');
-INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image) VALUES ('TECHNIQUE GUIDE', 'Intermediate', 'Muscle Up Technique Guide', 4,'./video_thumbnail/V5.jpg');
-INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image) VALUES ('TECHNIQUE GUIDE', 'Beginner', 'Pullover Technique Guide', 4,'./video_thumbnail/V6.jpg');
+INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image) VALUES ('INTRODUCTION', 'Beginner', 'Introduction To Calisthenics Program', "./video_thumbnail/Rick.mp4",'./video_thumbnail/V1.jpg');
+INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image) VALUES ('CALISTHENICS', 'Beginner', 'Beginner Calisthenics Program', "./video_thumbnail/Rick.mp4",'./video_thumbnail/V2.jpg');
+INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image) VALUES ('CALISTHENICS', 'Intermediate', 'Intermediate Program', "./video_thumbnail/Rick.mp4",'./video_thumbnail/V3.jpg');
+INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image) VALUES ('TECHNIQUE GUIDE', 'Beginner', 'Handstand Technique Guide', "./video_thumbnail/Rick.mp4",'./video_thumbnail/V4.jpg');
+INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image) VALUES ('TECHNIQUE GUIDE', 'Intermediate', 'Muscle Up Technique Guide', "./video_thumbnail/Rick.mp4",'./video_thumbnail/V5.jpg');
+INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image) VALUES ('TECHNIQUE GUIDE', 'Beginner', 'Pullover Technique Guide', "./video_thumbnail/Rick.mp4",'./video_thumbnail/V6.jpg');
 
 INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image) VALUES ('videoja1', 'Beginner', 'video for beginners', 4,'./supplements/yogurt.png');
 
