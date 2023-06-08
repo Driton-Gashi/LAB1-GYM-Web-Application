@@ -1,7 +1,7 @@
 const { Pool } = require("pg");
 const bcrypt = require("bcrypt");
 const pool = new Pool({
-  connectionString: "postgres://postgres:qweqwe@localhost:5432/lmao_database",
+  connectionString: "postgres://postgres:dritoni@localhost:5432/lmao_database",
 });
 
 class User {

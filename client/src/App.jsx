@@ -61,7 +61,16 @@ const router = createBrowserRouter(
         index
         element={<Home getUser={getUser} isLoggedIn={isLoggedIn} />}
       />
-      <Route path="/register" element={<Register isLoggedIn={isLoggedIn} />} />
+      <Route
+        path="/register"
+        element={
+          isLoggedIn() ? (
+            <Navigate to="/" replace />
+          ) : (
+            <Register getUser={getUser} isLoggedIn={isLoggedIn} />
+          )
+        }
+      />
       <Route
         path="/login"
         element={
@@ -89,7 +98,7 @@ const router = createBrowserRouter(
         element={
           getUser() == null ? (
             <Navigate to="/" replace />
-          ) : getUser().role === "admin" ? (
+          ) : isLoggedIn() ? (
             <Dashboard getUser={getUser} isLoggedIn={isLoggedIn} />
           ) : (
             <Navigate to="/" replace />

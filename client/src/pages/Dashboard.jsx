@@ -9,8 +9,20 @@ import Table from "../components/dashboard/Table";
 import Profile from "../components/dashboard/Profile";
 import TrainerDashboard from "../components/dashboard/TrainerDashboard";
 const Dashboard = ({ getUser }) => {
+  const user = getUser();
   const [users, setUsers] = useState([]);
-  const [dashboardPage, setDashboardPage] = useState("users");
+  const [dashboardPage, setDashboardPage] = useState(
+    user.role == "admin"
+      ? "users"
+      : user.role == "trainer"
+      ? "trainer"
+      : user.role == "publisher"
+      ? "publisher"
+      : user.role == "user"
+      ? "profile"
+      : ""
+  );
+
   const getUsers = async () => {
     try {
       const response = await fetch("http://localhost:5000/users");
@@ -54,17 +66,21 @@ const Dashboard = ({ getUser }) => {
                 <img src={dashboardIcon} className="nav-img" alt="" />
                 <h3> Dashboard</h3>
               </div>
-              <div
-                onClick={() => {
-                  setDashboardPage("users");
-                }}
-                className={`nav-option ${
-                  dashboardPage == "users" ? "option1" : ""
-                }`}
-              >
-                <img src={userIcon} className="nav-img" alt="" />
-                <h3>Users</h3>
-              </div>
+              {user.role == "admin" ? (
+                <div
+                  onClick={() => {
+                    setDashboardPage("users");
+                  }}
+                  className={`nav-option ${
+                    dashboardPage == "users" ? "option1" : ""
+                  }`}
+                >
+                  <img src={userIcon} className="nav-img" alt="" />
+                  <h3>Users</h3>
+                </div>
+              ) : (
+                ""
+              )}
               <div
                 onClick={() => {
                   setDashboardPage("profile");
@@ -77,18 +93,35 @@ const Dashboard = ({ getUser }) => {
                 <h3> Profile</h3>
               </div>
 
-              <div
-                onClick={() => {
-                  setDashboardPage("trainer");
-                }}
-                className={`nav-option ${
-                  dashboardPage == "trainer" ? "option1" : ""
-                }`}
-              >
-                <img src={userIcon} className="nav-img" alt="" />
+              {user.role == "admin" ? (
+                <div
+                  onClick={() => {
+                    setDashboardPage("trainer");
+                  }}
+                  className={`nav-option ${
+                    dashboardPage == "trainer" ? "option1" : ""
+                  }`}
+                >
+                  <img src={userIcon} className="nav-img" alt="" />
 
-                <h3> Trainer</h3>
-              </div>
+                  <h3> Trainer</h3>
+                </div>
+              ) : user.role == "trainer" ? (
+                <div
+                  onClick={() => {
+                    setDashboardPage("trainer");
+                  }}
+                  className={`nav-option ${
+                    dashboardPage == "trainer" ? "option1" : ""
+                  }`}
+                >
+                  <img src={userIcon} className="nav-img" alt="" />
+
+                  <h3> Trainer</h3>
+                </div>
+              ) : (
+                ""
+              )}
 
               <div onClick={logout} className="nav-option logout">
                 <img
