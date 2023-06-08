@@ -7,6 +7,7 @@ import dashboardIcon from "../img/dashboard-icon.png";
 
 import Table from "../components/dashboard/Table";
 import Profile from "../components/dashboard/Profile";
+import TrainerDashboard from "../components/dashboard/TrainerDashboard";
 const Dashboard = ({ getUser }) => {
   const [users, setUsers] = useState([]);
   const [dashboardPage, setDashboardPage] = useState("users");
@@ -76,13 +77,17 @@ const Dashboard = ({ getUser }) => {
                 <h3> Profile</h3>
               </div>
 
-              <div className="nav-option option3">
-                <img
-                  src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183320/4.png"
-                  className="nav-img"
-                  alt=""
-                />
-                <h3> Settings</h3>
+              <div
+                onClick={() => {
+                  setDashboardPage("trainer");
+                }}
+                className={`nav-option ${
+                  dashboardPage == "trainer" ? "option1" : ""
+                }`}
+              >
+                <img src={userIcon} className="nav-img" alt="" />
+
+                <h3> Trainer</h3>
               </div>
 
               <div onClick={logout} className="nav-option logout">
@@ -113,6 +118,8 @@ const Dashboard = ({ getUser }) => {
             <Table users={users} />
           ) : dashboardPage == "profile" ? (
             <Profile getUser={getUser} />
+          ) : dashboardPage == "trainer" ? (
+            <TrainerDashboard getUser={getUser} />
           ) : (
             ""
           )}

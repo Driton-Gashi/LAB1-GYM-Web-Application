@@ -124,15 +124,15 @@ app.get("/verify", authentication, async (req, res) => {
   }
 });
 
-  app.get("/video", async (req, res) => {
-    try {
-      const allVideo = await pool.query("SELECT * from video");
-      res.json(allVideo.rows);
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  });
+app.get("/video", async (req, res) => {
+  try {
+    const allVideo = await pool.query("SELECT * from video");
+    res.json(allVideo.rows);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 //delete a user at Dashboard
 app.delete("/user/:id", async (req, res) => {
