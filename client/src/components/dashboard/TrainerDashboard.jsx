@@ -1,18 +1,19 @@
-import React,{useState} from "react";
-// import TrainerItem from "./TrainerItem"
+import React,{useEffect, useState} from "react";
+import TrainerItem from "./TrainerItem"
 
 const TrainerDashboard = () => {
-
   const [videoName, setVideoName] = useState('');
   const [videoDifficulty, setVideoDifficulty] = useState('');
   const [videoDescription, setVideoDescription] = useState('');
   const [videoURL, setVideoURL] = useState('');
   const [videoImage, setVideoImage] = useState('');
   const [videoCategory, setVideoCategory] = useState('');
+  const [video,setVideo] = useState('');
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setVideoImage("");
+    
 
     try {
       const response = await fetch('http://localhost:5000/video', {
@@ -20,22 +21,49 @@ const TrainerDashboard = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({videoName: videoName,videoDifficulty:videoDifficulty,videoDescription:videoDescription,videoURL:videoURL,videoImage:videoImage,videoCategory:videoCategory}),
+        body: JSON.stringify({
+          videoName,
+          videoDifficulty,
+          videoDescription,
+          videoURL,
+          videoImage,
+          videoCategory
+        })
       });
 
-      // Handle the response as needed
+      
+
+  const video = Object.values(video);
+      
+      
       const data = await response.json();
       console.log(data);
+
     } catch (error) {
       console.log('Error:', error.message);
     }}
+
+    const videoArray = Object.values(video);
+    const getVideo = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/getvideo");
+        const jsonData = await response.json();
+        setVideo(jsonData);
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+
+    useEffect(() => {
+      getVideo();
+    }, []);
 
 
   return (
     <div className="trainer">
       <div className="profile">
       <div className="profile_header">
-        <h1>Profile</h1> <img src="./video_thumbnail/B2.png" alt="" />
+        <h1>Upload Videos :D</h1>
       </div>
       <div className="profile_body">
         <form onSubmit={handleSubmit}>
@@ -124,17 +152,38 @@ const TrainerDashboard = () => {
         </form>
       </div>
     </div>
-    <div className="report-body">
+
+    <div className="report-container">
+        <div className="report-header">
+          <h1 className="recent-Articles">All Users</h1>
+          <button className="view">View All</button>
+        </div>
+    <div className="report-body-video">
           <div className="report-topic-heading">
-            <h3 className="t-op">Username</h3>
-            <h3 className="t-op">Email</h3>
-            <h3 className="t-op">Role</h3>
-            <h3 className="t-op">Register Date</h3>
+            <h3 className="t-op">Name</h3>
+            <h3 className="t-op">Difficulity</h3>
+            <h3 className="t-op">Description</h3>
+            <h3 className="t-op">URL</h3>
+            <h3 className="t-op">Image</h3>
+            <h3 className="t-op">Category</h3>
             <h3 className="t-op">Manage</h3>
           </div>
 
           
+          {videoArray.map((e) => (
+            <TrainerItem
+              key={e.video_id} 
+              videoName={e.video_name}
+              videoDifficulty={e.video_difficulity}
+              videoDescription={e.vide_description}
+              videoURL={e.vide_url}
+              videoImage={e.vide_image}
+              videoCategory={e.video_category}
+            />
+          ))}
+          
         </div>
+      </div>
       </div>
   );
 };

@@ -1,7 +1,15 @@
 import React from 'react'
 
-export default function TrainerItem() {
+export default function TrainerItem({videoName,videoDifficulty,videoDescription,videoURL,videoImage,videoCategory}) {
+
   return (
-    <div>TrainerItem</div>
+    <div className='video-content'>
+      <p>{videoName}</p>
+      <p>{videoDifficulty}</p>
+      <p>{videoDescription}</p>
+      <p>{videoURL}</p>
+      <p>{videoImage}</p>
+      <p>{videoCategory}</p>
+    </div>
   )
 }
