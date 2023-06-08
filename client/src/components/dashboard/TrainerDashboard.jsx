@@ -72,6 +72,17 @@ const TrainerDashboard = () => {
           </div>
 
           <div className="form_row">
+            <h2>Video Image</h2>
+            <input
+              type="text"
+              className="address"
+              placeholder="Image"
+              value={videoImage}
+              onChange={(event) => setVideoImage(event.target.value)}
+            />
+          </div>
+
+          <div className="form_row">
             <h2>Video Difficulity</h2>
             <select
               className="city"

@@ -22,7 +22,7 @@ export default function ItemTrainingWrapper({
 
   const getVideo = async () => {
     try {
-      const response = await fetch("http://localhost:5000/video");
+      const response = await fetch("http://localhost:5000/getvideo");
       const jsonData = await response.json();
       setVideo(jsonData);
     } catch (err) {

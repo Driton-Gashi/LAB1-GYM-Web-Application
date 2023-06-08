@@ -40,6 +40,26 @@ app.post("/register", async (req, res) => {
   }
 });
 
+//Create a video
+
+app.post("/video", async (req, res) => {
+  try {
+    console.log(req.body);
+     const {videoName, videoDifficulty, videoDescription, videoURL,videoImage,videoCategory} = req.body
+     const query = {
+       text: "INSERT INTO video (video_name, video_difficulity, vide_description, vide_url, vide_image, video_category) VALUES($1, $2, $3, $4, $5, $6) RETURNING video_id",
+       values: [videoName, videoDifficulty, videoDescription, videoURL, videoImage, videoCategory],
+     };
+     const { rows } = await pool.query(query.text, query.values);
+     const videoId = rows[0].video_id;
+    res.json({message:"video added succesfully"});
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
+
+
 // Login a user
 app.post("/login", async (req, res) => {
   try {
@@ -124,7 +144,7 @@ app.get("/verify", authentication, async (req, res) => {
   }
 });
 
-app.get("/video", async (req, res) => {
+app.get("/getvideo", async (req, res) => {
   try {
     const allVideo = await pool.query("SELECT * from video");
     res.json(allVideo.rows);
