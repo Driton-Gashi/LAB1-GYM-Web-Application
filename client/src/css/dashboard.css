@@ -295,6 +295,19 @@
   box-shadow: 3px 3px 10px rgb(188, 188, 188);
   padding: 0px 20px 20px 20px;
 }
+
+.repo-topic-heading th {
+  text-align: center;
+  padding: 10px;
+  background-color: #a2a2a2;
+  width: calc(100% / 6);
+}
+.report-body-video tr {
+  text-align: center;
+  padding: 10px;
+  background-color: #a2a2a2;
+  width: calc(100% / 6);
+}
 .report-header {
   height: 80px;
   width: 100%;
@@ -349,6 +362,10 @@
   padding-top: 0;
   padding-bottom: 0;
 }
+
+.report-topic-heading th{
+  background-color: #626262;
+}
 .item1:nth-child(odd) {
   background-color: lightgray;
 }
@@ -399,6 +416,12 @@
   overflow-x: auto;
   padding: 1rem;
 
+
+}
+
+.report-body-video tr{
+  width: 200px;
+  background-color: white;
 }
 
 .video-content{
@@ -407,6 +430,27 @@
   align-items: center;
   padding: 1rem;
 
+}
+
+.truncate{
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.report-body-video td {
+  width: 14.28%; /* Set the width to distribute equally among the columns */
+  max-width: 150px; /* Apply truncation for long values */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+td.truncate {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Responsive CSS Here */

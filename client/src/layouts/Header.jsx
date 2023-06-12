@@ -92,24 +92,7 @@ const Header = ({ getUser, isLoggedIn }) => {
         <div className="footer-section">
           <img className="footer-logo" src={logo} alt="" />
         </div>
-        <ul className="footer-section">
-          <li>
-            <h3>Lorem, ipsum.</h3>
-          </li>
-          <li>Lorem.ispum</li>
-          <li>Lorem.ispum</li>
-          <li>Lorem.ispum</li>
-          <li>Lorem.ispum</li>
-        </ul>
-        <ul className="footer-section">
-          <li>
-            <h3>Lorem, ipsum.</h3>
-          </li>
-          <li>Lorem.ispum</li>
-          <li>Lorem.ispum</li>
-          <li>Lorem.ispum</li>
-          <li>Lorem.ispum</li>
-        </ul>
+        
         <ul className="footer-section">
           <li>
             <h3>Quick Links</h3>

@@ -73,6 +73,7 @@
   margin: 0;
   align-self: flex-end;
   width: 100%;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
 }
 
 /* END OF ItemTraining.js */

@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from "react";
-import TrainerItem from "./TrainerItem"
+// import TrainerItem from "./TrainerItem"
 
 const TrainerDashboard = () => {
   const [videoName, setVideoName] = useState('');
@@ -9,12 +9,34 @@ const TrainerDashboard = () => {
   const [videoImage, setVideoImage] = useState('');
   const [videoCategory, setVideoCategory] = useState('');
   const [video,setVideo] = useState('');
+
+
+  const handleEdit = async (videoId) => {
+    try {
+      const response = await fetch(`http://localhost:5000/video/${videoId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          videoName,
+          videoDifficulty,
+          videoDescription,
+          videoURL,
+          videoImage,
+          videoCategory
+        })
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log('Error:', error.message);
+    }
+  };
   
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
-
     try {
       const response = await fetch('http://localhost:5000/video', {
         method: 'POST',
@@ -30,15 +52,9 @@ const TrainerDashboard = () => {
           videoCategory
         })
       });
-
-      
-
-  const video = Object.values(video);
-      
-      
+  const video = Object.values(video);   
       const data = await response.json();
       console.log(data);
-
     } catch (error) {
       console.log('Error:', error.message);
     }}
@@ -53,6 +69,8 @@ const TrainerDashboard = () => {
         console.error(err.message);
       }
     };
+
+  
 
     useEffect(() => {
       getVideo();
@@ -153,37 +171,43 @@ const TrainerDashboard = () => {
       </div>
     </div>
 
-    <div className="report-container">
-        <div className="report-header">
-          <h1 className="recent-Articles">All Users</h1>
-          <button className="view">View All</button>
-        </div>
-    <div className="report-body-video">
-          <div className="report-topic-heading">
-            <h3 className="t-op">Name</h3>
-            <h3 className="t-op">Difficulity</h3>
-            <h3 className="t-op">Description</h3>
-            <h3 className="t-op">URL</h3>
-            <h3 className="t-op">Image</h3>
-            <h3 className="t-op">Category</h3>
-            <h3 className="t-op">Manage</h3>
-          </div>
+    
+    <table className="report-container">
+  <thead>
+    <tr className="report-header">
+      <th className="recent-Articles" colSpan="2">All Videos</th>
+    </tr>
+    <tr className="repo-topic-heading">
+      <th className="">Name</th>
+      <th className="">Difficulty</th>
+      <th className="">Description</th>
+      <th className="">URL</th>
+      <th className="">Image</th>
 
-          
-          {videoArray.map((e) => (
-            <TrainerItem
-              key={e.video_id} 
-              videoName={e.video_name}
-              videoDifficulty={e.video_difficulity}
-              videoDescription={e.vide_description}
-              videoURL={e.vide_url}
-              videoImage={e.vide_image}
-              videoCategory={e.video_category}
-            />
-          ))}
-          
-        </div>
-      </div>
+      <th className="">Category</th>
+      <th className="">Manage</th>
+    </tr>
+  </thead>
+  <tbody className="report-body-video">
+    {videoArray.map((e) => (
+      <tr key={e.video_id}>
+        <td className="truncate">{e.video_name}</td>
+        <td className="truncate">{e.video_difficulity}</td>
+        <td className="truncate">{e.vide_description}</td>
+        <td className="truncate">{e.vide_url}</td>
+        <td className="truncate">{e.vide_image}</td>
+        <td className="truncate">{e.video_category}</td>
+        <td>
+        <button onClick={() => handleEdit(e.video_id)}>Edit</button>
+        <button>Delete</button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+
+
       </div>
   );
 };

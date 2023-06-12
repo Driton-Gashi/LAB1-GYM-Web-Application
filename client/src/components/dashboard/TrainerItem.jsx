@@ -10,6 +10,7 @@ export default function TrainerItem({videoName,videoDifficulty,videoDescription,
       <p>{videoURL}</p>
       <p>{videoImage}</p>
       <p>{videoCategory}</p>
+      {console.log(videoName,videoCategory,videoDescription,videoDifficulty)}
     </div>
   )
 }
