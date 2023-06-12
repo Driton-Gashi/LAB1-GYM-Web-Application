@@ -71,6 +71,28 @@ app.post("/video", async (req, res) => {
   }
 });
 
+
+//Update video
+app.put("/video/:video_id", async (req, res) => {
+  try {
+    const { video_id } = req.params;
+    const { video_name,
+            video_difficulity,
+            video_description,
+            vide_url,
+            vide_image,
+            video_category} = req.body;
+      const update = await pool.query(
+        "UPDATE video SET video_name = $1, video_difficulity = $2, video_description = $3, vide_url = $4, vide_image = $5, video_category = $6 WHERE video_id = $7",
+        [video_name, video_difficulity, video_description, vide_url, vide_image, video_category, video_id]
+      );
+      response = res.json({ message: "video was updated" });
+    return response;
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 // Login a user
 app.post("/login", async (req, res) => {
   try {
