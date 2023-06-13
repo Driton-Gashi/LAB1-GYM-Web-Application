@@ -1,4 +1,12 @@
-const Item = ({ name, description, price, review, image, setPopup }) => {
+const Item = ({
+  name,
+  description,
+  price,
+  review,
+  image,
+  category,
+  setPopup,
+}) => {
   // Review stars logic
   let reviewStars = [];
   for (let i = 0; i < review; i++) {
@@ -30,6 +38,8 @@ const Item = ({ name, description, price, review, image, setPopup }) => {
               title: name,
               description: description,
               price: price,
+              category: category,
+              review: review,
             });
           }}
           src={image}

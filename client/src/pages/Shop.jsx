@@ -3,6 +3,17 @@ import "../css/shop.css";
 import Item from "../components/shop/Item";
 import Slider from "../components/shop/SliderFilter";
 const Shop = ({ getUser }) => {
+  const getStars = (review) => {
+    let reviewStars = [];
+
+    for (let i = 0; i < review; i++) {
+      reviewStars.push(<i key={i} className="fa-solid fa-star"></i>);
+    }
+    for (let i = reviewStars.length; i < 5; i++) {
+      reviewStars.push(<i key={i} className="fa-regular fa-star"></i>);
+    }
+    return reviewStars;
+  };
   const [items, setItems] = useState([]); // yogurt, protein
   const [popup, setPopup] = useState({
     isOpen: false,
@@ -28,7 +39,6 @@ const Shop = ({ getUser }) => {
       console.error(err.message);
     }
   };
-
   const itemsSortByCategory = async (category) => {
     try {
       const response = await fetch(
@@ -50,15 +60,27 @@ const Shop = ({ getUser }) => {
         ""
       ) : (
         <div className="itemPopup">
-          <div className="itemPopup_left">
-            <img src={popup.image} alt="" />
-          </div>
-          <div className="itemPopup_right">
-            <h4>X X X X X </h4>
-            <h4>{popup.title}</h4>
-            <h4>{popup.price}</h4>
-            <p>{popup.description}</p>
-            <button>Add to Cart</button>
+          <i
+            onClick={() => {
+              setPopup({ isOpen: false });
+            }}
+            className="fa-solid fa-xmark popupClose"
+          ></i>
+          <div className="InnerItemPopup">
+            <div className="itemPopup_left">
+              <img src={popup.image} alt="" />
+            </div>
+            <div className="itemPopup_right">
+              <h1>{popup.title}</h1>
+              <h5>
+                <span>category: </span>
+                {popup.category}
+              </h5>
+              <h4>{popup.price}€</h4>
+              <div className="review">{getStars(popup.review)}</div>
+              <p>{popup.description}.</p>
+              <button>Add to Cart</button>
+            </div>
           </div>
         </div>
       )}
@@ -107,8 +129,9 @@ const Shop = ({ getUser }) => {
               name={element.item_name}
               description={element.item_description}
               price={element.item_price}
-              review={element.item_review} //4
+              review={element.item_review}
               image={element.item_image}
+              category={element.item_category}
             />
           ))}
         </div>

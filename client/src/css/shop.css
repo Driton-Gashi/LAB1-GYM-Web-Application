@@ -208,3 +208,70 @@
             <button>Add to Cart</button>
           </div>
         </div> */
+.itemPopup {
+  position: fixed;
+  left: 0vh;
+  top: 0vh;
+  right: 0vh;
+  bottom: 0vh;
+  z-index: 1000;
+  background-color: rgba(231, 231, 231, 0.9);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.popupClose {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  color: var(--black);
+  cursor: pointer;
+}
+.InnerItemPopup {
+  display: flex;
+  border: 1px solid lightgray;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+}
+.itemPopup_left img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+}
+.itemPopup_left {
+  padding-right: 3rem;
+}
+
+.itemPopup_right {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+}
+.itemPopup_right h1 {
+  font-weight: 300;
+}
+.itemPopup_right h5 {
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+.itemPopup_right h4 {
+  font-weight: 400;
+  margin-bottom: 0.3rem;
+}
+.itemPopup_right p {
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+.itemPopup_right button {
+  background-color: var(--black);
+  padding: 0.5rem 2rem;
+  border-radius: 100px;
+  color: #fff;
+  overflow: none;
+  border: 0;
+  cursor: pointer;
+}
