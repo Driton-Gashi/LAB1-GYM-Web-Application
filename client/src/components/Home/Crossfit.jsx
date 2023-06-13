@@ -1,6 +1,8 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export default function Crossfit(){
+  const navigate = useNavigate();
   return(
     <>
     
@@ -31,7 +33,11 @@ export default function Crossfit(){
           <p>STAY HYDRATED</p>
         </div>
       </div>
-        <button>Become Member</button>
+      <button
+          onClick={() => {
+            navigate("/training");
+          }}
+        >Become a member</button>
         </div>
       <img src="./video_thumbnail/lol.png" alt="" />
       </div>

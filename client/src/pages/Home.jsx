@@ -8,7 +8,6 @@ const Home = ({ getUser }) => {
     <>
       <MainBanner getUser={getUser} />
       <Tour/>
-      
       <Crossfit />
       <BMI/>
     </>
