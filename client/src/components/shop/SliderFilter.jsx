@@ -15,7 +15,7 @@ import bra from "../../img/shop/sport-bra.png";
 const list = [
   {
     id: 1,
-    title: "Shirt",
+    title: "shirt",
     image: shirt,
   },
   {
@@ -35,7 +35,7 @@ const list = [
   },
   {
     id: 5,
-    title: "sneaker",
+    title: "sneakers",
     image: sneaker,
   },
   {
@@ -50,7 +50,7 @@ const list = [
   },
 ];
 
-const SliderFilter = () => {
+const SliderFilter = ({ sortBy }) => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -75,7 +75,12 @@ const SliderFilter = () => {
     <Carousel responsive={responsive} autoPlay={true} infinite={true}>
       {list.map((item) => (
         // %PUBLIC_URL% shortcut for public
-        <ShopItem key={item.id} title={item.title} image={item.image} />
+        <ShopItem
+          key={item.id}
+          title={item.title}
+          image={item.image}
+          sortBy={sortBy}
+        />
       ))}
     </Carousel>
   );

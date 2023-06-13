@@ -7,7 +7,119 @@ const Profile = ({ getUser }) => {
   const [address, setAddress] = useState(user.address);
   const [tel, setTel] = useState(user.tel);
   const [city, setCity] = useState(user.city);
-
+  const cities = [
+    {
+      name: "Prishtin",
+    },
+    {
+      name: "Prizren",
+    },
+    {
+      name: "Ferizaj",
+    },
+    {
+      name: "Pejë",
+    },
+    {
+      name: "Gjakovë",
+    },
+    {
+      name: "Gjilan",
+    },
+    {
+      name: "Mitrovicë",
+    },
+    {
+      name: "Podujev",
+    },
+    {
+      name: "Vushtrri",
+    },
+    {
+      name: "Suharekë",
+    },
+    {
+      name: "Rahovec",
+    },
+    {
+      name: "Drenas",
+    },
+    {
+      name: "Lipjan",
+    },
+    {
+      name: "Malishevë",
+    },
+    {
+      name: "Kamenicë",
+    },
+    {
+      name: "Viti",
+    },
+    {
+      name: "Deçan",
+    },
+    {
+      name: "Istog",
+    },
+    {
+      name: "Klinë",
+    },
+    {
+      name: "Skenderaj",
+    },
+    {
+      name: "Dragash",
+    },
+    {
+      name: "Fushë Kosovë",
+    },
+    {
+      name: "Kaçanik",
+    },
+    {
+      name: "Shtime",
+    },
+    {
+      name: "Obiliq",
+    },
+    {
+      name: "Leposaviq",
+    },
+    {
+      name: "Graçanicë",
+    },
+    {
+      name: "Han",
+    },
+    {
+      name: "Zveçan",
+    },
+    {
+      name: "Shtërpcë",
+    },
+    {
+      name: "Novobërdë",
+    },
+    {
+      name: "Zubin",
+    },
+    {
+      name: "Junik",
+    },
+    {
+      name: "Mamush",
+    },
+    {
+      name: "Ranillug",
+    },
+    {
+      name: "Kllokot",
+    },
+    {
+      name: "Partesh",
+    },
+  ];
   const submitHandler = async (e) => {
     e.preventDefault();
     if (email == user.email) {
@@ -117,11 +229,60 @@ const Profile = ({ getUser }) => {
       }
     }
   };
+
+  const [isChangeProfileActive, setisChangeProfileActive] = useState(false);
+  // Change profile Image
+  const handleFileChange = async (event) => {
+    const selectedImage = event.target.files[0];
+
+    if (!selectedImage) {
+      console.log("No image selected");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", selectedImage);
+
+    try {
+      const response = await fetch("http://localhost:5000/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Image uploaded successfully:", data.imageUrl);
+      } else {
+        console.log("Error uploading image:", response.statusText);
+      }
+    } catch (error) {
+      console.log("Error:", error.message);
+    }
+  };
   return (
     <div className="profile">
-      <div className="profile_header">
-        <h1>Profile</h1> <img src={user.image} alt="" />
+      <div
+        className={`uploadFileWrapper ${isChangeProfileActive ? "" : "hide"}`}
+      >
+        <i
+          onClick={() => {
+            setisChangeProfileActive((prevSate) => !prevSate);
+          }}
+          className="fas fa-times closeProfile"
+        ></i>
+        <input type="file" onChange={handleFileChange} />
       </div>
+      <div className="profile_header">
+        <h1>Profile</h1>
+        <img
+          onClick={() => {
+            setisChangeProfileActive((prevSate) => !prevSate);
+          }}
+          src={user.image}
+          alt=""
+        />
+      </div>
+
       <div className="profile_body">
         <form onSubmit={submitHandler}>
           <div className="form_row">
@@ -175,10 +336,11 @@ const Profile = ({ getUser }) => {
               ) : (
                 <option value={city}>{city}</option>
               )}
-              <option value="peja">Peja</option>
-              <option value="prishtina">Prishtina</option>
-              <option value="prizren">Prizren</option>
-              <option value="gjakova">Gjakova</option>
+              {cities.map((city, index) => (
+                <option key={index} value={city.name.toLowerCase()}>
+                  {city.name}
+                </option>
+              ))}
             </select>
           </div>
           <div className="form_row profile_footer">

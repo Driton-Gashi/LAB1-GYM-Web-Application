@@ -3,7 +3,7 @@ import userIcon from "../../img/dashboard/user.png";
 import maleIcon from "../../img/dashboard/male.png";
 import femaleIcon from "../../img/dashboard/woman.png";
 import subscription from "../../img/dashboard/subscription.png";
-const Table = ({ users }) => {
+const Table = ({ users, getUser }) => {
   return (
     <>
       <div className="box-container">
@@ -57,7 +57,9 @@ const Table = ({ users }) => {
           <div className="items">
             {users.map((element) => (
               // %PUBLIC_URL% shortcut for public
+
               <TableItem
+                getUser={getUser}
                 key={element.user_id}
                 id={element.user_id}
                 username={element.user_name}

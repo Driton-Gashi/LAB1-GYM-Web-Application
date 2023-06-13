@@ -1,6 +1,7 @@
 /* profile style */
 .profile {
   padding: 0 2rem;
+  position: relative;
 }
 .profile_header {
   display: flex;
@@ -10,6 +11,27 @@
 }
 .profile_header img {
   width: 70px;
+  cursor: pointer;
+}
+
+.uploadFileWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
+}
+.closeProfile {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  font-size: 2rem;
 }
 .form_row {
   margin-bottom: 1rem;
@@ -352,6 +374,12 @@
 .item1:nth-child(odd) {
   background-color: lightgray;
 }
+form.active {
+  background-color: var(--black);
+}
+form.active .t-op-nextlvl {
+  color: #fff;
+}
 .t-op-nextlvl span,
 .t-op-nextlvl button {
   padding: 0.2rem 1rem;
@@ -366,10 +394,13 @@
 .editBtn,
 .confirmBtn {
   background: var(--dark-blue);
+  font-weight: 500;
 }
 
 .deleteBtn,
 .cancelBtn {
+  font-weight: 500;
+
   background-color: rgb(180, 0, 0);
 }
 .t-op-nextlvl button:hover {
@@ -398,15 +429,13 @@
   width: 100%;
   overflow-x: auto;
   padding: 1rem;
-
 }
 
-.video-content{
+.video-content {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 1rem;
-
 }
 
 /* Responsive CSS Here */

@@ -1,7 +1,8 @@
-const Item = ({ name, description, price, review, image }) => {
+const Item = ({ name, description, price, review, image, setPopup }) => {
   // Review stars logic
   let reviewStars = [];
-  for (let i = 0; i < review; i++) {//4
+  for (let i = 0; i < review; i++) {
+    //4
     reviewStars.push(<i key={i} className="fa-solid fa-star"></i>);
   }
   for (let i = reviewStars.length; i < 5; i++) {
@@ -21,7 +22,20 @@ const Item = ({ name, description, price, review, image }) => {
           className="fa-regular fa-heart"
         ></i>
         {/* <i class="fa-solid fa-heart"></i> */}
-        <img src={image} width="100%" alt="" />
+        <img
+          onClick={() => {
+            setPopup({
+              isOpen: true,
+              image: image,
+              title: name,
+              description: description,
+              price: price,
+            });
+          }}
+          src={image}
+          width="100%"
+          alt=""
+        />
       </div>
       <div className="item_bottom">
         <h1>
