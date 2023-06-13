@@ -29,7 +29,6 @@ export default function ItemTrainingWrapper({
       console.error(err.message);
     }
   };
-  console.log("Traning PAge", category);
 
   const videoArray = Object.values(video);
 

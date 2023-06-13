@@ -8,6 +8,7 @@ import dashboardIcon from "../img/dashboard-icon.png";
 import Table from "../components/dashboard/Table";
 import Profile from "../components/dashboard/Profile";
 import TrainerDashboard from "../components/dashboard/TrainerDashboard";
+import Publisher from "../components/dashboard/Publisher";
 const Dashboard = ({ getUser }) => {
   const user = getUser();
   const [users, setUsers] = useState([]);
@@ -123,6 +124,36 @@ const Dashboard = ({ getUser }) => {
                 ""
               )}
 
+              {user.role == "admin" ? (
+                <div
+                  onClick={() => {
+                    setDashboardPage("publisher");
+                  }}
+                  className={`nav-option ${
+                    dashboardPage == "publisher" ? "option1" : ""
+                  }`}
+                >
+                  <img src={userIcon} className="nav-img" alt="" />
+
+                  <h3> Publisher</h3>
+                </div>
+              ) : user.role == "publisher" ? (
+                <div
+                  onClick={() => {
+                    setDashboardPage("publisher");
+                  }}
+                  className={`nav-option ${
+                    dashboardPage == "publisher" ? "option1" : ""
+                  }`}
+                >
+                  <img src={userIcon} className="nav-img" alt="" />
+
+                  <h3> Publisher</h3>
+                </div>
+              ) : (
+                ""
+              )}
+
               <div onClick={logout} className="nav-option logout">
                 <img
                   src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183321/7.png"
@@ -148,11 +179,13 @@ const Dashboard = ({ getUser }) => {
           </div>
 
           {dashboardPage == "users" ? (
-            <Table users={users} />
+            <Table getUser={getUser} users={users} />
           ) : dashboardPage == "profile" ? (
             <Profile getUser={getUser} />
           ) : dashboardPage == "trainer" ? (
             <TrainerDashboard getUser={getUser} />
+          ) : dashboardPage == "publisher" ? (
+            <Publisher getUser={getUser} />
           ) : (
             ""
           )}

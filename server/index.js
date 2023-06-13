@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const multer = require("multer");
+const path = require("path");
 const pool = require("./db");
 const { createToken } = require("./auth");
 const User = require("./models/user");
@@ -140,10 +142,15 @@ app.post("/login", async (req, res) => {
 app.get("/items", async (req, res) => {
   try {
     const orderBy = req.query.orderBy;
+    const category = req.query.category;
     let allItems = await pool.query("SELECT * from items");
     if (orderBy !== null && orderBy != undefined) {
       allItems = await pool.query(
         `SELECT * from items order by ${orderBy} desc`
+      );
+    } else if (category !== null && category != undefined) {
+      allItems = await pool.query(
+        `SELECT * from items where item_category = '${category}'`
       );
     }
     res.json(allItems.rows);
@@ -303,6 +310,27 @@ app.put("/userProfileEmail/:id", async (req, res) => {
   }
 });
 
+// Change user Profile
+const userProfileFolderPath = path.join(__dirname, "public", "userProfile"); // Path to the "public/userProfile" folder
+
+// Set up multer storage for file upload
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, userProfileFolderPath); // Save the file to the "public/userProfile" folder
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname); // Use the original filename
+  },
+});
+
+const upload = multer({ storage });
+
+// Endpoint to handle file upload
+app.post("/upload", upload.single("image"), (req, res) => {
+  res.json({ success: true, message: "File uploaded successfully" });
+});
+
+// Start the server
 app.listen(5000, () => {
   console.log("Server has started on port 5000");
 });

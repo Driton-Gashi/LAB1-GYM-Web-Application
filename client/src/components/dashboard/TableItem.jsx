@@ -1,7 +1,8 @@
 import { useState } from "react";
 import swal from "sweetalert";
 
-const TableItem = ({ username, email, role, date, id }) => {
+const TableItem = ({ getUser, username, email, role, date, id }) => {
+  const user = getUser();
   const newDate = new Date(date);
   const [usernameInput, setUsernameInput] = useState(username);
   const [emailInput, setEmailInput] = useState(email);
@@ -16,6 +17,7 @@ const TableItem = ({ username, email, role, date, id }) => {
       setDisabled(true);
       return;
     }
+
     if (email == emailInput) {
       // userswithoutemail
       try {
@@ -131,7 +133,7 @@ const TableItem = ({ username, email, role, date, id }) => {
 
   const deleteUser = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:5000/users/${userId}`, {
+      const response = await fetch(`http://localhost:5000/user/${userId}`, {
         method: "DELETE",
       });
 
@@ -168,7 +170,9 @@ const TableItem = ({ username, email, role, date, id }) => {
   return (
     <form
       onSubmit={submitHandler}
-      className={`item1 ${disapear ? "disapear hide" : ""}`}
+      className={`item1 ${disapear ? "disapear hide" : ""} ${
+        user.user_id == id ? "active" : ""
+      }`}
     >
       <input
         className={`t-op-nextlvl ${disabled ? "" : "border-on"}`}
@@ -182,65 +186,75 @@ const TableItem = ({ username, email, role, date, id }) => {
         onChange={(e) => setEmailInput(e.target.value.toLowerCase())}
         disabled={disabled}
       />
-      {/* <input
-        className={`t-op-nextlvl ${disabled ? "" : "border-on"}`}
-        value={roleInput}
-        onChange={(e) => setRoleInput(e.target.value.toLowerCase())}
-        disabled={disabled}
-      /> */}
-      <select
-        className={`t-op-nextlvl ${disabled ? "" : "border-on"}`}
-        value={roleInput}
-        onChange={(e) => setRoleInput(e.target.value.toLowerCase())}
-        disabled={disabled}
-      >
-        {roleList.map((option, index) => (
-          <option key={index} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
+      {user.user_id == id ? (
+        <input className={`t-op-nextlvl`} value={roleInput} disabled={true} />
+      ) : (
+        <select
+          className={`t-op-nextlvl ${disabled ? "" : "border-on"}`}
+          onChange={(e) => setRoleInput(e.target.value.toLowerCase())}
+          disabled={disabled}
+        >
+          <option value={roleInput}>{roleInput}</option>
+          {roleList.map((option, index) =>
+            roleInput == option ? (
+              ""
+            ) : (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            )
+          )}
+        </select>
+      )}
+
       <h3 className="t-op-nextlvl label-tag">{`${newDate.getDate()}-${
         newDate.getMonth() + 1
       }-${newDate.getFullYear()}`}</h3>
 
       <h3 className="t-op-nextlvl">
-        <span
-          onClick={editMode}
-          className={`editBtn ${disabled ? "" : "hide"}`}
-        >
-          Edit
-        </span>
-        <span
-          className={`cancelBtn ${disabled ? "hide" : ""}`}
-          onClick={editMode}
-        >
-          Cancel
-        </span>
-        <button
-          type="submit"
-          className={`confirmBtn ${disabled ? "hide" : ""}`}
-        >
-          Confirm
-        </button>
-        <span
-          className={`deleteBtn ${disabled ? "" : "hide"}`}
-          onClick={() => {
-            swal({
-              title: "Are you sure?",
-              text: "You are about to delete this user: " + username,
-              icon: "warning",
-              buttons: true,
-              dangerMode: true,
-            }).then((willDelete) => {
-              if (willDelete) {
-                deleteUser(id);
-              }
-            });
-          }}
-        >
-          Delete
-        </span>
+        {user.user_id == id ? (
+          ""
+        ) : (
+          <div>
+            {" "}
+            <span
+              onClick={editMode}
+              className={`editBtn ${disabled ? "" : "hide"}`}
+            >
+              Edit
+            </span>
+            <span
+              className={`cancelBtn ${disabled ? "hide" : ""}`}
+              onClick={editMode}
+            >
+              Cancel
+            </span>
+            <button
+              type="submit"
+              className={`confirmBtn ${disabled ? "hide" : ""}`}
+            >
+              Confirm
+            </button>
+            <span
+              className={`deleteBtn ${disabled ? "" : "hide"}`}
+              onClick={() => {
+                swal({
+                  title: "Are you sure?",
+                  text: "You are about to delete this user: " + username,
+                  icon: "warning",
+                  buttons: true,
+                  dangerMode: true,
+                }).then((willDelete) => {
+                  if (willDelete) {
+                    deleteUser(id);
+                  }
+                });
+              }}
+            >
+              Delete
+            </span>
+          </div>
+        )}
       </h3>
     </form>
   );

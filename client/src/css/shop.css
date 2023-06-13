@@ -80,6 +80,9 @@
   border-radius: 7px;
   transition: 0.3s ease all;
 }
+.shop {
+  position: relative;
+}
 .item:hover img {
   transform: scale(1.1);
 }
@@ -179,10 +182,29 @@
 }
 .sliderItem img {
   width: 100%;
+  cursor: pointer;
 }
 .sliderItem h4 {
   position: absolute;
   left: 50%;
   bottom: -2rem;
   transform: translateX(-50%);
+  cursor: pointer;
 }
+
+/* Slider Arrow Buttons */
+.react-multiple-carousel__arrow {
+  z-index: 0 !important;
+}
+/* <div className="itemPopup">
+          <div className="itemPopup_left">
+            <img src={popup.image} alt="" />
+          </div>
+          <div className="itemPopup_right">
+            <h4>X X X X X </h4>
+            <h4>{popup.title}</h4>
+            <h4>{popup.price}</h4>
+            <p>{popup.description}</p>
+            <button>Add to Cart</button>
+          </div>
+        </div> */

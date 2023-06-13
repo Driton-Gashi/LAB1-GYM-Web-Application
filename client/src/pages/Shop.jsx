@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import "../css/shop.css";
 import Item from "../components/shop/Item";
 import Slider from "../components/shop/SliderFilter";
-const Shop = () => {
+const Shop = ({ getUser }) => {
   const [items, setItems] = useState([]); // yogurt, protein
-
+  const [popup, setPopup] = useState({
+    isOpen: false,
+  });
   const getItems = async () => {
     try {
       const response = await fetch("http://localhost:5000/items");
@@ -27,18 +29,53 @@ const Shop = () => {
     }
   };
 
+  const itemsSortByCategory = async (category) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/items?category=${category}`
+      );
+      const jsonData = await response.json();
+      setItems(jsonData);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   useEffect(() => {
     getItems();
   }, []);
   return (
     <div className="shop">
-      <div className="main_banner_shop">
-        <div className="main_banner_shop_content">
-          <h1>Lorem ipsum dolor sit amet, consectetur adipisicing.</h1>
-          <button>Buy Now</button>
+      {!popup.isOpen ? (
+        ""
+      ) : (
+        <div className="itemPopup">
+          <div className="itemPopup_left">
+            <img src={popup.image} alt="" />
+          </div>
+          <div className="itemPopup_right">
+            <h4>X X X X X </h4>
+            <h4>{popup.title}</h4>
+            <h4>{popup.price}</h4>
+            <p>{popup.description}</p>
+            <button>Add to Cart</button>
+          </div>
         </div>
+      )}
+      <div className="main_banner_shop">
+        {getUser() == null ? (
+          <div className="main_banner_shop_content">
+            <h1>Become a member to get the best deals!</h1>
+            <button>Join now</button>
+          </div>
+        ) : (
+          <div className="main_banner_shop_content">
+            <h1>Here are the best deals for you {getUser().user_name}!</h1>
+            <button>Check it out</button>
+          </div>
+        )}
       </div>
-      <Slider />
+      <Slider sortBy={itemsSortByCategory} />
       <div className="filter_bar_right">
         <select onChange={itemsSort} id="filter">
           <option value="">Sort by</option>
@@ -65,6 +102,7 @@ const Shop = () => {
           {items.map((element) => (
             // %PUBLIC_URL% shortcut for public
             <Item
+              setPopup={setPopup}
               key={element.item_id}
               name={element.item_name}
               description={element.item_description}

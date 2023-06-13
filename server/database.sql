@@ -21,8 +21,17 @@ CREATE TABLE users(
 -- 	item_image VARCHAR(100) NOT NULL,
 --  item_category VARCHAR(50) NOT NULL
 -- );
--- INSERT INTO items (item_name, item_description, item_price, item_review,item_image) VALUES ('Protein Yogurt', 'Best yogurt tested and approved by Trio', 1, 4,'./supplements/yogurt.png');
-
+-- INSERT INTO items (item_name, item_description, item_price, item_review,item_image,item_category) VALUES ('Protein Yogurt', 'Best yogurt tested and approved by Trio', 5, 4,'./supplements/yogurt.png','protein');
+-- INSERT INTO items (item_name, item_description, item_price, item_review,item_image,item_category) VALUES ('Sneakers', 'Comfortable sports shoes for active individuals', 50, 5,'./supplements/sneakers.png','sneakers');
+-- INSERT INTO items (item_name, item_description, item_price, item_review,item_image,item_category) VALUES ('Shirt', 'Stylish and trendy shirt for casual wear', 15, 4,'./supplements/shirt.webp','shirt');
+-- INSERT INTO items (item_name, item_description, item_price, item_review,item_image,item_category) VALUES ('Pants', 'Durable and versatile pants for everyday use', 20, 3,'./supplements/pants.png','pants');
+    --    1 | Protein Yogurt | Best yogurt tested and approved by Trio         |          1 |           4 | ./supplements/yogurt.png   |
+    --    2 | Protein        | Best Protein ever, tested and approved by Trio  |         50 |           5 | ./supplements/protein.png  |
+    --    3 | Protein Yogurt | Best yogurt tested and approved by Trio         |          1 |           4 | ./supplements/yogurt.png   |
+    --    4 | Protein Yogurt | Best yogurt tested and approved by Trio         |          1 |           4 | ./supplements/yogurt.png   |
+    --    8 | Sneakers       | Comfortable sports shoes for active individuals |         10 |           4 | ./supplements/sneakers.png |
+    --    9 | Shirt          | Stylish and trendy shirt for casual wear        |         15 |           5 | ./supplements/shirt.webp   |
+    --   10 | Pants          | Durable and versatile pants for everyday use    |         20 |           3 | ./supplements/pants.png
 -- Created by Dritoni
 -- create table cart(
 -- 	cart_id serial PRIMARY KEY,
