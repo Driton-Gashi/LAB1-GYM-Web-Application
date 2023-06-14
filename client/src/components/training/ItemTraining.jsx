@@ -40,7 +40,7 @@ export default function ItemTraining({
       const response = await fetch(
         `http://localhost:5000/createVideo_user`,
         {
-          method: "PUT",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
@@ -56,10 +56,6 @@ export default function ItemTraining({
     }catch(e){
       console.log(e.message);
     }
-
-
-
-
   }
 
 
@@ -70,7 +66,7 @@ export default function ItemTraining({
 
   useEffect(()=>{
     getWatched();
-  },[])
+  },[watched])
 
  
 
