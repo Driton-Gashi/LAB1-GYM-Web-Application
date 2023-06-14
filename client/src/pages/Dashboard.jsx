@@ -80,7 +80,7 @@ const Dashboard = ({ getUser }) => {
                   }`}
                 >
                   <img src={allUsers} className="nav-img" alt="" />
-                  <h3>Users</h3>
+                  <h3>All Users</h3>
                 </div>
               ) : (
                 ""

@@ -1,7 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "../css/cart.css";
 import CartItem from "../components/cart/CartItem";
-const Cart = () => {
+const Cart = ({ getUser }) => {
+  const user = getUser();
   // const [items, setItems] = useState([]);
   const [number1, setNumber1] = useState("");
   const [number2, setNumber2] = useState("");
@@ -18,7 +19,27 @@ const Cart = () => {
     const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
     return numbers.includes(x);
   };
+  const [cartItems, setCartItems] = useState([]);
+  const getCartIds = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/cartitems/" + user.user_id
+      );
+      const jsonData = await response.json();
+      const response2 = await fetch(
+        "http://localhost:5000/itemsid/" + jsonData.item_id
+      );
+      const jsonData2 = await response2.json();
+      setCartItems(jsonData2);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
+  useEffect(() => {
+    getCartIds();
+  }, []);
+  console.log(cartItems);
   return (
     <div className="cartPage">
       <div id="wrapper">

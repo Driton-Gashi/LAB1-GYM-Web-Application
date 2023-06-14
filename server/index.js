@@ -8,6 +8,7 @@ const { createToken } = require("./auth");
 const User = require("./models/user");
 const authentication = require("./authorization");
 const jwt = require("jsonwebtoken");
+const { log } = require("console");
 require("dotenv").config();
 // middleware
 app.use(cors());
@@ -140,12 +141,6 @@ app.get("/items", async (req, res) => {
 // create Items
 app.post("/createitem", async (req, res) => {
   try {
-    /*productName: name,
-          productDescription: description,
-          productPrice: price,
-          productReview: review,
-          productImage: imageUrl,
-          productCategory: itemCategory,*/
     const {
       productName,
       productDescription,
@@ -184,6 +179,35 @@ app.get("/users", async (req, res) => {
       );
     }
     res.json(allUsers.rows);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+app.get("/cartitems/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    let allCartItems = await pool.query(
+      "SELECT * from cart_item where user_id = $1",
+      [id]
+    );
+    res.json(allCartItems.rows);
+    console.log(allCartItems.rows);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+app.get("/itemsid/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    let allCartItems = await pool.query(
+      "SELECT * from items where item_id = $1",
+      [id]
+    );
+    res.json(allCartItems.rows);
   } catch (error) {
     console.log(error.message);
   }
@@ -335,16 +359,14 @@ app.put("/userProfileEmail/:id", async (req, res) => {
   }
 });
 
-// Change user Profile
 const userProfileFolderPath = path.join(__dirname, "public", "userProfile"); // Path to the "public/userProfile" folder
 
-// Set up multer storage for file upload
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, userProfileFolderPath); // Save the file to the "public/userProfile" folder
+    cb(null, userProfileFolderPath);
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname); // Use the original filename
+    cb(null, file.originalname);
   },
 });
 
@@ -359,44 +381,3 @@ app.post("/upload", upload.single("image"), (req, res) => {
 app.listen(5000, () => {
   console.log("Server has started on port 5000");
 });
-//create a todo
-// app.post("/todos", async (req, res) => {
-//   try {
-//     const { description } = req.body;
-//     const newTodo = await pool.query(
-//       "INSERT INTO todo (description) VALUES($1) RETURNING *",
-//       [description]
-//     );
-//     res.json(newTodo.rows[0]);
-//   } catch (err) {
-//     console.log(err.message);
-//   }
-// });
-
-// //get a specific todo
-// app.get("/todos/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const todo = await pool.query("SELECT * from todo WHERE todo_id = $1", [
-//       id,
-//     ]);
-//     res.json(todo.rows[0]);
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// });
-
-// //update a todo
-// app.put("/todos/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const { description } = req.body;
-//     const update = await pool.query(
-//       "UPDATE todo SET description = $1 where todo_id = $2",
-//       [description, id]
-//     );
-//     res.json("Todo was updated");
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// });
