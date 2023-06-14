@@ -9,50 +9,46 @@ const TrainerDashboard = () => {
   const [videoImage, setVideoImage] = useState('');
   const [videoCategory, setVideoCategory] = useState('');
   const [video,setVideo] = useState('');
+
+
   
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    
-
-    try {
-      const response = await fetch('http://localhost:5000/video', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          videoName,
-          videoDifficulty,
-          videoDescription,
-          videoURL,
-          videoImage,
-          videoCategory
-        })
-      });
-
-      
-
-  const video = Object.values(video);
-      
-      
-      const data = await response.json();
-      console.log(data);
-
-    } catch (error) {
-      console.log('Error:', error.message);
-    }}
-
-    const videoArray = Object.values(video);
     const getVideo = async () => {
       try {
         const response = await fetch("http://localhost:5000/getvideo");
         const jsonData = await response.json();
         setVideo(jsonData);
+        console.log(jsonData);
       } catch (err) {
         console.error(err.message);
       }
     };
+
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      try {
+        const response = await fetch('http://localhost:5000/video', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            videoName,
+            videoDifficulty,
+            videoDescription,
+            videoURL,
+            videoImage,
+            videoCategory
+          })
+        });
+        const video = Object.values(video);   
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.log('Error:', error.message);
+      }}
+
+  const videoo = Object.values(video)
 
     useEffect(() => {
       getVideo();
@@ -153,38 +149,42 @@ const TrainerDashboard = () => {
       </div>
     </div>
 
+    
     <div className="report-container">
-        <div className="report-header">
-          <h1 className="recent-Articles">All Users</h1>
-          <button className="view">View All</button>
-        </div>
-    <div className="report-body-video">
-          <div className="report-topic-heading">
-            <h3 className="t-op">Name</h3>
-            <h3 className="t-op">Difficulity</h3>
-            <h3 className="t-op">Description</h3>
-            <h3 className="t-op">URL</h3>
-            <h3 className="t-op">Image</h3>
-            <h3 className="t-op">Category</h3>
-            <h3 className="t-op">Manage</h3>
-          </div>
-
-          
-          {videoArray.map((e) => (
-            <TrainerItem
-              key={e.video_id} 
-              videoName={e.video_name}
-              videoDifficulty={e.video_difficulity}
-              videoDescription={e.vide_description}
-              videoURL={e.vide_url}
-              videoImage={e.vide_image}
-              videoCategory={e.video_category}
-            />
-          ))}
-          
-        </div>
-      </div>
-      </div>
+  <div className="report-main">
+  <div className="report-header">
+    <h1 className="th" colSpan="2">All Videos</h1>
+  </div>
+    <div className="repo-topic-heading">
+    <h1 className="truncate">Name</h1>
+    <h1 className="truncate">Difficulty</h1>
+    <h1 className="truncate">Description</h1>
+    <h1 className="truncate">URL</h1>
+    <h1 className="truncate">Image</h1>
+    <h1 className="truncate">Category</h1>
+    <h1 className="truncate">Manage</h1>
+  </div>
+    
+  </div>
+  
+    
+   {
+    videoo.map((e)=>(
+      <TrainerItem key={e.video_id}
+      videoName={e.video_name}
+      videoDifficulty={e.video_difficulity} 
+      videoDescription={e.vide_description}
+      videoURL={e.vide_url}
+      videoImage={e.vide_image}
+      videoCategory={e.video_category}
+      id={e.video_id}
+      />
+    ))
+   } 
+   
+  </div>
+</div>
+      
   );
 };
 

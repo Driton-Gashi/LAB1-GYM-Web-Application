@@ -60,39 +60,24 @@ create table items(
 --   updated_at TIMESTAMP DEFAULT NOW()
 -- );
 
-CREATE TABLE cartItem (
-  id SERIAL PRIMARY KEY,
-  cart_id INTEGER REFERENCES cart(id) ON DELETE CASCADE,
-  product_name VARCHAR(255) NOT NULL,
-  price DECIMAL(10, 2) NOT NULL,
-  quantity INTEGER NOT NULL,
-  created_at TIMESTAMP DEFAULT NOW(),
-  updated_at TIMESTAMP DEFAULT NOW()
-);
+-- CREATE TABLE cartItem (
+--   id SERIAL PRIMARY KEY,
+--   cart_id INTEGER REFERENCES cart(id) ON DELETE CASCADE,
+--   product_name VARCHAR(255) NOT NULL,
+--   price DECIMAL(10, 2) NOT NULL,
+--   quantity INTEGER NOT NULL,
+--   created_at TIMESTAMP DEFAULT NOW(),
+--   updated_at TIMESTAMP DEFAULT NOW()
+-- );
 
 
-create table programs(
-	programs_id serial PRIMARY KEY,
-	program_name VARCHAR[50] NOT NULL,
-	program_difficulty VARCHAR[50] NOT NULL,
-	program_image VARCHAR[100] NOT NULL
-);
 
 create table shopping_cart(
 	shopping_cart_id serial PRIMARY KEY,
 	u_id int,
 	foreign key (u_id) references users(user_id)
 );
-create table product_item(
-	item_id serial PRIMARY KEY,
-	cart_id int,
-	quantity_of_item int,
-	SKU int,
-	image varchar(255),
-	price decimal(8,2),
-	foreign key (cart_id) references shopping_cart(shopping_cart_id),
-	foreign key (item_id) references product_item(item_id)
-);
+
 create table shopping_cart_item(
 	shopping_cart_item_id serial PRIMARY KEY,
 	quantity int,
@@ -195,7 +180,6 @@ create table product_category(
 );
 
 
-
 create table product(
 	product_id serial PRIMARY KEY,
 	product_name varchar(50),
@@ -257,12 +241,14 @@ foreign key (v_id) references video(video_id)
 );
 
 
-INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image,video_category) VALUES ('INTRODUCTION', 'Beginner', 'Introduction To Calisthenics Program', './video_thumbnail/Rick.mp4','./video_thumbnail/V1.jpg','Youtube');
-INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image,video_category) VALUES ('CALISTHENICS', 'Beginner', 'Beginner Calisthenics Program', './video_thumbnail/Rick.mp4','./video_thumbnail/V2.jpg','Youtube');
+INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image,video_category) VALUES ('INTRODUCTION', 'Beginner', 'Introduction To Calisthenics Program', './video_thumbnail/Rick.mp4','./video_thumbnail/V1.jpg','Plans');
+INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image,video_category) VALUES ('CALISTHENICS', 'Beginner', 'Beginner Calisthenics Program', './video_thumbnail/Rick.mp4','./video_thumbnail/V2.jpg','Plans');
 INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image,video_category) VALUES ('CALISTHENICS', 'Intermediate', 'Intermediate Program', './video_thumbnail/Rick.mp4','./video_thumbnail/V3.jpg','Youtube');
-INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image,video_category) VALUES ('TECHNIQUE GUIDE', 'Beginner', 'Handstand Technique Guide', './video_thumbnail/Rick.mp4','./video_thumbnail/V4.jpg','Tutorial');
+INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image,video_category) VALUES ('TECHNIQUE GUIDE', 'Beginner', 'Handstand Technique Guide', './video_thumbnail/Rick.mp4','./video_thumbnail/V4.jpg','Plans');
 INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image,video_category) VALUES ('TECHNIQUE GUIDE', 'Intermediate', 'Muscle Up Technique Guide', './video_thumbnail/Rick.mp4','./video_thumbnail/V5.jpg','Tutorial');
-INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image,video_category) VALUES ('TECHNIQUE GUIDE', 'Beginner', 'Pullover Technique Guide', './video_thumbnail/Rick.mp4','./video_thumbnail/V6.jpg','Tutorial');
+INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image,video_category) VALUES ('TECHNIQUE GUIDE', 'Beginner', 'Pullover Technique Guide', './video_thumbnail/Rick.mp4','./video_thumbnail/V6.jpg','Plans');
 
 INSERT INTO video (video_name, video_difficulity, vide_description, vide_url,vide_image) VALUES ('videoja1', 'Beginner', 'video for beginners', 4,'./supplements/yogurt.png');
 
+ALTER TABLE video
+ALTER COLUMN vide_url varchar(255);

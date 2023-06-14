@@ -317,6 +317,36 @@
   box-shadow: 3px 3px 10px rgb(188, 188, 188);
   padding: 0px 20px 20px 20px;
 }
+
+.repo-topic-heading{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin:0 auto;
+  width:100%;
+  font-size: 0.5rem;
+}
+
+.repo-topic-heading th {
+  text-align: center;
+  padding: 10px;
+  background-color: #a2a2a2;
+  width: calc(100% / 6);
+}
+.report-body-video{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  
+  width: calc(100% / 6);
+}
+
+.trainer-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 .report-header {
   height: 80px;
   width: 100%;
@@ -371,6 +401,10 @@
   padding-top: 0;
   padding-bottom: 0;
 }
+
+.report-topic-heading th{
+  background-color: #626262;
+}
 .item1:nth-child(odd) {
   background-color: lightgray;
 }
@@ -403,6 +437,32 @@ form.active .t-op-nextlvl {
 
   background-color: rgb(180, 0, 0);
 }
+
+.editBtnn,
+.confirmBtnn {
+  background: var(--dark-blue);
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 1rem;
+  cursor: pointer;
+  margin: 10px;
+  padding: 0.3rem 1rem;
+
+}
+
+.deleteBtnn,
+.cancelBtnn {
+  font-weight: 500;
+  border-radius: 4px;
+  background-color: rgb(180, 0, 0);
+  margin: 10px;
+  padding: 0.3rem 1rem;
+  cursor: pointer;
+
+}
+.truncate2{
+  overflow: visible!important;
+}
 .t-op-nextlvl button:hover {
   transform: translateY(-2px);
 }
@@ -427,8 +487,18 @@ form.active .t-op-nextlvl {
 
 .report-body-video {
   width: 100%;
-  overflow-x: auto;
-  padding: 1rem;
+  overflow-x: hidden;
+  padding:rem;
+
+}
+
+.report-body-video tr{
+  width: 200px;
+  background-color: white;
+  margin: 1rem;
+}
+tr{
+  padding:2rem
 }
 
 .video-content {
@@ -436,6 +506,78 @@ form.active .t-op-nextlvl {
   flex-direction: row;
   align-items: center;
   padding: 1rem;
+}
+
+.truncate{
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+}
+
+.truncate2{
+  width: 350px!important;
+ 
+max-width: unset!important;
+}
+
+
+
+.report-body-video tr:nth-child(even){
+  background-color: #9a9a9a;
+
+}
+
+.truncate-input{
+  background-color: transparent;
+  border: 0;
+  text-align: center;
+  color: #000;
+
+}
+
+.truncate-input2{
+  padding: 5px;
+}
+
+
+.report-body-video td {
+  width: 14.28%; /* Set the width to distribute equally among the columns */
+  max-width: 150px; /* Apply truncation for long values */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+td.truncate {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.truncate{
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.report-body-video td {
+  width: 14.28%; /* Set the width to distribute equally among the columns */
+  max-width: 150px; /* Apply truncation for long values */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+td.truncate {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Responsive CSS Here */

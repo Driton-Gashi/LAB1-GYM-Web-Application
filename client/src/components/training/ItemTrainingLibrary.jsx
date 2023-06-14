@@ -1,7 +1,8 @@
 import React from "react";
 import "../../css/training.css";
 
-export default function ItemTrainingLibrary({vide_description,vide_image}){
+export default function ItemTrainingLibrary({vide_description,vide_image,vide_url,video_category,showVideo,setVideos}){
+
 
   const backgroundImageUrl = vide_image
     const styles = {
@@ -10,12 +11,17 @@ export default function ItemTrainingLibrary({vide_description,vide_image}){
       backgroundPosition: 'center',
     };
 
+    console.log(video_category)
+    setVideos(vide_url)
 
   return(
     <>
-    <div className="item_card_training_library" style={styles}>
+    
+
+    <div className="item_card_training_library" style={styles} onClick={showVideo}>
       <h2>{vide_description}</h2>
     </div>
+    
     </>
   )
 }

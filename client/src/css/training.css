@@ -52,6 +52,10 @@
   cursor: pointer;
 }
 
+.watched{
+  color:red;
+}
+
 .black{
   background-color: rgba(50, 50, 93, 0.3);
   border-radius: 0.6rem;
@@ -73,6 +77,7 @@
   margin: 0;
   align-self: flex-end;
   width: 100%;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
 }
 
 /* END OF ItemTraining.js */

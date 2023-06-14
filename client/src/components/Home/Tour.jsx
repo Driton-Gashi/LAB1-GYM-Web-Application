@@ -1,7 +1,10 @@
 import React from 'react'
 import TourCard from './TourCard'
+import { useNavigate } from 'react-router-dom';
 
 export default function Tour(){
+const navigate = useNavigate();
+
   return(
     <>
     
@@ -47,7 +50,13 @@ export default function Tour(){
           <h1>PROFESSIONAL TRAINERS</h1>
         </div>
       </div>
-      <button>Take a Tour</button>
+      <button
+          onClick={() => {
+            navigate("/training");
+          }}
+        >
+          Take a tour
+        </button>
 
     </div>
     <div className="tour-img">

@@ -5,10 +5,11 @@ import TrainingLibrary from "../components/training/TrainingLibrary";
 import MembershipCard from "../components/training/MembershipCard";
 import { useState } from "react";
 
-const Training = () => {
+const Training = ({getUser}) => {
   
   const [show,setShow] = useState()
   const [videos,setVideos]= useState("")
+  
   
   function showVideo(){
       setShow(!show)
@@ -36,6 +37,7 @@ const Training = () => {
     category="Plans"
     showVideo={showVideo}
     setVideos={setVideos}
+    getUser={getUser}
     />
 
     <ItemTrainingWrapper
@@ -43,6 +45,7 @@ const Training = () => {
     category="Tutorial"
     showVideo={showVideo}
     setVideos={setVideos}
+    getUser={getUser}
     />
     
     
@@ -55,6 +58,8 @@ const Training = () => {
     category="Youtube"
     showVideo={showVideo}
     setVideos={setVideos}
+    getUser={getUser}
+
     />
     
 
@@ -63,6 +68,8 @@ const Training = () => {
     category="Program"
     showVideo={showVideo}
     setVideos={setVideos}
+    getUser={getUser}
+
     />
 
     <TrainingLibrary
@@ -70,6 +77,8 @@ const Training = () => {
     category="Library"
     showVideo={showVideo}
     setVideos={setVideos}
+    getUser={getUser}
+
     />
 
     </section>

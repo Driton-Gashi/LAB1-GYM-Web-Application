@@ -216,7 +216,7 @@ const TableItem = ({ getUser, username, email, role, date, id }) => {
           ""
         ) : (
           <div>
-            {" "}
+
             <span
               onClick={editMode}
               className={`editBtn ${disabled ? "" : "hide"}`}
