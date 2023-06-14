@@ -1,5 +1,6 @@
 CREATE DATABASE lmao_database;
 
+-- Created by Dritoni
 CREATE TABLE users(
     user_id serial PRIMARY KEY,
     user_name VARCHAR(50) NOT NULL,
@@ -11,7 +12,17 @@ CREATE TABLE users(
     tel_number VARCHAR(20),
     city VARCHAR(100)
 );
--- Created by Dritoni
+create table categories(
+	category_id serial PRIMARY KEY,
+	category_name varchar(50)
+);
+INSERT INTO categories (category_name) Values ('shirt');
+INSERT INTO categories (category_name) Values ('weight');
+INSERT INTO categories (category_name) Values ('pants');
+INSERT INTO categories (category_name) Values ('protein');
+INSERT INTO categories (category_name) Values ('bra');
+INSERT INTO categories (category_name) Values ('sneakers');
+INSERT INTO categories (category_name) Values ('gloves');
 -- create table items(
 -- 	item_id serial PRIMARY KEY,
 -- 	item_name VARCHAR(50) NOT NULL,
@@ -172,6 +183,7 @@ create table product_category(
 	parent_category_id int,
 	foreign key (parent_category_id) references product_category(category_id)
 );
+
 
 
 create table product(

@@ -375,7 +375,7 @@
   background-color: lightgray;
 }
 form.active {
-  background-color: var(--black);
+  background-color: var(--black) !important;
 }
 form.active .t-op-nextlvl {
   color: #fff;

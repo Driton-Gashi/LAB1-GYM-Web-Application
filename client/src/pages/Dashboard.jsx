@@ -2,9 +2,11 @@ import "../css/dashboard.css";
 import { useState, useEffect } from "react";
 import swal from "sweetalert";
 import userIcon from "../img/dashboard/user.png";
-
+import publisherIcon from "../img/dashboard/publishing.png";
+import trainerIcon from "../img/dashboard/coach.png";
 import dashboardIcon from "../img/dashboard-icon.png";
-
+import allUsers from "../img/dashboard/dashboard.png";
+import logoutImg from "../img/dashboard/log-out.png";
 import Table from "../components/dashboard/Table";
 import Profile from "../components/dashboard/Profile";
 import TrainerDashboard from "../components/dashboard/TrainerDashboard";
@@ -28,6 +30,7 @@ const Dashboard = ({ getUser }) => {
     try {
       const response = await fetch("http://localhost:5000/users");
       const jsonData = await response.json();
+
       setUsers(jsonData);
     } catch (err) {
       console.error(err.message);
@@ -76,7 +79,7 @@ const Dashboard = ({ getUser }) => {
                     dashboardPage == "users" ? "option1" : ""
                   }`}
                 >
-                  <img src={userIcon} className="nav-img" alt="" />
+                  <img src={allUsers} className="nav-img" alt="" />
                   <h3>Users</h3>
                 </div>
               ) : (
@@ -103,7 +106,7 @@ const Dashboard = ({ getUser }) => {
                     dashboardPage == "trainer" ? "option1" : ""
                   }`}
                 >
-                  <img src={userIcon} className="nav-img" alt="" />
+                  <img src={trainerIcon} className="nav-img" alt="" />
 
                   <h3> Trainer</h3>
                 </div>
@@ -116,7 +119,7 @@ const Dashboard = ({ getUser }) => {
                     dashboardPage == "trainer" ? "option1" : ""
                   }`}
                 >
-                  <img src={userIcon} className="nav-img" alt="" />
+                  <img src={trainerIcon} className="nav-img" alt="" />
 
                   <h3> Trainer</h3>
                 </div>
@@ -133,7 +136,7 @@ const Dashboard = ({ getUser }) => {
                     dashboardPage == "publisher" ? "option1" : ""
                   }`}
                 >
-                  <img src={userIcon} className="nav-img" alt="" />
+                  <img src={publisherIcon} className="nav-img" alt="" />
 
                   <h3> Publisher</h3>
                 </div>
@@ -146,7 +149,7 @@ const Dashboard = ({ getUser }) => {
                     dashboardPage == "publisher" ? "option1" : ""
                   }`}
                 >
-                  <img src={userIcon} className="nav-img" alt="" />
+                  <img src={publisherIcon} className="nav-img" alt="" />
 
                   <h3> Publisher</h3>
                 </div>
@@ -155,11 +158,7 @@ const Dashboard = ({ getUser }) => {
               )}
 
               <div onClick={logout} className="nav-option logout">
-                <img
-                  src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183321/7.png"
-                  className="nav-img"
-                  alt=""
-                />
+                <img src={logoutImg} className="nav-img" alt="" />
                 <h3>Logout</h3>
               </div>
             </div>

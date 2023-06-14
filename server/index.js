@@ -137,6 +137,43 @@ app.get("/items", async (req, res) => {
   }
 });
 
+// create Items
+app.post("/createitem", async (req, res) => {
+  try {
+    /*productName: name,
+          productDescription: description,
+          productPrice: price,
+          productReview: review,
+          productImage: imageUrl,
+          productCategory: itemCategory,*/
+    const {
+      productName,
+      productDescription,
+      productPrice,
+      productReview,
+      productImage,
+      productCategory,
+    } = req.body;
+
+    const query = {
+      text: "INSERT INTO items (item_name, item_description, item_price, item_review,item_image,item_category) VALUES ($1, $2, $3, $4,$5,$6)",
+      values: [
+        productName,
+        productDescription,
+        productPrice,
+        productReview,
+        productImage,
+        productCategory,
+      ],
+    };
+    const { rows } = await pool.query(query.text, query.values);
+    console.log(rows);
+    res.json({ message: "Product was added successfuly" });
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
 app.get("/users", async (req, res) => {
   try {
     const orderBy = req.query.orderBy;
@@ -166,6 +203,16 @@ app.get("/getvideo", async (req, res) => {
   try {
     const allVideo = await pool.query("SELECT * from video");
     res.json(allVideo.rows);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.get("/getcategories", async (req, res) => {
+  try {
+    const allCategories = await pool.query("SELECT * from categories");
+    res.json(allCategories.rows);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal Server Error" });

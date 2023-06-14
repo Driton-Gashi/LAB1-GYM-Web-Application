@@ -31,6 +31,7 @@ const Item = ({
         ></i>
         {/* <i class="fa-solid fa-heart"></i> */}
         <img
+          style={{ cursor: "pointer" }}
           onClick={() => {
             setPopup({
               isOpen: true,
@@ -48,7 +49,20 @@ const Item = ({
         />
       </div>
       <div className="item_bottom">
-        <h1>
+        <h1
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            setPopup({
+              isOpen: true,
+              image: image,
+              title: name,
+              description: description,
+              price: price,
+              category: category,
+              review: review,
+            });
+          }}
+        >
           {name}
           <span className="price">{price}$</span>
         </h1>

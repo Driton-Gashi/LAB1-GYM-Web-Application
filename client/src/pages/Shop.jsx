@@ -76,8 +76,8 @@ const Shop = ({ getUser }) => {
                 <span>category: </span>
                 {popup.category}
               </h5>
-              <h4>{popup.price}€</h4>
               <div className="review">{getStars(popup.review)}</div>
+              <h4>{popup.price}€</h4>
               <p>{popup.description}.</p>
               <button>Add to Cart</button>
             </div>
