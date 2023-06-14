@@ -7,6 +7,28 @@ const Profile = ({ getUser }) => {
   const [address, setAddress] = useState(user.address);
   const [tel, setTel] = useState(user.tel);
   const [city, setCity] = useState(user.city);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const cancelEdit = () => {
+    setname(user.user_name);
+    setEmail(user.email);
+    setAddress(user.address);
+    setTel(user.tel);
+    setCity(user.city);
+    setIsEditMode(false);
+  };
+  const isChanged = () => {
+    if (
+      name != user.user_name ||
+      email != user.email ||
+      address != user.address ||
+      tel != user.tel ||
+      city != user.city
+    ) {
+      setIsEditMode(true);
+    } else {
+      setIsEditMode(false);
+    }
+  };
   const cities = [
     {
       name: "Prishtin",
@@ -292,7 +314,10 @@ const Profile = ({ getUser }) => {
               className="username"
               placeholder="Username"
               value={name}
-              onChange={(e) => setname(e.target.value.toLowerCase())}
+              onChange={(e) => {
+                setname(e.target.value.toLowerCase());
+                isChanged();
+              }}
             />
           </div>
           <div className="form_row">
@@ -302,7 +327,10 @@ const Profile = ({ getUser }) => {
               className="email"
               placeholder="Email"
               value={email}
-              onChange={(e) => setEmail(e.target.value.toLowerCase())}
+              onChange={(e) => {
+                setEmail(e.target.value.toLowerCase());
+                isChanged();
+              }}
             />
           </div>
           <div className="form_row">
@@ -312,7 +340,10 @@ const Profile = ({ getUser }) => {
               className="address"
               placeholder="Address"
               value={address !== null ? address : ""}
-              onChange={(e) => setAddress(e.target.value.toLowerCase())}
+              onChange={(e) => {
+                setAddress(e.target.value.toLowerCase());
+                isChanged();
+              }}
             />
           </div>
           <div className="form_row">
@@ -322,13 +353,19 @@ const Profile = ({ getUser }) => {
               className="tel"
               placeholder="(+383) 44 *** ***"
               value={tel == null ? "" : tel}
-              onChange={(e) => setTel(e.target.value.toLowerCase())}
+              onChange={(e) => {
+                setTel(e.target.value.toLowerCase());
+                isChanged();
+              }}
             />
           </div>
           <div className="form_row">
             <h2>City</h2>
             <select
-              onChange={(e) => setCity(e.target.value.toLowerCase())}
+              onChange={(e) => {
+                setCity(e.target.value.toLowerCase());
+                isChanged();
+              }}
               className="city"
             >
               {city == null ? (
@@ -344,7 +381,12 @@ const Profile = ({ getUser }) => {
             </select>
           </div>
           <div className="form_row profile_footer">
-            <div className="cancel">Cancel</div>
+            <div
+              className={`cancel ${isEditMode ? "" : "hide"}`}
+              onClick={cancelEdit}
+            >
+              Cancel
+            </div>
             <button>Save</button>
           </div>
         </form>

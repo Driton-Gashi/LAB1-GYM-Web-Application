@@ -1,4 +1,12 @@
-const Item = ({ name, description, price, review, image, setPopup }) => {
+const Item = ({
+  name,
+  description,
+  price,
+  review,
+  image,
+  category,
+  setPopup,
+}) => {
   // Review stars logic
   let reviewStars = [];
   for (let i = 0; i < review; i++) {
@@ -23,6 +31,7 @@ const Item = ({ name, description, price, review, image, setPopup }) => {
         ></i>
         {/* <i class="fa-solid fa-heart"></i> */}
         <img
+          style={{ cursor: "pointer" }}
           onClick={() => {
             setPopup({
               isOpen: true,
@@ -30,6 +39,8 @@ const Item = ({ name, description, price, review, image, setPopup }) => {
               title: name,
               description: description,
               price: price,
+              category: category,
+              review: review,
             });
           }}
           src={image}
@@ -38,7 +49,20 @@ const Item = ({ name, description, price, review, image, setPopup }) => {
         />
       </div>
       <div className="item_bottom">
-        <h1>
+        <h1
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            setPopup({
+              isOpen: true,
+              image: image,
+              title: name,
+              description: description,
+              price: price,
+              category: category,
+              review: review,
+            });
+          }}
+        >
           {name}
           <span className="price">{price}$</span>
         </h1>
