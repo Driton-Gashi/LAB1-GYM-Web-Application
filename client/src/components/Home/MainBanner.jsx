@@ -18,10 +18,8 @@ const MainBanner = ({ getUser }) => {
         )}
 
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
-          sequi libero ipsam, est asperiores numquam laboriosam, id quia iusto
-          fugiat laudantium tenetur ratione odio voluptas vitae consequatur
-          maxime soluta explicabo
+          The shop of your dreams for all your wants and needs you might find the tool that you want
+          or the shirt that you like but one think is for certain ,you will find what you need
         </p>
         <button
           onClick={() => {
