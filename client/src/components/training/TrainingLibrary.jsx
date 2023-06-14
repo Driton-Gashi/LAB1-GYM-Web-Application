@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "../../css/training.css";
 import ItemTrainingLibrary from "./ItemTrainingLibrary";
 
-export default function TrainingLibrary({showVideo,setVideos}) {
+export default function TrainingLibrary({category,showVideo,setVideos}) {
   const [video, setVideo] = useState([]);
 
   const getVideo = async () => {
@@ -20,6 +20,7 @@ export default function TrainingLibrary({showVideo,setVideos}) {
     getVideo();
   }, []);
 
+  
   return (
     <>
       <h6>Title</h6>
@@ -27,7 +28,8 @@ export default function TrainingLibrary({showVideo,setVideos}) {
       <p>Library to find different excercersises</p>
 
       <div className="video_card-training-library">
-        {video.slice(0, 5).map((e) => (
+        {video.filter((video) => video.video_category === category).slice(0, 5)
+        .map((e) => (
           <ItemTrainingLibrary
             key={e.video_id}
             vide_image={e.vide_image}

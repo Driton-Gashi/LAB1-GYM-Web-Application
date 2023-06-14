@@ -72,6 +72,19 @@ app.post("/video", async (req, res) => {
     console.log(err.message);
   }
 });
+//DeleteVideo
+app.delete("/videoDelete/:video_id", async (req, res) => {
+  try {
+    const { video_id } = req.params;
+    const deleteVideo = await pool.query(
+      "DELETE from video WHERE video_id = $1",
+      [video_id]
+    );
+    res.json("User was deleted");
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 
 
 //Update video
@@ -94,6 +107,54 @@ app.put("/video/:video_id", async (req, res) => {
     console.log(error.message);
   }
 });
+
+//DeleteVideo
+app.delete("/videoDelete/:video_id", async (req, res) => {
+  try {
+    const { video_id } = req.params;
+    const deleteVideo = await pool.query(
+      "DELETE from video WHERE video_id = $1",
+      [video_id]
+    );
+    res.json("User was deleted");
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+//create watched video
+app.post("/createVideo_user", async (req, res) => {
+  try {
+    const {
+      videoId,
+      userId
+    } = req.body;
+    const query = {
+      text: "INSERT INTO video_user (v_id,u_id,watched) VALUES($1, $2, 1)",
+      values: [
+        videoId,
+        userId
+      ],
+    };
+    await pool.query(query);
+    res.json({ message: "video_user added succesfully" });
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
+
+//get watched video
+app.get("/video_user/:video_id/:user_id" , async(req,res) => {
+try{
+  const {user_id,video_id} = req.params;
+  const watched = await pool.query(`SELECT watched from video_user where u_id = ${user_id} and v_id = ${video_id}`);
+  res.json(watched.rows[0]);
+}catch(error) {
+  console.log(error.message);
+}
+})
+
 
 // Login a user
 app.post("/login", async (req, res) => {

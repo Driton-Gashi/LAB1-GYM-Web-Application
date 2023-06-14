@@ -11,7 +11,7 @@ export default function ItemTrainingLibrary({vide_description,vide_image,vide_ur
       backgroundPosition: 'center',
     };
 
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAA",video_category);
+    console.log(video_category)
     setVideos(vide_url)
 
   return(

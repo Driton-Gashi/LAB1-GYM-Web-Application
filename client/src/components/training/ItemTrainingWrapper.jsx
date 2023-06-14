@@ -8,6 +8,7 @@ export default function ItemTrainingWrapper({
   showVideo,
   setVideos,
   category,
+  getUser
 }) {
   const [video, setVideo] = useState([]);
   const [videoSize, setVideoSize] = useState(3);
@@ -47,6 +48,7 @@ export default function ItemTrainingWrapper({
           .map((e) => (
             <ItemTraining
               key={e.video_id}
+              video_id={e.video_id}
               video_name={e.video_name}
               video_difficulity={e.video_difficulity}
               vide_image={e.vide_image}
@@ -55,6 +57,8 @@ export default function ItemTrainingWrapper({
               video_category={e.video_category}
               showVideo={showVideo}
               setVideos={setVideos}
+              getUser={getUser}
+
             />
           ))}
       </div>

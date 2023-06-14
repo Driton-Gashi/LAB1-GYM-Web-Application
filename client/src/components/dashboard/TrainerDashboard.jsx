@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from "react";
-// import TrainerItem from "./TrainerItem"
+import TrainerItem from "./TrainerItem"
 
 const TrainerDashboard = () => {
   const [videoName, setVideoName] = useState('');
@@ -11,66 +11,44 @@ const TrainerDashboard = () => {
   const [video,setVideo] = useState('');
 
 
-  const handleEdit = async (videoId) => {
-    try {
-      const response = await fetch(`http://localhost:5000/video/${videoId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          videoName,
-          videoDifficulty,
-          videoDescription,
-          videoURL,
-          videoImage,
-          videoCategory
-        })
-      });
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.log('Error:', error.message);
-    }
-  };
   
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await fetch('http://localhost:5000/video', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          videoName,
-          videoDifficulty,
-          videoDescription,
-          videoURL,
-          videoImage,
-          videoCategory
-        })
-      });
-  const video = Object.values(video);   
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.log('Error:', error.message);
-    }}
-
-    const videoArray = Object.values(video);
     const getVideo = async () => {
       try {
         const response = await fetch("http://localhost:5000/getvideo");
         const jsonData = await response.json();
         setVideo(jsonData);
+        console.log(jsonData);
       } catch (err) {
         console.error(err.message);
       }
     };
 
-  
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      try {
+        const response = await fetch('http://localhost:5000/video', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            videoName,
+            videoDifficulty,
+            videoDescription,
+            videoURL,
+            videoImage,
+            videoCategory
+          })
+        });
+        const video = Object.values(video);   
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.log('Error:', error.message);
+      }}
+
+  const videoo = Object.values(video)
 
     useEffect(() => {
       getVideo();
@@ -172,43 +150,41 @@ const TrainerDashboard = () => {
     </div>
 
     
-    <table className="report-container">
-  <thead>
-    <tr className="report-header">
-      <th className="recent-Articles" colSpan="2">All Videos</th>
-    </tr>
-    <tr className="repo-topic-heading">
-      <th className="">Name</th>
-      <th className="">Difficulty</th>
-      <th className="">Description</th>
-      <th className="">URL</th>
-      <th className="">Image</th>
-
-      <th className="">Category</th>
-      <th className="">Manage</th>
-    </tr>
-  </thead>
-  <tbody className="report-body-video">
-    {videoArray.map((e) => (
-      <tr key={e.video_id}>
-        <td className="truncate">{e.video_name}</td>
-        <td className="truncate">{e.video_difficulity}</td>
-        <td className="truncate">{e.vide_description}</td>
-        <td className="truncate">{e.vide_url}</td>
-        <td className="truncate">{e.vide_image}</td>
-        <td className="truncate">{e.video_category}</td>
-        <td>
-        <button onClick={() => handleEdit(e.video_id)}>Edit</button>
-        <button>Delete</button>
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</table>
-
-
-
-      </div>
+    <div className="report-container">
+  <div className="report-main">
+  <div className="report-header">
+    <h1 className="th" colSpan="2">All Videos</h1>
+  </div>
+    <div className="repo-topic-heading">
+    <h1 className="truncate">Name</h1>
+    <h1 className="truncate">Difficulty</h1>
+    <h1 className="truncate">Description</h1>
+    <h1 className="truncate">URL</h1>
+    <h1 className="truncate">Image</h1>
+    <h1 className="truncate">Category</h1>
+    <h1 className="truncate">Manage</h1>
+  </div>
+    
+  </div>
+  
+    
+   {
+    videoo.map((e)=>(
+      <TrainerItem key={e.video_id}
+      videoName={e.video_name}
+      videoDifficulty={e.video_difficulity} 
+      videoDescription={e.vide_description}
+      videoURL={e.vide_url}
+      videoImage={e.vide_image}
+      videoCategory={e.video_category}
+      id={e.video_id}
+      />
+    ))
+   } 
+   
+  </div>
+</div>
+      
   );
 };
 
