@@ -23,15 +23,15 @@ INSERT INTO categories (category_name) Values ('protein');
 INSERT INTO categories (category_name) Values ('bra');
 INSERT INTO categories (category_name) Values ('sneakers');
 INSERT INTO categories (category_name) Values ('gloves');
--- create table items(
--- 	item_id serial PRIMARY KEY,
--- 	item_name VARCHAR(50) NOT NULL,
--- 	item_description VARCHAR(100) NOT NULL,
--- 	item_price int NOT NULL,
--- 	item_review int NOT NULL,
--- 	item_image VARCHAR(100) NOT NULL,
---  item_category VARCHAR(50) NOT NULL
--- );
+create table items(
+	item_id serial PRIMARY KEY,
+	item_name VARCHAR(50) NOT NULL,
+	item_description VARCHAR(100) NOT NULL,
+	item_price int NOT NULL,
+	item_review int NOT NULL,
+	item_image VARCHAR(100) NOT NULL,
+ item_category VARCHAR(50) NOT NULL
+);
 -- INSERT INTO items (item_name, item_description, item_price, item_review,item_image,item_category) VALUES ('Protein Yogurt', 'Best yogurt tested and approved by Trio', 5, 4,'./supplements/yogurt.png','protein');
 -- INSERT INTO items (item_name, item_description, item_price, item_review,item_image,item_category) VALUES ('Sneakers', 'Comfortable sports shoes for active individuals', 50, 5,'./supplements/sneakers.png','sneakers');
 -- INSERT INTO items (item_name, item_description, item_price, item_review,item_image,item_category) VALUES ('Shirt', 'Stylish and trendy shirt for casual wear', 15, 4,'./supplements/shirt.webp','shirt');
@@ -84,7 +84,17 @@ create table shopping_cart_item(
 	cart_id int,
 	item_id int,
 	foreign key (cart_id) references shopping_cart(shopping_cart_id),
-	foreign key (item_id) references product_item(item_id)
+	foreign key (item_id) references items(item_id)
+);
+
+-- qekjo osht
+create table cart_item(
+	shopping_cart_item_id serial PRIMARY KEY,
+	quantity int,
+	user_id int,
+	item_id int,
+	foreign key (user_id) references users(user_id),
+	foreign key (item_id) references items(item_id)
 );
 create table country(
 	country_id serial PRIMARY KEY,
