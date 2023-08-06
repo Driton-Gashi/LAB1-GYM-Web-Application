@@ -7,6 +7,7 @@
     "path": "^0.12.7",
     "react-multi-carousel": "^2.8.4",
     "react-router-dom": "^6.11.2",
+    "react-scripts": "^5.0.1",
     "redirect": "^0.2.0",
     "sass": "^1.62.1",
     "sweetalert": "^2.1.2"
