@@ -136,6 +136,9 @@ const Register = () => {
     });
 
     if (response.ok) {
+
+      const data = await response.json();
+
       swal({
         title: "Congrats",
         text: "User was registered successfuly!",
@@ -143,6 +146,8 @@ const Register = () => {
         timer: 3000,
         button: false,
       });
+      const token = data.token;
+          localStorage.setItem("token", token);
       setTimeout(() => {
         window.location = "http://localhost:3000/dashboard";
       }, 2000);

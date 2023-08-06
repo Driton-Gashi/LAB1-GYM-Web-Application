@@ -1,4 +1,3 @@
-CREATE DATABASE lmao_database;
 
 -- Created by Dritoni
 CREATE TABLE users(
@@ -12,6 +11,7 @@ CREATE TABLE users(
     tel_number VARCHAR(20),
     city VARCHAR(100)
 );
+
 create table categories(
 	category_id serial PRIMARY KEY,
 	category_name varchar(50)

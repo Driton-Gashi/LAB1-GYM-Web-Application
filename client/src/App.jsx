@@ -15,7 +15,10 @@ import Login from "./pages/Login";
 import Training from "./pages/Training";
 import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
+// import OldDashboard from "./pages/OldDashboard";
 import Dashboard from "./pages/Dashboard";
+import Admin from "./pages/Admin";
+import User from "./pages/User";
 // layouts
 import Header from "./layouts/Header";
 
@@ -95,16 +98,31 @@ const router = createBrowserRouter(
       />
       <Route
         path="/dashboard"
+        element={<Dashboard getUser={getUser} isLoggedIn={isLoggedIn} />}>
+
+        <Route
+          path="admin"
+          element={<Admin getUser={getUser} isLoggedIn={isLoggedIn} />}
+
+        />
+        <Route
+          path="user"
+          element={<User getUser={getUser} isLoggedIn={isLoggedIn} />}
+
+        />
+      </Route>
+      {/* <Route
+        path="/olddashboard"
         element={
           getUser() == null ? (
             <Navigate to="/" replace />
           ) : isLoggedIn() ? (
-            <Dashboard getUser={getUser} isLoggedIn={isLoggedIn} />
+            <OldDashboard getUser={getUser} isLoggedIn={isLoggedIn} />
           ) : (
             <Navigate to="/" replace />
           )
         }
-      />
+      /> */}
       <Route path="*" element={<PageNotFound />} />
     </Route>
   )

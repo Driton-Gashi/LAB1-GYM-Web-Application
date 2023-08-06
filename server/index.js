@@ -51,8 +51,8 @@ app.post("/video", async (req, res) => {
       videoName,
       videoDifficulty,
       videoDescription,
-      videoURL,
       videoImage,
+      videoURL,
       videoCategory,
     } = req.body;
     const query = {
