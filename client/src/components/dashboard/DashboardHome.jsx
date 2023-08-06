@@ -1,82 +1,13 @@
-// import { Outlet,NavLink } from "react-router-dom";
-import swal from "sweetalert";
-import { useState, useEffect } from "react";
-import "../css/dashboard.css";
-const Admin = ({ getUser }) => {
-  const logout = () => {
-    // Clear user-related data
-    swal({
-      title: "Are you sure?",
-      text: "You are about to Log out!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        swal("You Logged out successfuly!", {
-          icon: "success",
-        });
-        localStorage.removeItem("token");
-        // Navigate to the login page
-        window.location.reload(true);
-      }
-    });
-  };
 
-  // Get Users
-  const [users, setUsers] = useState([]);
-
-  const getUsers = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/users");
-      const jsonData = await response.json();
-
-      setUsers(jsonData);
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
-
-  useEffect(() => {
-    getUsers();
-  }, []);
-  // Get Users end
-
+const DashboardHome = ({getUser,users}) => {
   return (
-    <div className="dashboard">
-      <div className="sidebar">
-        <div className="logo-details">
-          <i className="bx bxl-c-plus-plus"></i>
-          <span className="logo_name">Dashboard</span>
-        </div>
-        <ul className="nav-links">
-          <li>
-            <a href="#" className="active">
-              <i className="fa-solid fa-gauge"></i>
-              <span className="links_name">Dashboard</span>
-            </a>
-          </li>
-
-          <li className="log_out">
-            <a href="#">
-              <i className="fa-solid fa-right-from-bracket"></i>
-              <span onClick={logout} className="links_name">
-                Log out
-              </span>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <section className="home-section">
+    <section className="home-section">
         <nav>
           <div className="sidebar-button">
             <i className="bx bx-menu sidebarBtn"></i>
             <span className="dashboard-title">Role: {getUser().role}</span>
           </div>
-          <div className="search-box">
-            <input type="text" placeholder="Search..." />
-            <i className="fa-solid fa-magnifying-glass bx-search"></i>
-          </div>
+          
           <div className="profile-details">
             <img src="images/profile.jpg" alt="" />
             <span className="admin_name">{getUser().user_name}</span>
@@ -258,8 +189,7 @@ const Admin = ({ getUser }) => {
           </div>
         </div>
       </section>
-    </div>
-  );
-};
+  )
+}
 
-export default Admin;
+export default DashboardHome

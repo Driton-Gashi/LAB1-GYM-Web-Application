@@ -98,7 +98,7 @@ const router = createBrowserRouter(
       />
       <Route
         path="/dashboard"
-        element={<Dashboard getUser={getUser} isLoggedIn={isLoggedIn} />}>
+        element={getUser() == null ? (<Navigate to="/" replace/>):isLoggedIn()?(<Dashboard getUser={getUser} isLoggedIn={isLoggedIn} />):(<Navigate to="/" replace/>)}>
 
         <Route
           path="admin"

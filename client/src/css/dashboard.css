@@ -6,6 +6,24 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
+/* Dritoni Start*/
+.user-action-wrapper{
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+}
+.action-edit{
+  color: #0A2558;
+  cursor: pointer;
+}
+.action-delete{
+  color: rgb(150, 0, 0);
+  cursor: pointer;
+
+}
+/* Dritoni End */
+
 .sidebar{
   position: fixed;
   height: 100%;

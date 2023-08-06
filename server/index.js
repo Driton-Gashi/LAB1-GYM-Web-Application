@@ -14,7 +14,7 @@ require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 
-// Register a user
+// Register a user create
 app.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -157,7 +157,7 @@ try{
 })
 
 
-// Login a user
+// Login a user read
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;

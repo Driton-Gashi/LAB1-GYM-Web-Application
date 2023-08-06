@@ -41,25 +41,7 @@ const OldDashboard = ({ getUser }) => {
     getUsers();
   }, []);
 
-  const logout = () => {
-    // Clear user-related data
-    swal({
-      title: "Are you sure?",
-      text: "You are about to Log out!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        swal("You Logged out successfuly!", {
-          icon: "success",
-        });
-        localStorage.removeItem("token");
-        // Navigate to the login page
-        window.location.reload(true);
-      }
-    });
-  };
+  
   return (
     <>
       <div className="main-container">
