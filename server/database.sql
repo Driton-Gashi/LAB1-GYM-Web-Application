@@ -11,6 +11,10 @@ CREATE TABLE users(
     tel_number VARCHAR(20),
     city VARCHAR(100)
 );
+-- Shtojeni tani qet kod ne databaz
+ALTER TABLE users
+ADD COLUMN image VARCHAR(250) DEFAULT '../userProfile/defaultProfile.png';
+
 
 create table categories(
 	category_id serial PRIMARY KEY,

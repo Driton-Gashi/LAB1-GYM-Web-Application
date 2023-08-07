@@ -1,27 +1,10 @@
 // import { Outlet,NavLink } from "react-router-dom";
-import swal from "sweetalert";
 import { useState, useEffect } from "react";
-import "../css/dashboard.css";
+import swal from "sweetalert";
+import UserProfile from "./UserProfile";
+import ActionButtons from "./ActionButtons";
 const Admin = ({ getUser }) => {
-  const logout = () => {
-    // Clear user-related data
-    swal({
-      title: "Are you sure?",
-      text: "You are about to Log out!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        swal("You Logged out successfuly!", {
-          icon: "success",
-        });
-        localStorage.removeItem("token");
-        // Navigate to the login page
-        window.location.reload(true);
-      }
-    });
-  };
+  
 
   // Get Users
   const [users, setUsers] = useState([]);
@@ -42,46 +25,69 @@ const Admin = ({ getUser }) => {
   }, []);
   // Get Users end
 
-  return (
-    <div className="dashboard">
-      <div className="sidebar">
-        <div className="logo-details">
-          <i className="bx bxl-c-plus-plus"></i>
-          <span className="logo_name">Dashboard</span>
-        </div>
-        <ul className="nav-links">
-          <li>
-            <a href="#" className="active">
-              <i className="fa-solid fa-gauge"></i>
-              <span className="links_name">Dashboard</span>
-            </a>
-          </li>
 
-          <li className="log_out">
-            <a href="#">
-              <i className="fa-solid fa-right-from-bracket"></i>
-              <span onClick={logout} className="links_name">
-                Log out
-              </span>
-            </a>
-          </li>
-        </ul>
-      </div>
+  // delete User by ID
+  const deleteUser = async (userId) => {
+    swal({
+      title: "Are you sure?",
+      text: "You are about to Delete this user!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then(async(willDelete) => {
+      if (willDelete) {
+       
+        try {
+          const response = await fetch(`http://localhost:5000/user/${userId}`, {
+            method: "DELETE",
+          });
+    
+          if (response.ok) {
+            swal({
+              title: "Success",
+              text: "User was deleted successfully",
+              icon: "success",
+              timer: 3000,
+              button: false,
+            });
+            window.location.reload(true);
+          } else {
+            swal({
+              title: "Error",
+              text: "Failed to delete user",
+              icon: "error",
+              timer: 3000,
+              button: false,
+            });
+          }
+        } catch (error) {
+          swal({
+            title: "Error",
+            text: "An error occurred while deleting the user",
+            icon: "error",
+            timer: 3000,
+            button: false,
+          });
+          console.log(error);
+        }
+      }
+    });
+  };
+    
+
+  return (
       <section className="home-section">
         <nav>
           <div className="sidebar-button">
             <i className="bx bx-menu sidebarBtn"></i>
-            <span className="dashboard-title">Role: {getUser().role}</span>
+            <span className="dashboard-title">Admin Dashboard</span>
           </div>
           <div className="search-box">
             <input type="text" placeholder="Search..." />
             <i className="fa-solid fa-magnifying-glass bx-search"></i>
           </div>
-          <div className="profile-details">
-            <img src="images/profile.jpg" alt="" />
-            <span className="admin_name">{getUser().user_name}</span>
-            <i className="fa-solid fa-chevron-down bx-chevron-down"></i>
-          </div>
+          <UserProfile getUser={getUser}/>
+
         </nav>
         <div className="home-content">
           <div className="overview-boxes">
@@ -182,13 +188,7 @@ const Admin = ({ getUser }) => {
                     );
                   })}
                 </ul>
-                <ul className="details">
-                  <li className="topic">Actions</li>
-                  {users.map((user, index) => (
-                    <li className="user-action-wrapper" key={index}>{<><a><i className="fa-solid fa-pencil action-edit"></i></a><a><i className="fa-solid fa-trash action-delete"></i></a></>}</li>
-                  ))}
-                 
-                </ul>
+                <ActionButtons users={users} deleteUser={deleteUser}/>
               </div>
               <div className="button">
                 <a href="#">Add User</a>
@@ -258,7 +258,6 @@ const Admin = ({ getUser }) => {
           </div>
         </div>
       </section>
-    </div>
   );
 };
 

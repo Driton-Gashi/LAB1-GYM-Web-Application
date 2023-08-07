@@ -17,10 +17,13 @@ import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
 // import OldDashboard from "./pages/OldDashboard";
 import Dashboard from "./pages/Dashboard";
-import Admin from "./pages/Admin";
-import User from "./pages/User";
+import Admin from "./components/dashboard/Admin";
+import User from "./components/dashboard/User";
+// import General from "./components/dashboard/General";
 // layouts
 import Header from "./layouts/Header";
+
+
 
 const getUser = () => {
   const token = localStorage.getItem("token");
@@ -98,17 +101,27 @@ const router = createBrowserRouter(
       />
       <Route
         path="/dashboard"
-        element={getUser() == null ? (<Navigate to="/" replace/>):isLoggedIn()?(<Dashboard getUser={getUser} isLoggedIn={isLoggedIn} />):(<Navigate to="/" replace/>)}>
-
+        element={
+          getUser() == null ? (
+            <Navigate to="/" replace />
+          ) : isLoggedIn() ? (
+            <Dashboard getUser={getUser} isLoggedIn={isLoggedIn}/>
+          ) : (
+            <Navigate to="/" replace />
+          )
+        }
+      >
         <Route
-          path="admin"
-          element={<Admin getUser={getUser} isLoggedIn={isLoggedIn} />}
-
+          path="/dashboard"
+          element={ getUser() == null? <Navigate to="/"/> : <Navigate to={`/dashboard/${getUser().role}`}/>}
         />
         <Route
-          path="user"
+          path="/dashboard/admin"
+          element={ getUser() == null? <Navigate to="/"/> :getUser().role != "admin"?<Navigate to={`/dashboard/${getUser().role}`}/>:<Admin getUser={getUser} isLoggedIn={isLoggedIn} />}
+        />
+        <Route
+          path="/dashboard/user"
           element={<User getUser={getUser} isLoggedIn={isLoggedIn} />}
-
         />
       </Route>
       {/* <Route

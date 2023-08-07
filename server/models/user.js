@@ -11,11 +11,11 @@ class User {
     password,
     email,
     role,
-    has_subscription,
     image,
+    has_subscription,
     address,
     tel,
-    city
+    city,
   ) {
     this.user_id = user_id;
     this.user_name = user_name;
@@ -68,8 +68,8 @@ class User {
       userRow.password,
       userRow.email,
       userRow.role,
-      userRow.has_subscription,
       userRow.image,
+      userRow.has_subscription,
       userRow.address,
       userRow.tel_number,
       userRow.city
@@ -101,6 +101,7 @@ class User {
       values: [this.user_name, hash, this.email, this.role],
     };
     const { rows } = await pool.query(query);
+    
     this.user_id = rows[0].user_id;
     return this;
   }

@@ -1,11 +1,11 @@
-// import { Outlet,NavLink } from "react-router-dom";
 import swal from "sweetalert";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import "../css/dashboard.css";
 
 import Sidebar from "../components/dashboard/Sidebar";
-import DashboardHome from "../components/dashboard/DashboardHome";
-const Dashboard = ({ getUser }) => {
+// import DashboardHome from "../components/dashboard/DashboardHome";
+import { Outlet } from "react-router-dom";
+const Dashboard = (/*{ getUser }*/) => {
   const logout = () => {
     // Clear user-related data
     swal({
@@ -27,28 +27,29 @@ const Dashboard = ({ getUser }) => {
   };
 
   // Get Users
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
 
-  const getUsers = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/users");
-      const jsonData = await response.json();
+  // const getUsers = async () => {
+  //   try {
+  //     const response = await fetch("http://localhost:5000/users");
+  //     const jsonData = await response.json();
 
-      setUsers(jsonData);
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
+  //     setUsers(jsonData);
+  //   } catch (err) {
+  //     console.error(err.message);
+  //   }
+  // };
 
-  useEffect(() => {
-    getUsers();
-  }, []);
+  // useEffect(() => {
+  //   getUsers();
+  // }, []);
   // Get Users end
 
   return (
     <div className="dashboard">
       <Sidebar logout={logout}/>
-      <DashboardHome getUser={getUser} users={users}/>
+      {/* <DashboardHome getUser={getUser} users={users}/> */}
+      <Outlet/>
     </div>
   );
 };

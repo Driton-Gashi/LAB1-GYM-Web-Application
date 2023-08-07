@@ -18,7 +18,7 @@ app.use(express.json());
 app.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    const user = new User(undefined, name, password, email, "user");
+    const user = new User(undefined, name, password, email, "user", "userProfile/defaultProfile.png");
 
     const userExists = await pool.query(
       "SELECT * FROM users WHERE email = $1",

@@ -1,4 +1,4 @@
-
+import { NavLink } from "react-router-dom"
 const Sidebar = ({logout}) => {
   return (
     <div className="sidebar">
@@ -7,17 +7,27 @@ const Sidebar = ({logout}) => {
           <span className="logo_name">Dashboard</span>
         </div>
         <ul className="nav-links">
+          
           <li>
-            <a href="#" className="active">
-              <i className="fa-solid fa-gauge"></i>
-              <span className="links_name">Dashboard</span>
-            </a>
+            <NavLink to="/dashboard/admin">
+            <i className="fa-solid fa-chart-line"></i>
+              
+            <span className="links_name">Admin Dashboard</span>
+              
+              </NavLink>
           </li>
-
-          <li className="log_out">
-            <a href="#">
+          <li>
+            <NavLink to="/dashboard/user">
+            <i className="fa-solid fa-user"></i>
+              
+            <span className="links_name">Profile</span>
+              
+              </NavLink>
+          </li>
+          <li  onClick={logout} className="log_out">
+            <a href="#Logout">
               <i className="fa-solid fa-right-from-bracket"></i>
-              <span onClick={logout} className="links_name">
+              <span className="links_name">
                 Log out
               </span>
             </a>
