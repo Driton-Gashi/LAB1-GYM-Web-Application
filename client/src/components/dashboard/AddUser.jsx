@@ -142,7 +142,7 @@ const AddUser = ({show,setshow}) => {
         timer: 3000,
         button: false,
       });
-     
+      window.location.reload(true);
     
     } else if (response.status === 400) {
       const { message } = await response.json();
@@ -162,21 +162,21 @@ const AddUser = ({show,setshow}) => {
         <form className='addUser' onSubmit={handleRegisterNewUser}>
            <div className="input-wrapper">
             <h4>Username</h4>
-            <input type="text" name="" id="" className="username" placeholder="Username" value={name} onChange={(e) => setname(e.target.value.toLowerCase())} />
+            <input type="text"  className="username" placeholder="Username" value={name} onChange={(e) => setname(e.target.value.toLowerCase())} />
            </div>
            <div className="input-wrapper">
            <h4>Email</h4>
 
-            <input type="email" name="" id="" className="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value.toLowerCase())} />
+            <input type="email"  className="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value.toLowerCase())} />
            </div>
            <div className="input-wrapper">
            <h4>Password</h4>
 
-            <input type="password" name="" id="" className="password" placeholder="Password"  value={password} onChange={(e) => setPassword(e.target.value)}/>
+            <input type="password"  className="password" placeholder="Password"  value={password} onChange={(e) => setPassword(e.target.value)}/>
            </div>
            <div className="input-wrapper">
            <h4>Role</h4>
-           <select onChange={(e) => setRole(e.target.value)} className="roleInput" name="" id="">
+           <select onChange={(e) => setRole(e.target.value)} className="roleInput" >
             <option value="">choose role</option>
             <option value="user">User</option>
             <option value="publisher">Publisher</option>

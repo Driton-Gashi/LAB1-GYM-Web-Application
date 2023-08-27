@@ -4,11 +4,32 @@ import swal from "sweetalert";
 import UserProfile from "./UserProfile";
 import ActionButtons from "./ActionButtons";
 import AddUser from "./AddUser";
+import AdminTopSellingProducts from "./AdminTopSellingProducts";
+import EditUser from "./EditUser";
 const Admin = ({ getUser }) => {
   
+  const getStars = (review) => {
+    let reviewStars = [];
+
+    for (let i = 0; i < review; i++) {
+      reviewStars.push(<i key={i} className="fa-solid fa-star"></i>);
+    }
+    for (let i = reviewStars.length; i < 5; i++) {
+      reviewStars.push(<i key={i} className="fa-regular fa-star"></i>);
+    }
+    return reviewStars;
+  };
+
   const [show, setshow] = useState(false)
 
+  const [popup, setPopup] = useState({
+    isOpen: false,
+  });
 
+  // Edit User Variables
+  const [showEditUser, setShowEditUser] = useState(false)
+  const [id, setId] = useState(0);
+  
   // Get Users
   const [users, setUsers] = useState([]);
 
@@ -77,10 +98,66 @@ const Admin = ({ getUser }) => {
     });
   };
     
+  // Code for fetching products
+
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    // Define the URL for your API endpoint
+    let url = 'http://localhost:5000/items';
+
+   
+
+    // Fetch data from the API
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setItems(data); // Store the fetched data in state
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
 
   return (
       <section className="home-section">
+        {/* Add User Form */}
         <AddUser show={show} setshow={setshow}/>
+
+        {/* Edit User Form */}
+        <EditUser id={id} showEditUser={showEditUser} setShowEditUser={setShowEditUser} />
+
+
+        {/* Product Popup when product is clicked */}
+        {!popup.isOpen ? (
+        ""
+      ) : (
+        <div className="itemPopup">
+          <i
+            onClick={() => {
+              setPopup({ isOpen: false });
+            }}
+            className="fa-solid fa-xmark popupClose"
+          ></i>
+          <div className="InnerItemPopup">
+            <div className="itemPopup_left">
+              <img src={popup.image} alt="" />
+            </div>
+            <div className="itemPopup_right">
+              <h1>{popup.title}</h1>
+              <h5>
+                <span>category: </span>
+                {popup.category}
+              </h5>
+              <div className="review">{getStars(popup.review)}</div>
+              <h4>{popup.price}€</h4>
+              <p>{popup.description}.</p>
+              <button>Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      )}
         <nav>
           <div className="sidebar-button">
             <i className="bx bx-menu sidebarBtn"></i>
@@ -193,73 +270,13 @@ const Admin = ({ getUser }) => {
                     );
                   })}
                 </ul>
-                <ActionButtons users={users} deleteUser={deleteUser}/>
+                <ActionButtons setId={setId} setShowEditUser={setShowEditUser} users={users} deleteUser={deleteUser}/>
               </div>
               <div className="button">
                 <a className="addUserBtn" onClick={()=>{setshow(true)}} >Add User</a>
               </div>
             </div>
-            <div className="top-sales box">
-              <div className="title">Top Seling Product</div>
-              <ul className="top-sales-details">
-                <li>
-                  <a href="#">
-                    <img src="images/sunglasses.jpg" alt="" />
-                    <span className="product">Vuitton Sunglasses</span>
-                  </a>
-                  <span className="price">$1107</span>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="images/jeans.jpg" alt="" />
-                    <span className="product">Hourglass Jeans </span>
-                  </a>
-                  <span className="price">$1567</span>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="images/nike.jpg" alt="" />
-                    <span className="product">Nike Sport Shoe</span>
-                  </a>
-                  <span className="price">$1234</span>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="images/scarves.jpg" alt="" />
-                    <span className="product">Hermes Silk Scarves.</span>
-                  </a>
-                  <span className="price">$2312</span>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="images/blueBag.jpg" alt="" />
-                    <span className="product">Succi Ladies Bag</span>
-                  </a>
-                  <span className="price">$1456</span>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="images/bag.jpg" alt="" />
-                    <span className="product">Gucci Womens&apos;s Bags</span>
-                  </a>
-                  <span className="price">$2345</span>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="images/addidas.jpg" alt="" />
-                    <span className="product">Addidas Running Shoe</span>
-                  </a>
-                  <span className="price">$2345</span>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="images/shirt.jpg" alt="" />
-                    <span className="product">Bilack Wear&apos;s Shirt</span>
-                  </a>
-                  <span className="price">$1245</span>
-                </li>
-              </ul>
-            </div>
+           <AdminTopSellingProducts items={items} setPopup={setPopup}/>
           </div>
         </div>
       </section>

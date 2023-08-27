@@ -296,6 +296,21 @@ app.get("/users", async (req, res) => {
   }
 });
 
+// Get User by ID
+app.get("/getuser/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    let user = await pool.query(
+      "SELECT * from users where user_id = $1",
+      [id]
+    );
+    res.json(user.rows);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 app.get("/cartitems/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -305,7 +320,7 @@ app.get("/cartitems/:id", async (req, res) => {
       [id]
     );
     res.json(allCartItems.rows);
-    console.log(allCartItems.rows);
+    
   } catch (error) {
     console.log(error.message);
   }
@@ -391,6 +406,24 @@ app.put("/users/:id", async (req, res) => {
       );
       response = res.json({ message: "User was updated" });
     }
+    return response;
+  } catch (error) {
+    console.log(error.message);
+    // res.status(500).json("An error occurred while updating the user");
+  }
+});
+
+app.put("/adminedituser/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { username, role, address, tel, city, image } = req.body;
+
+      const update = await pool.query(
+        "UPDATE users SET user_name = $1, role = $2, address = $3, tel_number = $4, city = $5, image = $6 WHERE user_id = $7",
+        [username, role, address, tel, city, image, id]
+      );
+      response = res.json({ message: "User was updated" });
+    
     return response;
   } catch (error) {
     console.log(error.message);

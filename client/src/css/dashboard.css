@@ -346,7 +346,6 @@ nav .profile-details i{
   object-fit: cover;
   border-radius: 12px;
   margin-right: 10px;
-  background: #333;
 }
 .sales-boxes .top-sales li a{
   display: flex;
@@ -382,7 +381,7 @@ nav .profile-details i{
   text-align: center;
   padding-bottom: 1rem;
 }
-.addUser-wrapper .input-wrapper input, .addUser-wrapper .input-wrapper .roleInput{
+.addUser-wrapper .input-wrapper input, .addUser-wrapper .input-wrapper .roleInput, .addUser-wrapper .input-wrapper .cityInput{
   width: 100%;
   border:1px solid var(--light-black);
   padding: 0.5rem 1rem;
@@ -392,9 +391,11 @@ nav .profile-details i{
 position: absolute;
 top: -1rem;
 right: -1rem;
-color: rgb(100, 0, 0);
+color: rgb(150, 0, 0);
 font-size: 2rem;
 cursor: pointer;
+border-radius: 55%;
+background-color: #fff;
 }
 .input-wrapper > button{
   background-color: var(--dark-blue);
@@ -417,6 +418,22 @@ cursor: pointer;
 .addUserBtn{
   cursor: pointer;
 }
+.adminProduct{
+  transition: 0.2s ease all;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+.adminProduct:hover{
+  border-bottom-color: var(--light-black);
+}
+
+.editUserWrapper.addUser-wrapper .input-wrapper{
+  padding: 0.1rem 0;
+}
+.editUserWrapper .email{
+  cursor: not-allowed;
+}
+/* Admin dashboard styling end */
 
 /* Responsive Media Query */
 @media (max-width: 1240px) {
