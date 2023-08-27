@@ -24,6 +24,30 @@ const Sidebar = ({logout}) => {
               
               </NavLink>
           </li>
+          <li>
+            <NavLink to="/dashboard/publisher">
+            <i className="fa-solid fa-user"></i>
+              
+            <span className="links_name">Publisher</span>
+              
+              </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/gymtrainer">
+            <i className="fa-solid fa-user"></i>
+              
+            <span className="links_name">GYM Trainer</span>
+              
+              </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/yogatrainer">
+            <i className="fa-solid fa-user"></i>
+              
+            <span className="links_name">Yoga Trainer</span>
+              
+              </NavLink>
+          </li>
           <li  onClick={logout} className="log_out">
             <a href="#Logout">
               <i className="fa-solid fa-right-from-bracket"></i>

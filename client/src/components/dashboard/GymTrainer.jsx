@@ -1,11 +1,11 @@
 import UserProfile from "./UserProfile"
-const Publisher = ({getUser}) => {
+const GymTrainer = ({getUser}) => {
   return (
     <section className="home-section">
     <nav>
       <div className="sidebar-button">
         <i className="bx bx-menu sidebarBtn"></i>
-        <span className="dashboard-title">Publisher</span>
+        <span className="dashboard-title">Gym Trainer</span>
       </div>
       {/* <div className="search-box">
         <input type="text" placeholder="Search..." />
@@ -171,4 +171,4 @@ const Publisher = ({getUser}) => {
   )
 }
 
-export default Publisher
+export default GymTrainer

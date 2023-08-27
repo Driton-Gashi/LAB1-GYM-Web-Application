@@ -19,6 +19,9 @@ import Cart from "./pages/Cart";
 import Dashboard from "./pages/Dashboard";
 import Admin from "./components/dashboard/Admin";
 import User from "./components/dashboard/User";
+import Publisher from "./components/dashboard/Publisher";
+import GymTrainer from "./components/dashboard/GymTrainer";
+import YogaTrainer from "./components/dashboard/YogaTrainer";
 // import General from "./components/dashboard/General";
 // layouts
 import Header from "./layouts/Header";
@@ -122,6 +125,18 @@ const router = createBrowserRouter(
         <Route
           path="/dashboard/user"
           element={<User getUser={getUser} isLoggedIn={isLoggedIn} />}
+        />
+        <Route
+          path="/dashboard/publisher"
+          element={<Publisher getUser={getUser} isLoggedIn={isLoggedIn} />}
+        />
+         <Route
+          path="/dashboard/gymtrainer"
+          element={<GymTrainer getUser={getUser} isLoggedIn={isLoggedIn} />}
+        />
+        <Route
+          path="/dashboard/yogatrainer"
+          element={<YogaTrainer getUser={getUser} isLoggedIn={isLoggedIn} />}
         />
       </Route>
       {/* <Route
