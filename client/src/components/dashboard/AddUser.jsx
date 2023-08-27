@@ -1,17 +1,13 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
 import swal from "sweetalert";
 
-import "../css/login.css";
-import background from "../img/loginbg.svg";
+const AddUser = ({show,setshow}) => {
 
-const Register = () => {
   const [name, setname] = useState("");
   const [password, setPassword] = useState("");
-  const [confirm_password, setconfirm_Password] = useState("");
   const [email, setEmail] = useState("");
-
-  const handleSubmit = async (event) => {
+  const [role, setRole] = useState("");
+  const handleRegisterNewUser = async (event) => {
     event.preventDefault();
 
     if (name.length < 3 || name.length > 16) {
@@ -116,10 +112,10 @@ const Register = () => {
       });
       return false;
     }
-    if (confirm_password !== password) {
+    if (role.length == 0) {
       swal({
         title: "Oops, Something went wrong",
-        text: 'Password should be same as "Confirm Password"!',
+        text: "You forgot to choose a role!",
         icon: "error",
         timer: 3000,
         button: false,
@@ -127,17 +123,17 @@ const Register = () => {
       return false;
     }
 
-    const response = await fetch("http://localhost:5000/register", {
+    const response = await fetch("http://localhost:5000/registernewuser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ name, email, password, role }),
     });
 
     if (response.ok) {
 
-      const data = await response.json();
+      // const data = await response.json();
 
       swal({
         title: "Congrats",
@@ -146,11 +142,8 @@ const Register = () => {
         timer: 3000,
         button: false,
       });
-      const token = data.token;
-          localStorage.setItem("token", token);
-      setTimeout(() => {
-        window.location = "http://localhost:3000/dashboard";
-      }, 2000);
+     
+    
     } else if (response.status === 400) {
       const { message } = await response.json();
       swal({
@@ -161,78 +154,43 @@ const Register = () => {
     }
   };
 
-  // swal("Here's the title!", "...and here's the text!"); title and text
-  // swal({
-  //   title: "Congrats!",
-  //   text: "You registered successfuly",
-  //   icon: "success",
-  // timer: 2000
-  // });
-
   return (
-    <>
-      <img className="clouds" src={background} />
-      <div className="signup register-signup register">
-        <h2>Register</h2>
-        <h3>It&apos;s quick & simple</h3>
-        <form className="form" onSubmit={handleSubmit}>
-          <div className="textbox">
-            <input
-              className="name"
-              type="text"
-              value={name} onChange={(e) => setname(e.target.value.toLowerCase())}
-            />
-            <label>Name</label>
-            <span className="material-symbols-outlined">
-              <i className="fa-solid fa-user"></i>
-            </span>
-          </div>
-          <div className="textbox">
-            <input
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value.toLowerCase())}
-            />
-            <label>Email</label>
-            <span className="material-symbols-outlined">
-              <i className="fa-solid fa-envelope"></i>
-            </span>
-          </div>
-          <div className="textbox">
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <label>Password</label>
-            <span className="material-symbols-outlined">
-              <i className="fa-solid fa-key"></i>
-            </span>
-          </div>
-          <div className="textbox">
-            <input
-              type="password"
-              value={confirm_password}
-              onChange={(e) => setconfirm_Password(e.target.value)}
-            />
-            <label>Confirm Password</label>
-            <span className="material-symbols-outlined">
-              <i className="fa-solid fa-lock"></i>
-            </span>
-          </div>
-          <p className="signup-message">
-            Signed up already? <NavLink to="/login">Log In</NavLink>
-          </p>
+    <div className={`addUser-wrapper ${show?"":"hide"}`}>
+        <i onClick={()=>{setshow(false)}} className="fa-solid fa-circle-xmark closeForm"></i>
 
-          <button type="submit">
-            Register
-            <span className="material-symbols-outlined">
-              <i className="fa-solid fa-arrow-right submitBtn-arrow"></i>
-            </span>
-          </button>
+        <h2>Add New User</h2>
+        <form className='addUser' onSubmit={handleRegisterNewUser}>
+           <div className="input-wrapper">
+            <h4>Username</h4>
+            <input type="text" name="" id="" className="username" placeholder="Username" value={name} onChange={(e) => setname(e.target.value.toLowerCase())} />
+           </div>
+           <div className="input-wrapper">
+           <h4>Email</h4>
+
+            <input type="email" name="" id="" className="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value.toLowerCase())} />
+           </div>
+           <div className="input-wrapper">
+           <h4>Password</h4>
+
+            <input type="password" name="" id="" className="password" placeholder="Password"  value={password} onChange={(e) => setPassword(e.target.value)}/>
+           </div>
+           <div className="input-wrapper">
+           <h4>Role</h4>
+           <select onChange={(e) => setRole(e.target.value)} className="roleInput" name="" id="">
+            <option value="">choose role</option>
+            <option value="user">User</option>
+            <option value="publisher">Publisher</option>
+            <option value="gymtrainer">GYM trainer</option>
+            <option value="yogatrainer">Yoga Trainer</option>
+            <option value="Admin">Admin</option>
+          </select>
+           </div>
+           <div className="input-wrapper">
+            <button>Create</button>
+           </div>
         </form>
-      </div>
-    </>
-  );
-};
-export default Register;
+    </div>
+  )
+}
+
+export default AddUser

@@ -359,6 +359,65 @@ nav .profile-details i{
   font-weight: 400;
   color: #333;
 }
+
+/* Admin Dashboard page styling */
+.addUser-wrapper{
+  width: 500px;
+  background-color: #fff;
+  height: auto;
+  padding: 2rem;
+  margin: auto;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.addUser-wrapper .input-wrapper{
+  padding: 0.3rem 0;
+}
+.addUser-wrapper > h2{
+  text-align: center;
+  padding-bottom: 1rem;
+}
+.addUser-wrapper .input-wrapper input, .addUser-wrapper .input-wrapper .roleInput{
+  width: 100%;
+  border:1px solid var(--light-black);
+  padding: 0.5rem 1rem;
+  border-radius: 17px 2px 17px 2px;
+}
+.closeForm{
+position: absolute;
+top: -1rem;
+right: -1rem;
+color: rgb(100, 0, 0);
+font-size: 2rem;
+cursor: pointer;
+}
+.input-wrapper > button{
+  background-color: var(--dark-blue);
+  border:1px solid rgb(29, 122, 158);
+
+  outline: 0;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+  cursor: pointer;
+  transition: ease 0.2s background;
+}
+.input-wrapper > button:hover{
+  background-color: rgb(69, 162, 198);
+}
+
+.addUserBtn{
+  cursor: pointer;
+}
+
 /* Responsive Media Query */
 @media (max-width: 1240px) {
   .sidebar{

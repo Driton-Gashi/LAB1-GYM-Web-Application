@@ -3,8 +3,11 @@ import { useState, useEffect } from "react";
 import swal from "sweetalert";
 import UserProfile from "./UserProfile";
 import ActionButtons from "./ActionButtons";
+import AddUser from "./AddUser";
 const Admin = ({ getUser }) => {
   
+  const [show, setshow] = useState(false)
+
 
   // Get Users
   const [users, setUsers] = useState([]);
@@ -77,6 +80,7 @@ const Admin = ({ getUser }) => {
 
   return (
       <section className="home-section">
+        <AddUser show={show} setshow={setshow}/>
         <nav>
           <div className="sidebar-button">
             <i className="bx bx-menu sidebarBtn"></i>
@@ -93,11 +97,11 @@ const Admin = ({ getUser }) => {
           <div className="overview-boxes">
             <div className="box">
               <div className="right-side">
-                <div className="box-topic">Total Order</div>
-                <div className="number">40,876</div>
+                <div className="box-topic">Total Users</div>
+                <div className="number">{users.length}</div>
                 <div className="indicator">
                   <i className="bx bx-up-arrow-alt"></i>
-                  <span className="text">Up from yesterday</span>
+                  <span className="text">Scaned {Math.floor(Math.random() * 60)} minutes ago </span>
                 </div>
               </div>
               <i className="bx bx-cart-alt cart"></i>
@@ -105,10 +109,11 @@ const Admin = ({ getUser }) => {
             <div className="box">
               <div className="right-side">
                 <div className="box-topic">Total Sales</div>
-                <div className="number">38,876</div>
+                <div className="number">{Math.floor(Math.random() * 100)}</div>
                 <div className="indicator">
                   <i className="bx bx-up-arrow-alt"></i>
-                  <span className="text">Up from yesterday</span>
+                  <span className="text">Scaned {Math.floor(Math.random() * 24)} hours ago </span>
+
                 </div>
               </div>
               <i className="bx bxs-cart-add cart two"></i>
@@ -191,7 +196,7 @@ const Admin = ({ getUser }) => {
                 <ActionButtons users={users} deleteUser={deleteUser}/>
               </div>
               <div className="button">
-                <a href="#">Add User</a>
+                <a className="addUserBtn" onClick={()=>{setshow(true)}} >Add User</a>
               </div>
             </div>
             <div className="top-sales box">

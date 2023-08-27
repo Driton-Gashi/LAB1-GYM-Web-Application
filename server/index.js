@@ -43,6 +43,35 @@ app.post("/register", async (req, res) => {
   }
 });
 
+// Register a new user in Admin Dashboard
+app.post("/registernewuser", async (req, res) => {
+  try {
+    const { name, email, password, role } = req.body;
+    const user = new User(undefined, name, password, email, role, "userProfile/defaultProfile.png");
+
+    const userExists = await pool.query(
+      "SELECT * FROM users WHERE email = $1",
+      [email]
+    );
+
+    let response;
+    if (userExists.rows.length > 0) {
+      // Return an error response if the user already exists
+      response = res.status(400).json({
+        message: "User with this email already exists, try another email!",
+      });
+    } else {
+      await user.save();
+      const token = createToken(user);
+      response = res.json({ token });
+    }
+
+    return response;
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
 //Create a video
 
 app.post("/video", async (req, res) => {
