@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import swal from "sweetalert";
 
-const EditUser = ({ showEditUser, setShowEditUser, id }) => {
+const EditUser = ({ showEditUser, setShowEditUser, id, title }) => {
   const [name, setname] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
@@ -344,7 +344,7 @@ const EditUser = ({ showEditUser, setShowEditUser, id }) => {
         className="fa-solid fa-circle-xmark closeForm"
       ></i>
 
-      <h2>Edit User</h2>
+      <h2>{title == "Edit Your Profile"?"Edit Your Profile":"Edit User"}</h2>
       <form className="addUser" onSubmit={handleEditUser}>
         <div className="input-wrapper">
           <h4>Username</h4>
@@ -405,14 +405,12 @@ const EditUser = ({ showEditUser, setShowEditUser, id }) => {
             placeholder="04* *** ***"
             value={tel}
             onChange={(e) => {
-
-               
               if (
                 isNumber(e.nativeEvent.data) ||
                 e.nativeEvent.inputType == "deleteContentBackward"
               ) {
                 
-                if(tel.length >= 10 && e.nativeEvent.inputType == "insertText"){
+                if(tel.length >= 9 && e.nativeEvent.inputType == "insertText"){
                     return;
                 }else{
                 setTel(e.target.value);

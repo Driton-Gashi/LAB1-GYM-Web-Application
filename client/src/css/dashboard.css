@@ -377,6 +377,9 @@ nav .profile-details i{
 .addUser-wrapper .input-wrapper{
   padding: 0.3rem 0;
 }
+.addUser-wrapper .input-wrapper > h4{
+  font-size: 1rem;
+}
 .addUser-wrapper > h2{
   text-align: center;
   padding-bottom: 1rem;
@@ -433,7 +436,126 @@ background-color: #fff;
 .editUserWrapper .email{
   cursor: not-allowed;
 }
+.profile-details{
+position: relative;
+cursor: pointer;
+}
+.profile-details-dropdown{
+  background: #fff;
+  position: absolute;
+  top: 117%;
+  border: 0.1px solid lightgray;
+  width: 100%;
+  border-radius: 7px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 5px;
+
+}
+.profile-details-dropdown ul{
+  list-style-type: none;
+}
+.profile-details-dropdown ul.borderOn{
+  border-bottom: 0.1px solid lightgray;
+}
+.profile-details-dropdown ul li a > i{
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+.profile-details-dropdown ul li a{
+  color: #000;
+  text-decoration: none;
+  width: 100%;
+  display: inline-block;
+  display: flex;
+  align-items: center;
+}
+.profile-details-dropdown ul li{
+  cursor: pointer;
+  padding: 0.4rem 1rem;
+}
+.profile-details-dropdown ul li:hover{
+  background-color: rgb(221, 221, 221);
+}
+.search-box{
+  position: relative;
+}
+.search-results{
+  position: absolute;
+  top: 100%;
+  background-color: #fff;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.35) 1px 3px 5px;
+  border-radius: 0 0 10px 10px;
+  border: 0.1px solid lightgray;
+  transition: 0.3s ease all;
+}
+.search-results .search-result-user{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0.5rem;
+  border-bottom: 0.1px solid lightgray;
+  position: relative;
+}
+.search-results .search-result-user h4{
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+.search-results .search-result-user a{
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--light-black);
+}
+.search-result-user .user-actions{
+  position: absolute;
+  right: 0.5rem;
+}
+.search-result-user .user-actions a{
+  font-size: 1.05rem;
+}
+.search-results .search-result-user .action-edit{
+  margin-right: 0.6rem;
+}
+.search-results .search-result-user:hover{
+  background-color: rgb(221, 221, 221);
+}
+
+.search-results .search-result-user img{
+  width: 30px;
+}
 /* Admin dashboard styling end */
+
+/* Profile Dashboard styling start */
+.profile-head{
+  display: flex;
+  position: relative;
+}
+.profile-head .profile-image{
+  padding-right: 2rem;
+}
+.profile-data > h3{
+  font-weight: normal;
+  font-size: 1rem;
+}
+.profile-head .profile-image img{
+  width: 100px;
+}
+.profile-data .role{
+  font-size: 0.7rem;
+  color: var(--dark-blue);
+  margin-top: -5px;
+}
+.profile-actions{
+  float: right;
+  position: absolute;
+  right: 0;
+}
+.profile-actions > a{
+  font-size: 1.5rem;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+/* Profile Dashboard styling end */
 
 /* Responsive Media Query */
 @media (max-width: 1240px) {

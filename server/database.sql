@@ -13,7 +13,7 @@ CREATE TABLE users(
 );
 -- Shtojeni tani qet kod ne databaz
 ALTER TABLE users
-ADD COLUMN image VARCHAR(250) DEFAULT '../userProfile/defaultProfile.png';
+ADD COLUMN image VARCHAR(250) DEFAULT './userProfile/defaultProfile.png';
 
 
 create table categories(

@@ -1,7 +1,61 @@
+import { useState } from "react"
+import swal from "sweetalert";
 import UserProfile from "./UserProfile"
+import EditUser from "./EditUser";
 const User = ({getUser}) => {
+  const [showEditUser, setShowEditUser] = useState(false);
+  // delete User by ID
+  const deleteUser = async (userId) => {
+    swal({
+      title: "Are you sure?",
+      text: "You are about to Delete this user!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then(async(willDelete) => {
+      if (willDelete) {
+       
+        try {
+          const response = await fetch(`http://localhost:5000/user/${userId}`, {
+            method: "DELETE",
+          });
+    
+          if (response.ok) {
+            swal({
+              title: "Success",
+              text: "User was deleted successfully",
+              icon: "success",
+              timer: 3000,
+              button: false,
+            });
+            window.location.reload(true);
+          } else {
+            swal({
+              title: "Error",
+              text: "Failed to delete user",
+              icon: "error",
+              timer: 3000,
+              button: false,
+            });
+          }
+        } catch (error) {
+          swal({
+            title: "Error",
+            text: "An error occurred while deleting the user",
+            icon: "error",
+            timer: 3000,
+            button: false,
+          });
+          console.log(error);
+        }
+      }
+    });
+  };
   return (
     <section className="home-section">
+
+        <EditUser title={"Edit Your Profile"} id={getUser().user_id} showEditUser={showEditUser} setShowEditUser={setShowEditUser} />
+      
     <nav>
       <div className="sidebar-button">
         <i className="bx bx-menu sidebarBtn"></i>
@@ -62,46 +116,27 @@ const User = ({getUser}) => {
       </div>
       <div className="sales-boxes">
         <div className="recent-sales box">
-          <div className="title"><i className="fa-solid fa-user"></i> Users</div>
-          <div className="sales-details">
-            <ul className="details">
-              <li className="topic">Username</li>
-             
-            </ul>
-            <ul className="details">
-              <li className="topic">Email</li>
+          <div className="profile-head">
+            <div className="profile-image">
+              <img src={getUser().image} alt="" />
+            </div>
+            <div className="profile-data">
+              <h3 className="username">{getUser().user_name}</h3>
+              <h3 className="role">{getUser().role}</h3>
+              <h3 className="email">{getUser().email}</h3>
+              <h3 className="address">{getUser().address}</h3>
+              <h3 className="tel">{getUser().tel}</h3>
+              <h3 className="city">{getUser().city}</h3>
 
-              
-            </ul>
-            <ul className="details">
-              <li className="topic">Role</li>
-             
-            </ul>
-            {/*
-              User Telephone number column
-            <ul className="details">
-              <li className="topic">Tel</li>
-              {users.map((user, index) =>
-                user.tel_number == null || user.tel_number == "" ? (
-                  <li key={index}>{<a>/</a>}</li>
-                ) : (
-                  <li key={index}>
-                    <a href={`tel:${user.tel_number}`}>{user.tel_number}</a>
-                  </li>
-                )
-              )}
-            </ul> */}
-            <ul className="details">
-              <li className="topic">Date</li>
-              
-            </ul>
-            <ul className="details">
-              <li className="topic">Actions</li>
-              
-            </ul>
-          </div>
-          <div className="button">
-            <a href="#">Add User</a>
+            </div>
+            <div className="profile-actions">
+            <a title="Click to Open Edit Your Profile Popup" onClick={()=>{setShowEditUser(true)}}>
+                <i  className="fa-solid fa-pencil action-edit"></i>
+              </a>
+              <a title="Click To Delete You Account" onClick={() => deleteUser(getUser().user_id)}>
+                <i className="fa-solid fa-trash action-delete"></i>
+              </a>
+            </div>
           </div>
         </div>
         <div className="top-sales box">

@@ -84,7 +84,7 @@ const Training = ({getUser}) => {
 
     </section>
 
-    <div className="container">
+    <div className="training-container">
 
       <h1>Programs</h1>
       

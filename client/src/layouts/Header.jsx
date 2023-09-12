@@ -89,6 +89,35 @@ const Header = ({ getUser, isLoggedIn }) => {
         <Outlet />
       </main>
       <footer>
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <p>
+                Copyright &copy; 2020 Training Studio - Designed by{" "}
+                <a
+                  rel="nofollow"
+                  href="https://templatemo.com"
+                  className="tm-text-link"
+                  target="_parent"
+                >
+                  TemplateMo
+                </a>
+                <br />
+                Distributed by{" "}
+                <a
+                  rel="noreferrer"
+                  href="https://themewagon.com"
+                  className="tm-text-link"
+                  target="_blank"
+                >
+                  ThemeWagon
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+      {/* <footer>
         <div className="footer-section">
           <img className="footer-logo" src={logo} alt="" />
         </div>
@@ -111,7 +140,7 @@ const Header = ({ getUser, isLoggedIn }) => {
       </footer>
       <div className="after-footer">
         <span className="color-blue">LMAO</span> copyright © all rights reserved
-      </div>
+      </div> */}
     </>
   );
 };

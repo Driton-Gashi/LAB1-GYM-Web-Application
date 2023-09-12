@@ -311,6 +311,21 @@ app.get("/getuser/:id", async (req, res) => {
   }
 });
 
+// Get User by Username
+app.get("/getuserbyusername/:username", async (req, res) => {
+  try {
+    const { username } = req.params;
+
+    let users = await pool.query(
+      "SELECT * FROM users WHERE user_name LIKE $1 ORDER BY SIMILARITY(user_name, $2) DESC",
+      [`%${username}%`, username]
+    );
+    res.json(users.rows);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 app.get("/cartitems/:id", async (req, res) => {
   try {
     const { id } = req.params;

@@ -5,7 +5,7 @@ import "../css/dashboard.css";
 import Sidebar from "../components/dashboard/Sidebar";
 // import DashboardHome from "../components/dashboard/DashboardHome";
 import { Outlet } from "react-router-dom";
-const Dashboard = (/*{ getUser }*/) => {
+const Dashboard = ({ getUser }) => {
   const logout = () => {
     // Clear user-related data
     swal({
@@ -47,7 +47,7 @@ const Dashboard = (/*{ getUser }*/) => {
 
   return (
     <div className="dashboard">
-      <Sidebar logout={logout}/>
+      <Sidebar getUser={getUser} logout={logout}/>
       {/* <DashboardHome getUser={getUser} users={users}/> */}
       <Outlet/>
     </div>

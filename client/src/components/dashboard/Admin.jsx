@@ -6,6 +6,7 @@ import ActionButtons from "./ActionButtons";
 import AddUser from "./AddUser";
 import AdminTopSellingProducts from "./AdminTopSellingProducts";
 import EditUser from "./EditUser";
+import SearchUser from "./SearchUser";
 const Admin = ({ getUser }) => {
   
   const getStars = (review) => {
@@ -163,11 +164,8 @@ const Admin = ({ getUser }) => {
             <i className="bx bx-menu sidebarBtn"></i>
             <span className="dashboard-title">Admin Dashboard</span>
           </div>
-          <div className="search-box">
-            <input type="text" placeholder="Search..." />
-            <i className="fa-solid fa-magnifying-glass bx-search"></i>
-          </div>
-          <UserProfile getUser={getUser}/>
+          <SearchUser  setId={setId} setShowEditUser={setShowEditUser} deleteUser={deleteUser}/>
+          <UserProfile getUser={getUser} />
 
         </nav>
         <div className="home-content">

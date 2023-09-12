@@ -122,10 +122,10 @@ const Login = () => {
             timer: 3000,
             button: false,
           });
+
           // Redirect to the dashboard or perform any other action
           setTimeout(() => {
-            window.location.reload(true);
-            navigate("/dashboard");
+           navigate('/dashboard');        
           }, 2000);
         } else {
           console.error("Token not found in response data");

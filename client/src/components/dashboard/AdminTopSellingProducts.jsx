@@ -17,9 +17,7 @@ const AdminTopSellingProducts = ({ items,setPopup }) => {
           }} key={index}>
             <a href="#">
               <img
-                
                 src={`${item.item_image}`}
-                alt=""
               />
               <span className="product">{item.item_name}</span>
             </a>
