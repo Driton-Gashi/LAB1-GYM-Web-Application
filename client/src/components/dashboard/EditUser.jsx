@@ -369,8 +369,7 @@ const EditUser = ({ showEditUser, setShowEditUser, id, title }) => {
             onChange={(e) => setEmail(e.target.value.toLowerCase())}
           />
         </div>
-
-        <div className="input-wrapper">
+        {title == "Edit Your Profile"?"":(<div className="input-wrapper">
           <h4>Role</h4>
           <select
             onChange={(e) => setRole(e.target.value)}
@@ -384,7 +383,8 @@ const EditUser = ({ showEditUser, setShowEditUser, id, title }) => {
             <option value="yogatrainer">Yoga Trainer</option>
             <option value="admin">Admin</option>
           </select>
-        </div>
+        </div>)}
+        
         <div className="input-wrapper">
           <h4>Address</h4>
 

@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const User = require("./models/user"); // assuming you have a User model
+const User = require("./models/user");
 
 // Create a JWT token
 function createToken(user) {
@@ -9,7 +9,7 @@ function createToken(user) {
   });
 }
 
-// Authenticate a user
+// Authenticate a user (Not Working to be fixed!)
 async function authenticateUser(email, password) {
   const user = await User.findOne({ email });
   1;
@@ -25,7 +25,7 @@ async function authenticateUser(email, password) {
   return user;
 }
 
-// Middleware to authenticate requests
+// Middleware to authenticate requests (not working to be fixed)
 function authMiddleware(req, res, next) {
   const authHeader = req.headers.authorization;
   if (!authHeader) {

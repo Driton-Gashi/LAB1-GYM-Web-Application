@@ -531,12 +531,13 @@ cursor: pointer;
   position: relative;
 }
 .profile-head .profile-image{
-  padding-right: 2rem;
+  padding-right: 3rem;
 }
-.profile-data > h3{
+.profile-data > h3:not(.username){
   font-weight: normal;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
+
 .profile-head .profile-image img{
   width: 100px;
 }
@@ -544,6 +545,9 @@ cursor: pointer;
   font-size: 0.7rem;
   color: var(--dark-blue);
   margin-top: -5px;
+}
+.profile-data .email{
+  margin-top: 1rem;
 }
 .profile-actions{
   float: right;
@@ -556,6 +560,48 @@ cursor: pointer;
   margin-right: 0.5rem;
 }
 /* Profile Dashboard styling end */
+
+/* Publisher Dashboard Styling start */
+.publisher-form-wrapper {
+  margin-top: 2rem;
+}
+.publisher-form-wrapper .form_row > h2{
+  font-size: 1rem;
+}
+.publisher-form-wrapper > form .form_row_wrapper{
+  display: flex;
+  justify-content:space-around;
+  margin-bottom: 1rem;
+}
+.form_row_wrapper .form_row input, .form_row_wrapper .form_row select{
+  min-width: 300px;
+
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid var(--black);
+  padding: 0.3rem 0.5rem;
+}
+.publisher-form-wrapper .profile_footer{
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.publisher-submit{
+  padding: 0.5rem 3rem;
+  background-color: var(--dark-blue);
+  color: #fff;
+  outline: 0;
+  border: 1px solid var(--black);
+  border-radius: 3px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+cursor: pointer;
+transform: 0.3s ease all;
+}
+.publisher-submit:hover{
+  background-color: var(--light-black);
+  color: var(--dark-blue);
+}
+/* Publisher Dashboard styling end */
 
 /* Responsive Media Query */
 @media (max-width: 1240px) {

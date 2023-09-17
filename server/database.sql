@@ -1,4 +1,16 @@
 
+CREATE TABLE shopping_cart (
+cart_id SERIAL PRIMARY KEY,
+user_id INT NOT NULL,
+product_id INT NOT NULL,
+quantity INT NOT NULL,
+price NUMERIC(10, 2) NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (user_id) REFERENCES users(user_id),
+FOREIGN KEY (product_id) REFERENCES items(item_id)
+)
+;
+
 -- Created by Dritoni
 CREATE TABLE users(
     user_id serial PRIMARY KEY,
@@ -34,7 +46,8 @@ create table items(
 	item_price int NOT NULL,
 	item_review int NOT NULL,
 	item_image VARCHAR(100) NOT NULL,
- item_category VARCHAR(50) NOT NULL
+ item_category VARCHAR(50) NOT NULL,
+ publisher_id INT NOT NULL
 );
 -- INSERT INTO items (item_name, item_description, item_price, item_review,item_image,item_category) VALUES ('Protein Yogurt', 'Best yogurt tested and approved by Trio', 5, 4,'./supplements/yogurt.png','protein');
 -- INSERT INTO items (item_name, item_description, item_price, item_review,item_image,item_category) VALUES ('Sneakers', 'Comfortable sports shoes for active individuals', 50, 5,'./supplements/sneakers.png','sneakers');

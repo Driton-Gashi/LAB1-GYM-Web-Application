@@ -1,4 +1,6 @@
+import swal from "sweetalert";
 const Item = ({
+  id,
   name,
   description,
   price,
@@ -6,7 +8,9 @@ const Item = ({
   image,
   category,
   setPopup,
+  getUser
 }) => {
+  
   // Review stars logic
   let reviewStars = [];
   for (let i = 0; i < review; i++) {
@@ -17,7 +21,55 @@ const Item = ({
     reviewStars.push(<i key={i} className="fa-regular fa-star"></i>);
   }
 
-  const addToCart = () => {};
+  const product = {
+    product_id: id, // Replace with the actual product ID
+    price: price, // Replace with the actual product price
+  };
+
+  const addToCart = async () => {
+    try {
+  
+      const response = await fetch(`http://localhost:5000/addtocart/${getUser().user_id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product),
+      });
+  
+      if (response.ok) {
+        // Product added to cart successfully
+        swal({
+          title: "Success",
+          text: "This product was added to your cart successfully",
+          icon: "success",
+          timer: 3000,
+          button: false,
+        });
+      } else {
+        const errorMessage = await response.json();
+        // Failed to add product to cart
+        swal({
+          title: "Error",
+          text: errorMessage,
+          icon: "error",
+          timer: 3000,
+          button: false,
+        });
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle other errors, e.g., network issues
+      swal({
+        title: "Error",
+        text: "An error occurred while processing your request",
+        icon: "error",
+        timer: 3000,
+        button: false,
+      });
+    }
+  };
+  
 
   return (
     <div className="item">
@@ -35,6 +87,7 @@ const Item = ({
           onClick={() => {
             setPopup({
               isOpen: true,
+              itemId: id,
               image: image,
               title: name,
               description: description,
@@ -54,6 +107,7 @@ const Item = ({
           onClick={() => {
             setPopup({
               isOpen: true,
+              itemId: id,
               image: image,
               title: name,
               description: description,

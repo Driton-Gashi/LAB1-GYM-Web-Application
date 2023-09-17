@@ -2,15 +2,16 @@
 // import Crossfit from "../components/Home/Crossfit";
 // import Tour from "../components/Home/Tour";
 // import BMI from "../components/Home/BMI";
-
-const Home = () => {
+import { useNavigate } from "react-router-dom";
+const Home = ({getUser}) => {
+  const navigate = useNavigate();
   return (
     <>
       {/* <MainBanner getUser={getUser} />
       <Tour/>
       <Crossfit />
       <BMI/> */}
-      <div id="js-preloader" className="js-preloader">
+      {/* <div id="js-preloader" className="js-preloader">
       <div className="preloader-inner">
         <span className="dot"></span>
         <div className="dots">
@@ -19,7 +20,7 @@ const Home = () => {
           <span></span>
         </div>
       </div>
-    </div>
+    </div> */}
       <div className="main-banner" id="top">
         <video autoPlay muted loop id="bg-video">
             <source src="assets/images/gym-video.mp4" type="video/mp4" />
@@ -27,10 +28,16 @@ const Home = () => {
 
         <div className="video-overlay header-text">
             <div className="caption">
-                <h6>work harder, get stronger</h6>
-                <h2>easy with our <em>gym</em></h2>
+                
+                {getUser() != null?(<h6>Welcome back {getUser().user_name}</h6>):(<h6>work harder, get stronger</h6>)}
+                {getUser() != null?(<h2>Let&apos;s get you <em>back</em></h2>):(<h2>easy with our <em>gym</em></h2>)}
+                
+                
                 <div className="main-button scroll-to-section">
-                    <a href="#features">Become a member</a>
+                {getUser() != null?(<a style={{color:'white', cursor:'pointer'}} onClick={()=> navigate("/dashboard")}>Go to Dashboard</a>):(<a style={{color:'white'}} onClick={()=> navigate("/register")}>Become a Member</a>)}
+
+                
+                    
                 </div>
             </div>
         </div>
@@ -124,7 +131,7 @@ const Home = () => {
                         <h2>Don’t <em>think</em>, begin <em>today</em>!</h2>
                         <p>Ut consectetur, metus sit amet aliquet placerat, enim est ultricies ligula, sit amet dapibus odio augue eget libero. Morbi tempus mauris a nisi luctus imperdiet.</p>
                         <div className="main-button scroll-to-section">
-                            <a href="#our-classes">Become a member</a>
+                        <a style={{color:'white'}} onClick={()=> navigate("/register")}>Become a Member</a>
                         </div>
                     </div>
                 </div>

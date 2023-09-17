@@ -10,7 +10,7 @@ const AdminTopSellingProducts = ({ items,setPopup }) => {
               image: item.item_image,
               title: item.item_name,
               description: item.item_description,
-              price: item.item_price,
+              price: item.item_price, 
               category: item.item_category,
               review: item.item_review,
             });

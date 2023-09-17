@@ -122,7 +122,7 @@ const Login = () => {
             timer: 3000,
             button: false,
           });
-
+          window.location.reload(true);
           // Redirect to the dashboard or perform any other action
           setTimeout(() => {
            navigate('/dashboard');        

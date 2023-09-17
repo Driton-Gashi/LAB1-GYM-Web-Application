@@ -25,12 +25,9 @@ const Cart = ({ getUser }) => {
       const response = await fetch(
         "http://localhost:5000/cartitems/" + user.user_id
       );
-      const jsonData = await response.json();
-      const response2 = await fetch(
-        "http://localhost:5000/itemsid/" + jsonData.item_id
-      );
-      const jsonData2 = await response2.json();
-      setCartItems(jsonData2);
+      const items = await response.json();
+      
+      setCartItems(items);
     } catch (err) {
       console.error(err.message);
     }
@@ -39,7 +36,23 @@ const Cart = ({ getUser }) => {
   useEffect(() => {
     getCartIds();
   }, []);
-  console.log(cartItems);
+ 
+  const [totalPrice, setTotalPrice] = useState(null);
+  const userId = user.user_id; // Replace with the actual user ID
+
+  useEffect(() => {
+    // Make an HTTP request to your Express API to get the total price
+    fetch(`http://localhost:5000/gettotal/${userId}`) // Assuming your Express server is running on the same host and port as your React app
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.length > 0) {
+          setTotalPrice(data[0].total_price);
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, [userId]);
   return (
     <div className="cartPage">
       <div id="wrapper">
@@ -47,30 +60,20 @@ const Cart = ({ getUser }) => {
           <div id="left-col">
             <div id="left-col-cont">
               <h2>Summary</h2>
-              <CartItem
-                image="http://emilcarlsson.se/assets/shirt.png"
-                name="Blue Ocean Shirt"
-                price={60}
-              />
-              <CartItem
-                image="http://emilcarlsson.se/assets/green-shirt.png"
-                name="Green Pine Shirt"
-                price={55}
-              />
-              <CartItem
-                image="http://emilcarlsson.se/assets/belt.png"
-                name="Cow Skin Belt"
-                price={32}
-              />
-              <CartItem
-                image="http://emilcarlsson.se/assets/watch1.png"
-                name="Festina Quartz Watch"
-                price={299}
-              />
+              <div className="cart-items-wrapper">
+              {cartItems.map((item, index) => (
+           <CartItem
+           key={index}
+           image={item.item_image}
+           name={item.item_name}
+           price={item.item_price}
+         />
+        ))}
+              </div>
 
               <p id="total">Total</p>
               <h4 id="total-price">
-                <span>$</span> 446
+                {totalPrice}<span>€</span>
               </h4>
             </div>
           </div>

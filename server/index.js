@@ -186,7 +186,7 @@ try{
 })
 
 
-// Login a user read
+
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -250,6 +250,18 @@ app.get("/items", async (req, res) => {
   }
 });
 
+// Items Published by a specific publisher
+app.get("/itemsby/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    let allItems = await pool.query("SELECT * from items where publisher_id = $1",[id]);
+   
+    res.json(allItems.rows);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 // create Items
 app.post("/createitem", async (req, res) => {
   try {
@@ -260,10 +272,11 @@ app.post("/createitem", async (req, res) => {
       productReview,
       productImage,
       productCategory,
+      publisherId,
     } = req.body;
 
     const query = {
-      text: "INSERT INTO items (item_name, item_description, item_price, item_review,item_image,item_category) VALUES ($1, $2, $3, $4,$5,$6)",
+      text: "INSERT INTO items (item_name, item_description, item_price, item_review,item_image,item_category, publisher_id) VALUES ($1, $2, $3, $4,$5,$6,$7)",
       values: [
         productName,
         productDescription,
@@ -271,10 +284,11 @@ app.post("/createitem", async (req, res) => {
         productReview,
         productImage,
         productCategory,
+        publisherId,
       ],
     };
     const { rows } = await pool.query(query.text, query.values);
-    console.log(rows);
+   
     res.json({ message: "Product was added successfuly" });
   } catch (err) {
     console.log(err.message);
@@ -321,35 +335,6 @@ app.get("/getuserbyusername/:username", async (req, res) => {
       [`%${username}%`, username]
     );
     res.json(users.rows);
-  } catch (error) {
-    console.log(error.message);
-  }
-});
-
-app.get("/cartitems/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    let allCartItems = await pool.query(
-      "SELECT * from cart_item where user_id = $1",
-      [id]
-    );
-    res.json(allCartItems.rows);
-    
-  } catch (error) {
-    console.log(error.message);
-  }
-});
-
-app.get("/itemsid/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    let allCartItems = await pool.query(
-      "SELECT * from items where item_id = $1",
-      [id]
-    );
-    res.json(allCartItems.rows);
   } catch (error) {
     console.log(error.message);
   }
@@ -519,22 +504,60 @@ app.put("/userProfileEmail/:id", async (req, res) => {
   }
 });
 
-const userProfileFolderPath = path.join(__dirname, "public", "userProfile"); // Path to the "public/userProfile" folder
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, userProfileFolderPath);
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
+// Get Cart Items in the cart
+
+app.get("/cartitems/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    let allItems = await pool.query("SELECT items.* FROM items INNER JOIN shopping_cart ON items.item_id = shopping_cart.product_id WHERE shopping_cart.user_id = $1",[id]);
+    res.json(allItems.rows);
+  } catch (error) {
+    console.log(error.message);
+  }
 });
 
-const upload = multer({ storage });
+// get Cart price
+app.get("/gettotal/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    let totalPrice = await pool.query("SELECT SUM(items.item_price) AS total_price FROM items INNER JOIN shopping_cart ON items.item_id = shopping_cart.product_id WHERE shopping_cart.user_id = $1",[id]);
+    res.json(totalPrice.rows);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 
-// Endpoint to handle file upload
-app.post("/upload", upload.single("image"), (req, res) => {
-  res.json({ success: true, message: "File uploaded successfully" });
+// Add product to Cart
+app.post("/addtocart/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { product_id, price } = req.body;
+
+    // Check if the product with the same product_id already exists in the cart for this user
+    const existingCartItem = await pool.query(
+      "SELECT * FROM shopping_cart WHERE user_id = $1 AND product_id = $2",
+      [id, product_id]
+    );
+
+    if (existingCartItem.rows.length > 0) {
+      // Product with the same ID already exists in the cart, you can choose to update its quantity or handle it as needed.
+      res.status(409).json("This product is already in your cart!");
+    } else {
+      // Product with the same ID does not exist in the cart, proceed to add it.
+      const query = {
+        text:
+          "INSERT INTO shopping_cart (user_id, product_id, price) VALUES($1, $2, $3) RETURNING product_id",
+        values: [id, product_id, price],
+      };
+
+      const { rows } = await pool.query(query.text, query.values);
+      res.json("Product was added to cart successfully");
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json("Internal Server Error");
+  }
 });
 
 // Start the server

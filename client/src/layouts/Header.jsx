@@ -56,30 +56,23 @@ const Header = ({ getUser, isLoggedIn }) => {
           <li>
             <NavLink to="/shop">Shop</NavLink>
           </li>
-          <li>
+          
             {!isLoggedIn() ? (
-              <NavLink to="/register">Sign Up</NavLink>
+             <li> <NavLink to="/register">Sign Up</NavLink></li>
             ) : (
-              <a onClick={logout}>Log out</a>
+              <li><a onClick={logout}>Log out</a></li>
             )}
-          </li>
-          <li className="cart">
-            {user !== null ? (
-              user.role == "admin" ? (
-                <NavLink to="/Dashboard">
-                  <i className="fas fa-chart-line"></i>
-                </NavLink>
-              ) : (
-                <NavLink to="/cart">
-                  <i className="fa-solid fa-bag-shopping"></i>
-                </NavLink>
-              )
-            ) : (
-              <NavLink to="/cart">
+          {isLoggedIn() ? ( <li className="cart">
+          <NavLink to="/cart">
                 <i className="fa-solid fa-bag-shopping"></i>
-              </NavLink>
-            )}
-          </li>
+          </NavLink>
+          </li>):"" }
+         
+          
+        {user != null ?(<li className="cart"> <NavLink to="/Dashboard">
+         <i className="fas fa-chart-line"></i>
+                </NavLink></li>):""}
+          
         </ul>
         <div onClick={showMenu} className="burger">
           <i className="fa-solid fa-bars"></i>

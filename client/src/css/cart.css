@@ -1,6 +1,14 @@
 *:focus {
   outline: none;
 }
+.cart-items-wrapper{
+  height: 430px;
+    overflow: auto; 
+    border-bottom: 2px solid var(--black);
+}
+.cart-items-wrapper::-webkit-scrollbar {
+  display: none;
+}
 .left {
   width: 70%;
   float: left;
@@ -49,12 +57,27 @@
   margin: 25px 0 0 0;
 }
 .cartPage #wrapper #container #left-col #left-col-cont div.item {
-  margin: 30px 0;
-  clear: both;
+  margin: 10px 0;
+  /* clear: both; */
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-bottom:1px solid rgba(255, 255, 255,0.13) ;
+  padding: 10px 0;
 }
+.cartPage #wrapper #container #left-col #left-col-cont div.item:hover{
+ 
+}
+#left-col-cont div.item .removeFromCart{
+  position: absolute;
+  top: 0rem;
+  right: 0;
+cursor: pointer;
+}
+
 .cartPage #wrapper #container #left-col #left-col-cont div.item .img-col {
-  width: 30%;
-  float: left;
+  margin-right: 1rem;
+width: 30%;
 }
 .cartPage #wrapper #container #left-col #left-col-cont div.item .img-col img {
   width: 100%;
@@ -62,14 +85,42 @@
 }
 .cartPage #wrapper #container #left-col #left-col-cont div.item .meta-col {
   width: 70%;
-  float: right;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .cartPage #wrapper #container #left-col #left-col-cont div.item .meta-col h3 {
-  font-size: 0.7em;
-  margin: 10px 0 0 5px;
+  font-size:1.2em;
+}
+.meta-col .count{
+  background-color: #fff;
+  color: var(--black);
+  border-radius: 3px;
+  padding: 5px 0;
+  user-select: none;
+  margin-top: 0.5rem;
+  display: inline-block;
+  cursor: not-allowed;
+}
+.meta-col .count .decrease, .meta-col .count .increase{
+  padding: 3px;
+  cursor: pointer;
+background-color: #fff;
+border-radius: 3px;
+cursor: not-allowed;
+}
+.meta-col .count .increase{
+  margin-left: 5px;
+}
+.meta-col .count .decrease{
+  margin-right: 5px;
+}
+.meta-col .count .increase:hover, .meta-col .count .decrease:hover{
+ background-color: lightgray;
 }
 .cartPage #wrapper #container #left-col #left-col-cont div.item .meta-col p {
-  font-size: 0.9em;
+  font-size: 1em;
+  color: #fff;
   margin: 5px 0 0 5px;
   opacity: 0.5;
 }
@@ -78,7 +129,7 @@
   text-align: left;
   font-size: 0.7em;
   opacity: 0.5;
-  margin: 115px 0 5px 0;
+  color: #fff;
 }
 .cartPage #wrapper #container #left-col #left-col-cont h4#total-price {
   text-align: left;

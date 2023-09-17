@@ -100,7 +100,13 @@ const router = createBrowserRouter(
       />
       <Route
         path="/cart"
-        element={<Cart getUser={getUser} isLoggedIn={isLoggedIn} />}
+        element={
+          getUser() == null ? (
+            <Navigate to="/" replace />
+          ): (
+            <Cart getUser={getUser} isLoggedIn={isLoggedIn} />
+          )
+        }
       />
       <Route
         path="/dashboard"

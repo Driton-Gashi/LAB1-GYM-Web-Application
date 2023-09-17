@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import swal from "sweetalert";
 import "../css/shop.css";
 import Item from "../components/shop/Item";
 import Slider from "../components/shop/SliderFilter";
@@ -54,6 +55,56 @@ const Shop = ({ getUser }) => {
   useEffect(() => {
     getItems();
   }, []);
+
+  // add to cart
+  
+
+  const addToCart = async (id, price) => {
+    try {
+      const product = {
+        product_id: id, // Replace with the actual product ID
+        price: price, // Replace with the actual product price
+      };
+      const response = await fetch(`http://localhost:5000/addtocart/${getUser().user_id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product),
+      });
+  
+      if (response.ok) {
+        // Product added to cart successfully
+        swal({
+          title: "Success",
+          text: "This product was added to your cart successfully",
+          icon: "success",
+          timer: 3000,
+          button: false,
+        });
+      } else {
+        const errorMessage = await response.json();
+        // Failed to add product to cart
+        swal({
+          title: "Error",
+          text: errorMessage,
+          icon: "error",
+          timer: 3000,
+          button: false,
+        });
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle other errors, e.g., network issues
+      swal({
+        title: "Error",
+        text: "An error occurred while processing your request",
+        icon: "error",
+        timer: 3000,
+        button: false,
+      });
+    }
+  };
   return (
     <div className="shop">
       {!popup.isOpen ? (
@@ -79,7 +130,7 @@ const Shop = ({ getUser }) => {
               <div className="review">{getStars(popup.review)}</div>
               <h4>{popup.price}€</h4>
               <p>{popup.description}.</p>
-              <button>Add to Cart</button>
+              <button onClick={()=>addToCart(popup.itemId,popup.price)} >Add to Cart</button>
             </div>
           </div>
         </div>
@@ -121,17 +172,19 @@ const Shop = ({ getUser }) => {
           <span>GYM Accessories</span> for you!
         </h1>
         <div className="shop_items">
-          {items.map((element) => (
+          {items.map((element, index) => (
             // %PUBLIC_URL% shortcut for public
             <Item
               setPopup={setPopup}
-              key={element.item_id}
+              key={index}
+              id={element.item_id}
               name={element.item_name}
               description={element.item_description}
               price={element.item_price}
               review={element.item_review}
               image={element.item_image}
               category={element.item_category}
+              getUser={getUser}
             />
           ))}
         </div>

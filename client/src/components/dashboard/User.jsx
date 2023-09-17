@@ -123,10 +123,10 @@ const User = ({getUser}) => {
             <div className="profile-data">
               <h3 className="username">{getUser().user_name}</h3>
               <h3 className="role">{getUser().role}</h3>
-              <h3 className="email">{getUser().email}</h3>
-              <h3 className="address">{getUser().address}</h3>
-              <h3 className="tel">{getUser().tel}</h3>
-              <h3 className="city">{getUser().city}</h3>
+              <h3 className="email"><i className="fas fa-envelope" aria-hidden="true"></i> {getUser().email}</h3>
+              <h3 className="tel"><i className="fa-solid fa-phone"></i> {getUser().tel}</h3>
+              <h3 className="address"><i className="fa-solid fa-location-dot"></i> {getUser().address}</h3>
+              <h3 className="city"><i className="fa-solid fa-city"></i> {getUser().city}</h3>
 
             </div>
             <div className="profile-actions">
