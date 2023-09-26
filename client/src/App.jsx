@@ -22,6 +22,8 @@ import User from "./components/dashboard/User";
 import Publisher from "./components/dashboard/Publisher";
 import GymTrainer from "./components/dashboard/GymTrainer";
 import YogaTrainer from "./components/dashboard/YogaTrainer";
+import Crud1 from "./components/dashboard/Crud1";
+import Crud2 from "./components/dashboard/Crud2";
 // import General from "./components/dashboard/General";
 // layouts
 import Header from "./layouts/Header";
@@ -143,6 +145,14 @@ const router = createBrowserRouter(
         <Route
           path="/dashboard/yogatrainer"
           element={<YogaTrainer getUser={getUser} isLoggedIn={isLoggedIn} />}
+        />
+        <Route
+          path="/dashboard/crud1"
+          element={<Crud1 getUser={getUser} isLoggedIn={isLoggedIn} />}
+        />
+         <Route
+          path="/dashboard/crud2"
+          element={<Crud2 getUser={getUser} isLoggedIn={isLoggedIn} />}
         />
       </Route>
       {/* <Route

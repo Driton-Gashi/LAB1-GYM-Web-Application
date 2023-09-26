@@ -168,6 +168,7 @@ nav .search-box .bx-search{
   height: 50px;
   min-width: 190px;
   padding: 0 15px 0 2px;
+  user-select: none;
 }
 nav .profile-details img{
   height: 40px;

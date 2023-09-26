@@ -3,13 +3,11 @@ import "../css/cart.css";
 import CartItem from "../components/cart/CartItem";
 const Cart = ({ getUser }) => {
   const user = getUser();
-  // const [items, setItems] = useState([]);
   const [number1, setNumber1] = useState("");
   const [number2, setNumber2] = useState("");
   const [number3, setNumber3] = useState("");
   const [number4, setNumber4] = useState("");
 
-  // const cardNumbers = document.querySelectorAll(".cardnumber input");
   const input1 = useRef(null);
   const input2 = useRef(null);
   const input3 = useRef(null);
@@ -38,11 +36,10 @@ const Cart = ({ getUser }) => {
   }, []);
  
   const [totalPrice, setTotalPrice] = useState(null);
-  const userId = user.user_id; // Replace with the actual user ID
+  const userId = user.user_id;
 
   useEffect(() => {
-    // Make an HTTP request to your Express API to get the total price
-    fetch(`http://localhost:5000/gettotal/${userId}`) // Assuming your Express server is running on the same host and port as your React app
+    fetch(`http://localhost:5000/gettotal/${userId}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.length > 0) {
@@ -53,20 +50,27 @@ const Cart = ({ getUser }) => {
         console.error('Error:', error);
       });
   }, [userId]);
+
+  const handleSubmit = async (e)=>{
+    e.preventDefault();
+    alert("Request was Sent!")
+  }
   return (
     <div className="cartPage">
       <div id="wrapper">
         <div id="container">
           <div id="left-col">
             <div id="left-col-cont">
-              <h2>Summary</h2>
+              <h2>Your Cart</h2>
               <div className="cart-items-wrapper">
               {cartItems.map((item, index) => (
            <CartItem
            key={index}
+           id={item.item_id}
            image={item.item_image}
            name={item.item_name}
            price={item.item_price}
+           getUser={getUser}
          />
         ))}
               </div>
@@ -86,7 +90,7 @@ const Cart = ({ getUser }) => {
               />
             </div>
 
-            <form>
+            <form onSubmit={handleSubmit}>
               <label>Cardnumber</label>
               <div id="cardnumber">
                 <input
@@ -212,17 +216,17 @@ const Cart = ({ getUser }) => {
                   <option value="12">December</option>
                 </select>
                 <select name="year" id="year" size="1">
-                  <option value="00">Year</option>
-                  <option value="01">2016</option>
-                  <option value="02">2017</option>
-                  <option value="03">2018</option>
-                  <option value="04">2019</option>
-                  <option value="05">2020</option>
-                  <option value="06">2021</option>
-                  <option value="07">2022</option>
-                  <option value="08">2023</option>
-                  <option value="09">2024</option>
-                  <option value="10">2025</option>
+                  <option value="">Year</option>
+                  <option value="2016">2016</option>
+                  <option value="2017">2017</option>
+                  <option value="2018">2019</option>
+                  <option value="2019">2018</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
                 </select>
               </div>
 

@@ -82,7 +82,7 @@ const User = ({getUser}) => {
         </div>
         <div className="box">
           <div className="right-side">
-            <div className="box-topic">Total Sales</div>
+            <div className="box-topic">Total Spent</div>
             <div className="number">38,876</div>
             <div className="indicator">
               <i className="bx bx-up-arrow-alt"></i>

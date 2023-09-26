@@ -49,7 +49,18 @@ const Sidebar = ({logout, getUser}) => {
               
               </NavLink>
           </li>:""}
-          
+          <li>
+          <NavLink to="/dashboard/crud1">
+            <i className="fa-solid fa-user"></i>
+            <span className="links_name">Crud 1</span>
+              </NavLink>
+          </li>
+          <li>
+          <NavLink to="/dashboard/crud2">
+            <i className="fa-solid fa-user"></i>
+            <span className="links_name">Crud 2</span>
+              </NavLink>
+          </li>
           <li  onClick={logout} className="log_out">
             <a href="#Logout">
               <i className="fa-solid fa-right-from-bracket"></i>

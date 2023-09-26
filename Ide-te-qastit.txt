@@ -1,0 +1,2 @@
+Invoice Feature
+ID e userit, totali fatures, array me id e produkteve te shitura

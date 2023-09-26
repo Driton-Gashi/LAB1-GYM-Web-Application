@@ -184,6 +184,51 @@ const Publisher = ({getUser}) => {
       });
   }, []);
 
+  
+  const deleteItem = async (itemId) => {
+    swal({
+      title: "Are you sure?",
+      text: "You are about to delete this item!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then(async(willDelete) => {
+      if (willDelete) {
+       
+        try {
+          const response = await fetch(`http://localhost:5000/deleteitem/${itemId}`, {
+            method: 'DELETE',
+          });
+      
+          if (response.ok) {
+            swal({
+              title: "Success",
+              text: "Item was deleted successfully",
+              icon: "success",
+              timer: 3000,
+              button: false,
+            });
+            window.location.reload(true);
+          } else {
+            swal({
+              title: "Error",
+              text: "Failed to delete item",
+              icon: "error",
+              timer: 3000,
+              button: false,
+            });
+            
+          }
+        } catch (error) {
+          console.error('Error deleting item:', error);
+          alert('An error occurred while deleting the item.');
+        }
+      }
+    });
+    
+  };
+  
+  
   return (
     <section className="home-section">
        {!popup.isOpen ? (
@@ -197,6 +242,11 @@ const Publisher = ({getUser}) => {
             className="fa-solid fa-xmark popupClose"
           ></i>
           <div className="InnerItemPopup">
+            
+          <i
+            onClick={()=>deleteItem(popup.itemId)}
+            className="fa-solid fa-trash popupDelete"
+          ></i>
             <div className="itemPopup_left">
               <img src={popup.image} alt="" />
             </div>
@@ -386,6 +436,7 @@ const Publisher = ({getUser}) => {
               price: item.item_price,
               category: item.item_category,
               review: item.item_review,
+              itemId:item.item_id,
             });
           }} key={index}>
             <a href="#">

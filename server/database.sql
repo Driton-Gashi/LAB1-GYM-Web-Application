@@ -39,6 +39,7 @@ INSERT INTO categories (category_name) Values ('protein');
 INSERT INTO categories (category_name) Values ('bra');
 INSERT INTO categories (category_name) Values ('sneakers');
 INSERT INTO categories (category_name) Values ('gloves');
+
 create table items(
 	item_id serial PRIMARY KEY,
 	item_name VARCHAR(50) NOT NULL,
@@ -60,63 +61,7 @@ create table items(
     --    8 | Sneakers       | Comfortable sports shoes for active individuals |         10 |           4 | ./supplements/sneakers.png |
     --    9 | Shirt          | Stylish and trendy shirt for casual wear        |         15 |           5 | ./supplements/shirt.webp   |
     --   10 | Pants          | Durable and versatile pants for everyday use    |         20 |           3 | ./supplements/pants.png
--- Created by Dritoni
--- create table cart(
--- 	cart_id serial PRIMARY KEY,
--- 	cart_description VARCHAR(100) NOT NULL,
--- 	cart_price int NOT NULL,
--- 	cart_review int NOT NULL,
--- 	cart_image VARCHAR(100) NOT NULL,
---  cart_category VARCHAR(50) NOT NULL
--- );
 
--- Created by Dritoni
--- CREATE TABLE cart (
---   id SERIAL PRIMARY KEY,
---   created_at TIMESTAMP DEFAULT NOW(),
---   updated_at TIMESTAMP DEFAULT NOW()
--- );
-
--- CREATE TABLE cartItem (
---   id SERIAL PRIMARY KEY,
---   cart_id INTEGER REFERENCES cart(id) ON DELETE CASCADE,
---   product_name VARCHAR(255) NOT NULL,
---   price DECIMAL(10, 2) NOT NULL,
---   quantity INTEGER NOT NULL,
---   created_at TIMESTAMP DEFAULT NOW(),
---   updated_at TIMESTAMP DEFAULT NOW()
--- );
-
-
-
-create table shopping_cart(
-	shopping_cart_id serial PRIMARY KEY,
-	u_id int,
-	foreign key (u_id) references users(user_id)
-);
-
-create table shopping_cart_item(
-	shopping_cart_item_id serial PRIMARY KEY,
-	quantity int,
-	cart_id int,
-	item_id int,
-	foreign key (cart_id) references shopping_cart(shopping_cart_id),
-	foreign key (item_id) references items(item_id)
-);
-
--- qekjo osht
-create table cart_item(
-	shopping_cart_item_id serial PRIMARY KEY,
-	quantity int,
-	user_id int,
-	item_id int,
-	foreign key (user_id) references users(user_id),
-	foreign key (item_id) references items(item_id)
-);
-create table country(
-	country_id serial PRIMARY KEY,
-	name varchar(50)
-);
 
 create table adress(
  adress_id serial PRIMARY KEY,
